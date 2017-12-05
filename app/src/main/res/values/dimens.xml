@@ -1,0 +1,93 @@
+<resources>
+
+    <!--  !!!!!!!! 下面是 聊天 参数!!!!!!!!  -->
+    <dimen name="chat_head">36dp</dimen>
+    <dimen name="chat_send_err">18dp</dimen>
+    <dimen name="chat_img_max">160dp</dimen>
+    <dimen name="chat_smile_height">260dp</dimen>
+    <dimen name="chat_img_min">80dp</dimen>
+    <dimen name="chat_smile">28dp</dimen>
+    <dimen name="chat_img_nor">36dp</dimen>
+    <dimen name="chat_leftright">96dp</dimen>
+    <dimen name="chat_more_img">96dp</dimen>
+
+    <dimen name="search_forchat_choose">20dp</dimen>
+
+    <!--          !!!!!!!! 下面是activeActivity描述参数!!!!!!!!          -->
+    <dimen name="active_disturb_img">18dp</dimen>
+
+
+    <!--          !!!!!!!! 下面是好友描述参数!!!!!!!!          -->
+
+
+    <!--               !!!!!!!!    下面是通用参数    !!!!!!!!            -->
+
+    <dimen name="head_newfriend">60dp</dimen>
+    <dimen name="head_groupusers">68dp</dimen>
+    <dimen name="head_active">54dp</dimen>
+    <dimen name="head_friend">42dp</dimen>
+    <dimen name="head_group_des">106dp</dimen>
+    <dimen name="groupname_des">186dp</dimen>
+
+    <!-- friendActivity和FriendDesACtivity中点击电话图标长宽。 -->
+    <dimen name="phone_mess_w_h">32dp</dimen>
+
+    <!-- 右括号，右箭头大小 -->
+    <dimen name="right_arrow_h">38dp</dimen>
+    <dimen name="right_arrow_w">32dp</dimen>
+
+    <!-- toolbar默认高 -->
+    <dimen name="toolbar_default_minheight">46dp</dimen>
+
+    <!--   大分界线，如个人设置中不同功能分割  -->
+    <dimen name="big_boundary">26dp</dimen>
+
+    <!-- app边境距离 -->
+    <dimen name="activity_margin">16dp</dimen>
+
+    <!-- 组件之间的较大距离 -->
+    <dimen name="big_margin">12dp</dimen>
+
+    <!-- 清晰距离 -->
+    <dimen name="chat_margin">10dp</dimen>
+
+    <!-- 组件之间的清晰距离 -->
+    <dimen name="nor_margin">6dp</dimen>
+
+    <!-- 组件之间的最小距离 -->
+    <dimen name="simall_margin">3dp</dimen>
+
+    <!-- 用做线 -->
+    <dimen name="simalls">0.01dp</dimen>
+    <dimen name="zore">0dp</dimen>
+
+
+    <!-- 老年人字体 -->
+    <dimen name="text_older">32sp</dimen>
+
+    <!-- 大标题 -->
+    <dimen name="text_big">23sp</dimen>
+
+    <!-- 较大字体，用户姓名等 -->
+    <dimen name="text_overt">20sp</dimen>
+
+    <!-- 稍微显眼，用于用户列表最后聊天记录 -->
+    <dimen name="text_nor_overt">16sp</dimen>
+
+    <!-- 正常字体，可以聊天使用 -->
+    <dimen name="text_nor">14sp</dimen>
+
+    <!-- 最小字体，小号说明文字使用 -->
+    <dimen name="text_small">12sp</dimen>
+    <dimen name="text_small_small">3sp</dimen>
+    <dimen name="navigation_icon_size">26dp</dimen>
+    <dimen name="text_margin">16dp</dimen>
+
+
+    <!--    引入三方库使用   -->
+    <dimen name="fab_margin">16dp</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+</resources>

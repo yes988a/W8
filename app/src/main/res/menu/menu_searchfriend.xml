@@ -1,0 +1,8 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/searchfri_scan"
+        android:orderInCategory="100"
+        android:title="@string/scan_des"
+        app:showAsAction="ifRoom" />
+</menu>

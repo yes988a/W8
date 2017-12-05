@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/big_margin"
+    android:paddingLeft="@dimen/big_margin"
+    android:paddingRight="@dimen/big_margin"
+    android:paddingTop="@dimen/big_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.w8.GroupCompleteActivity"
+    tools:showIn="@layout/activity_group_complete">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/addgroup_head"
+            android:layout_width="@dimen/head_group_des"
+            android:layout_height="@dimen/head_group_des"
+            android:paddingTop="@dimen/big_boundary"
+            android:src="@drawable/ic_add_chat"
+            android:contentDescription="@string/head" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/big_boundary"
+            android:text="@string/head" />
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/big_margin">
+
+            <AutoCompleteTextView
+                android:id="@+id/addgroup_name"
+                android:layout_width="@dimen/groupname_des"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:hint="@string/groupname"
+                android:inputType="text"
+                android:maxLength="16"
+                android:maxLines="1"
+                android:textSize="@dimen/text_nor" />
+        </android.support.design.widget.TextInputLayout>
+
+        <View style="@style/view_h"></View>
+
+        <Button
+            android:id="@+id/addgroup_submit"
+            style="?android:textAppearanceSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/complete"
+            android:textStyle="bold" />
+
+        <View style="@style/view_h"></View>
+
+    </LinearLayout>
+</ScrollView>

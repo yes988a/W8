@@ -1,0 +1,279 @@
+<resources>
+
+    <!--<string name="urlBase">http://182.92.222.65:9680/wxbase/</string>-->
+
+    <string name="http">http://</string>
+    <string name="ws">ws://</string>
+    <string name="ws_suffix">/?x=</string>
+    <string name="ht_suffix">/?t=</string>
+    <string name="send_heart">*</string>
+    <string name="res_heart">^</string>
+    <string name="httpHomeAddress">http://192.168.0.101:9980/?t=</string>
+    <string name="wsHomeAddress">ws://192.168.0.101:9980/?x=</string>
+
+    <string name="urlError">http://152.168.1.119:8080/</string>
+
+    <string name="version">a304db857c90f418c8b16e43f04bb1fff</string>
+    <string name="AlbumActivity">图库</string>
+    <string name="app_name">W8</string>
+    <string name="action_settings">Settings</string>
+    <string name="activity_active_add">新增群聊</string>
+    <string name="title_activity_groupusers">群成员</string>
+    <string name="qrcode_ic_refresh">刷新二维码</string>
+    <string name="activity_friend_add">添加好友</string>
+    <string name="activity_chat_details">详情</string>
+    <string name="activity_chat_clear">清空</string>
+    <string name="clear_succ">完成清空</string>
+    <string name="activity_chat_remove">移除</string>
+    <string name="activity_frienddes_edit">完善</string>
+    <string name="friend_des_top_top">好友置顶</string>
+    <string name="roup_des_top_top">群聊置顶</string>
+    <string name="friend_des_shield">屏蔽好友</string>
+    <string name="group_des_shield">屏蔽群聊</string>
+    <string name="action_seting_ziliao">资料</string>
+    <string name="friend_des_blacklist">加入黑名单</string>
+    <string name="friend_des_report">投诉此用户</string>
+    <string name="friend_des_dele">删除好友</string>
+    <string name="friend_save_err">好友设置保存失败</string>
+    <string name="group_save_err">群信息保存失败</string>
+    <string name="activity_frienddes_sendto">发送此名片</string>
+    <string name="activity_frienddes_clear">清空聊天记录</string>
+    <string name="activity_frienddes_clear_imgandsound">清除图片语音</string>
+    <string name="title_activity_friend">联系人</string>
+    <string name="friend_des_nowtime">生活印记</string>
+    <string name="title_activity_chat">聊天</string>
+    <string name="title_activity_friend_des">详情</string>
+    <string name="title_activity_login">登录</string>
+    <string name="login_loading">登 录 中</string>
+    <string name="title_activity_bigimg">大图片浏览</string>
+    <string name="title_activity_wxWeb">网页浏览</string>
+    <string name="title_activity_bigtext">大字体</string>
+    <string name="title_activity_seting">我的详情</string>
+    <string name="title_activity_active">微笑世界</string>
+    <string name="title_activity_group_des">群详情</string>
+    <string name="title_activity_chatall">聊天</string>
+    <string name="title_activity_add_test">AddTestActivity</string>
+    <string name="tim">1459326651929</string>
+    <string name="new_friReq">新朋友</string>
+    <string name="groupuser_add">新增群员</string>
+    <string name="groupuser_remove">移除群员</string>
+    <string name="new_group">新建群</string>
+    <string name="chat_group">群聊</string>
+    <string name="group_des_dele">删除并退出</string>
+    <string name="group_des_report">投诉此群</string>
+    <string name="biaoqian">标签</string>
+    <string name="setting">我的</string>
+    <string name="mine">我的</string>
+    <!--通用-->
+    <string name="nulltext">""</string>
+    <string name="tittle_ok">提示</string>
+    <string name="next">下一步</string>
+    <string name="end">最后一步</string>
+    <string name="goback">返回</string>
+    <string name="afresh">刷新</string>
+    <string name="complete">完成</string>
+    <string name="success">操作成功</string>
+    <string name="fail_format">操作失败，格式不正确</string>
+    <string name="fail_web">网络错误，请重试</string>
+    <string name="fail">操作失败，请重试</string>
+    <string name="app_err">客户端错误</string>
+    <string name="wx_imgs">小微图库</string>
+    <string name="normal_return">返回</string>
+    <string name="alert_choose_true">确定</string>
+    <string name="alert_choose_false">取消</string>
+    <string name="alert_choose_know">知道啦</string>
+    <string name="alert_choose_tittle">选择操作</string>
+    <string name="namedes_update">修改昵称</string>
+    <string name="update_remarks">设置备注</string>
+    <string name="group_des_name_update">修改群名称</string>
+    <string name="group_des_gname_update">修改群备注</string>
+    <string name="group_des_notice_update">修改群公告</string>
+    <string name="group_des_myname_update">修改我在群中的昵称</string>
+    <string name="group_des_update_err_m">仅群主可编辑</string>
+    <string name="group_des_quitgroup">退群提示</string>
+    <string name="group_num_err_tittle">创建群条件</string>
+    <string name="group_num_err_des">每个人只能创建xx个群</string>
+    <string name="group_des_give">转让群</string>
+    <string name="group_des_groupmasterquit">因为你是群主，退出后群将被解散。</string>
+    <string name="open">开</string>
+    <string name="close">关</string>
+    <string name="phoneweb_getimg">手机网络接受图片</string>
+    <string name="notice_shock">震动通知</string>
+    <string name="safe">安全</string>
+    <string name="more">更多</string>
+    <string name="call">电话呼叫</string>
+    <string name="sms">发送短信</string>
+    <string name="yes">是</string>
+    <string name="no">否</string>
+    <string name="smile">表情</string>
+    <string name="txt">文本</string>
+    <string name="permission_failed">权限获取失败</string>
+    <string name="permission_storage_failed_hint">获取读取相册权限失败，请在设置中授权后再使用。</string>
+    <string name="permission_camera_failed_hint">获取相机权限失败，请在设置中授权后再使用。</string>
+    <string name="permission_callphone_failed_hint">获取系统电话权限失败，请在设置中授权后再使用。</string>
+    <string name="permission_sms_failed_hint">获取系统发送短信权限失败，请在设置中授权后再使用。</string>
+    <!--通用 -->
+
+    <!--   好友描述  -->
+    <string name="name">(name)</string>
+    <string name="qrcode">二维码</string>
+    <string name="sound">声音通知</string>
+    <string name="friend_des_address">地区 所属</string>
+    <string name="friend_des_bzname">备注名字</string>
+    <string name="friend_des_uname">账号</string>
+    <string name="group_fris">群成员</string>
+    <string name="search">搜索</string>
+    <string name="removephonebutton">解除关联</string>
+    <string name="removephonedes11">一、此操作将解除此手机号和其他账号的关联。</string>
+    <string name="removephonedes22">二、每个账号必须关联有效的手机号才能使用。</string>
+
+
+    <!-- 登录  start -->
+    <string name="welcome_login">欢迎回来</string>
+    <string name="welcome_use">欢迎使用</string>
+    <string name="sign_out">安全退出</string>.
+    <string name="login_usern_pass_err">账号和密码不匹配</string>
+    <string name="login_usern_null">账号不存在</string>
+    <string name="login_web_err">登录超时(请重试)</string>
+    <!-- 登录  end -->
+    <!--  注册 start -->
+    <string name="reg_del_phone">手机号已经绑定其他账号，继续操作，将解绑其他账号。</string>
+    <string name="reg_login">已有账号，马上登录</string>
+    <string name="login_forget">忘记密码</string>
+    <string name="register_one">马上注册</string>
+    <string name="agin_get">&#160;获取验证码&#160;</string>
+    <string name="account">qwertyuiopasdfghjklzxcvbnm_0123456789.QWERTYUIOPASDFGHJKLZXCVBNM</string>
+    <string name="acc_error">账号格式：字母、数字、英文句号和下划线，长度3-18</string>
+    <string name="password_error">密码*(6-32)</string>
+    <string name="nickname_error">昵称*(0-116)</string>
+    <string name="reg_gettesterr">验证码获取失败(请重试)</string>
+    <string name="reg_testnum_err">验证码有误</string>
+    <string name="reg_testnum_send">验证码已发送</string>
+    <string name="reg_phonetestnumerr">手机验证码不匹配</string>
+    <string name="reg_phonetesttimeout">验证码已过期</string>
+    <string name="reg_two_username">账号已经被注册</string>
+    <string name="reg_web_err">访问超时(请重试)</string>
+    <string name="server_err">未知错误</string>
+    <!--  注册  end  -->
+
+    <string name="qr_popup_save">保存到相册</string>
+    <string name="qr_popup_reset">重置二维码</string>
+    <string name="scan_des">扫一扫</string>
+    <string name="button_ok">OK</string>
+    <string name="title_activity_new_friend">资料</string>
+    <string name="title_activity_qrcode">我的二维码</string>
+    <string name="chat_img">（图片）</string>
+    <string name="chat_file">（附件）</string>
+    <string name="chat_err">信息格式不正确</string>
+
+    <string name="head">头像</string>
+    <string name="rname">账号</string>
+    <string name="group_notice">公告</string>
+    <string name="namedes">昵称</string>
+    <string name="group_notice_no">群主未设置公告内容</string>
+    <string name="autograph">签名</string>
+    <string name="groupname">群名称(0-16)</string>
+    <string name="groupnamefromuser">备注</string>
+    <string name="groupusernum">成员</string>
+    <string name="userstring"> 人</string>
+    <string name="groupdes_myname">我的昵称</string>
+
+    <string name="req_des">请求描述:</string>
+    <string name="req_met">是否见过:</string>
+    <string name="req_met_succ">添加成功</string>
+    <string name="err_timeout">信息已经过期</string>
+    <string name="req_met_err">请求失败请重试</string>
+    <string name="refuse_succ">您已经成功拒绝好友请求</string>
+    <string name="web_err_again">网络延迟，点击图标重新加载</string>
+    <string name="new_friend_friReq_sendto">添加好友</string>
+    <string name="new_friend_send_temp">发送临时消息</string>
+    <string name="new_friend_sendmessage">发送消息</string>
+    <string name="friend_request_agress">同意添加</string>
+    <string name="friend_request_refuse">拒绝</string>
+    <string name="friend_request_ignore">忽略</string>
+    <string name="title_activity_friend_request">好友添加请求</string>
+    <string name="myfriend_now">本来就是您的好友</string>
+    <string name="seting_auto">未设置签名内容</string>
+    <string name="seting_update">设置我的签名</string>
+
+    <string name="err_phone">手机号不正确</string>
+    <string name="err_test_register">获取验证码太频繁，请使用已经获取的验证码。或稍后重试</string>
+    <string name="grouptype_in_friend">42</string>
+    <string name="welcome_register">欢迎注册</string>
+    <string name="reg_username_idea">账号为登录时唯一标识(请妥善保管)</string>
+    <string name="phone_register">手机号*</string>
+    <string name="test_register">验证码*</string>
+    <string name="usertext_register">账号* (让亲友发现您)</string>
+    <string name="usernick_register">昵称*</string>
+    <string name="pass_register">密码*(6-32)</string>
+    <string name="right_postion">右箭头</string>
+    <string name="click_img">可点击小图标</string>
+    <string name="title_activity_qrtext_view">文本</string>
+    <string name="group_select_null">请选择至少一个好友</string>
+    <string name="usertext_or_phone">请输入:账号/手机号</string>
+
+    <string name="search_des_choosegroup">选择一个群</string>
+    <string name="search_des_choosefriend">好友默认列表</string>
+    <string name="search_des_chooseactive">好友活跃列表</string>
+
+    <!--   \\\\\\\\   聊天    \\\\\\\\     -->
+    <string name="txt_deleImg_succ">删除成功</string>
+    <string name="txt_backImg_succ">成功撤回</string>
+    <string name="txt_send_succ">成功转发</string>
+    <string name="txt_send_err">转发失败</string>
+    <string name="txt_backImg_outtime">超过三分钟不能撤回</string>
+    <string name="saveimg_succ">成功保存到系统相册</string>
+    <string name="saveimg_err">保存失败</string>
+    <string name="back_left">好友撤回一条消息</string>
+    <string name="back_right">您撤回一条消息</string>
+    <string name="chat_position">定位</string>
+    <string name="chat_sound">语音</string>
+    <string name="chat_album">图库</string>
+    <string name="chat_photograph">相机</string>
+    <string name="title_activity_chat_all">聊天</string>
+
+    <!--   \\\\\\\\   NewfriReq    \\\\\\\\     -->
+    <string name="add_friend_complete">完成添加</string>
+    <string name="add_friend_btx">*必填项*</string>
+    <string name="add_friend_bx">*必选项*</string>
+    <string name="add_friend_has">已经是您的好友</string>
+    <string name="add_friend_succ">申请成功</string>
+
+    <!--    \\\\\\\      大图片  大字体  \\\\\\\       -->
+    <string name="normal_copy">复制</string>
+    <string name="normal_send">转发</string>
+    <string name="normal_back">撤回</string>
+    <string name="normal_dele">删除</string>
+    <string name="normal_save">保存</string>
+    <string name="normal_edit">编辑</string>
+
+    <!--   使用第三方库使用 ,图片选择器  -->
+    <string name="album_title_activity_gallery">图片</string>
+    <string name="album_all_image">所有图片</string>
+    <string name="album_check_limit">你最多可以选择%1$d张图片</string>
+    <string name="album_check_little">你没有选择照片</string>
+    <string name="album_menu_finish">完成</string>
+    <string name="album_check">选择</string>
+    <string name="album_dialog_sure">好的</string>
+    <string name="title_activity_chat_single_big_txt">文本浏览</string>
+    <string name="title_activity_search_active">转发</string>
+    <string name="title_activity_search_friend">SearchFriendActivity</string>
+    <string name="search_null_nickname">对方未设置昵称，可能存在异常</string>
+    <string name="title_activity_group">群列表</string>
+    <string name="title_activity_select_friend">选择好友</string>
+    <string name="title_activity_group_complete">新增群</string>
+    <string name="title_activity_chatgroup">群聊</string>
+    <string name="title_activity_search_for_group">转发到群</string>
+    <string name="title_activity_search_add_friend">搜索好友</string>
+
+    <!-- ：添加好友搜索说明： -->
+    <string name="search_des_one">一、输入完整的手机号，或者精准的好友的小微账号</string>
+    <string name="search_des_two">二、点击搜索按钮，开始查找好友</string>
+    <string name="search_des_three">三、您也可以扫描好友二维码进行添加</string>
+    <string name="search_des_four">注意：为保证安全，不支持模糊搜索。</string>
+    <string name="search_des_no">一、账号和手机号不存在，或者对方没有开启手机搜索</string>
+    <string name="title_activity_removephone">解除手机绑定</string>
+    <string name="yes988a">yes988a</string>
+    <string name="title_activity_register_complete">完成注册</string>
+
+</resources>

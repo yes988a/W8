@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/lightgray"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.w8.FriResActivity"
+    tools:showIn="@layout/activity_fri_res">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="@dimen/big_margin">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/big_margin"
+            android:text="@string/friend_des_uname"
+            android:textSize="@dimen/text_overt" />
+
+        <TextView
+            android:id="@+id/fri_res_acc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/seting_auto"
+            android:textSize="@dimen/text_small" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/big_margin"
+            android:text="@string/namedes"
+            android:textSize="@dimen/text_overt" />
+
+        <TextView
+            android:id="@+id/fri_res_nickname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="会计法拉法基奥拉夫就爱上咖啡就爱上飞机撒" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/big_margin"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingTop="@dimen/big_margin">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/req_met"
+                android:textColor="@color/brown" />
+
+            <RadioGroup
+                android:id="@+id/fri_res_radioGroup"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="100"
+                android:gravity="right"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/fri_res_radioyes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/big_margin"
+                    android:layout_marginRight="@dimen/big_margin"
+                    android:text="@string/yes" />
+
+                <RadioButton
+                    android:id="@+id/fri_res_radiono"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/big_margin"
+                    android:text="@string/no" />
+            </RadioGroup>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/big_margin"
+            android:paddingTop="@dimen/big_margin">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/req_des"
+                android:textColor="@color/brown" />
+
+            <EditText
+                android:id="@+id/fri_res_des"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="100"
+                android:background="@color/white"
+                android:maxLength="80"
+                android:padding="@dimen/simall_margin" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/fri_res_agress"
+            style="?android:textAppearanceSmall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/big_margin"
+            android:text="@string/friend_request_agress"/>
+
+        <Button
+            android:id="@+id/fri_res_ignore"
+            style="?android:textAppearanceSmall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/big_margin"
+            android:text="@string/friend_request_agress"/>
+
+    </LinearLayout>
+</ScrollView>

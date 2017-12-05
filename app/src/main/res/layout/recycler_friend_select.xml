@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:gravity="center_vertical"
+    android:orientation="vertical">
+
+    <View
+        style="@style/view_h"
+        android:layout_marginLeft="@dimen/activity_margin"
+        android:layout_marginRight="@dimen/activity_margin" />
+
+    <TextView
+        android:id="@+id/fr_sele_rid"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:id="@+id/fr_sele_biglinear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/simall_margin"
+        android:paddingLeft="@dimen/activity_margin"
+        android:paddingRight="@dimen/activity_margin"
+        android:paddingTop="@dimen/simall_margin">
+
+        <ImageView
+            android:id="@+id/fr_sele_imagehead"
+            android:layout_width="@dimen/head_friend"
+            android:layout_height="@dimen/head_friend"
+            android:contentDescription="@string/head"
+            android:scaleType="centerInside" />
+
+        <TextView
+            android:id="@+id/fr_sele_uname"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="100"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/nor_margin"
+            android:paddingRight="@dimen/nor_margin"
+            android:textSize="@dimen/text_overt"
+            android:typeface="monospace" />
+
+        <CheckBox
+            android:id="@+id/fr_sele_checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <View
+        style="@style/view_h"
+        android:layout_marginLeft="@dimen/activity_margin"
+        android:layout_marginRight="@dimen/activity_margin" />
+</LinearLayout>

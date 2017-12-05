@@ -1,0 +1,78 @@
+apply plugin: 'com.android.application'
+apply plugin: 'org.greenrobot.greendao'
+
+android {
+    compileSdkVersion 26
+    buildToolsVersion '26.0.2'
+    defaultConfig {
+        applicationId "com.w8"
+        minSdkVersion 19
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+greendao {
+    schemaVersion 1
+    daoPackage 'com.w8.base.data'
+    targetGenDir 'src/main/java'
+}
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile 'com.android.support:appcompat-v7:25.0.2'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile 'com.android.support:design:25.2.0'
+    compile 'com.google.zxing:android-core:3.3.0'
+    //二维码
+    compile 'com.google.zxing:javase:3.3.0'
+    compile 'com.squareup.okhttp3:okhttp:3.8.1'
+    //网络通信，此项目总用作websocket客户端
+    compile 'com.squareup.okio:okio:1.13.0'
+    compile 'com.mcxiaoke.volley:library:1.0.19'
+    // http组件儿
+    compile 'com.google.code.gson:gson:2.8.1'
+    //谷歌json，和pc保持一致。
+    compile 'commons-io:commons-io:2.5'
+    compile 'org.greenrobot:greendao:3.2.2'
+    //数据库
+    compile 'net.zetetic:android-database-sqlcipher:3.5.7'
+    // 数据库加密
+    compile 'com.soundcloud.android:android-crop:1.0.1@aar'
+    //图片剪切
+    compile 'com.squareup.picasso:picasso:2.5.2'
+    // 图片加载，有缓存，防止错位
+    compile 'jp.wasabeef:picasso-transformations:2.1.2'
+    // 配合picasso，图片样式
+    compile 'jp.co.cyberagent.android.gpuimage:gpuimage-library:1.4.1'
+    //相机滤镜。？？？
+    compile 'id.zelory:compressor:2.1.0'
+    // 图片压缩。
+    // https://mvnrepository.com/artifact/com.github.chrisbanes.photoview/library
+    compile 'com.github.chrisbanes.photoview:library:1.2.4'
+    //    compile 'com.github.chrisbanes.photoview:latest.release.here' //单个图片查看
+    /*  compile 'com.facebook.fresco:fresco:1.5.0'//图片显示，factbook家的东西。占用App比较大
+        // 支持 GIF 动图，需要添加
+        compile 'com.facebook.fresco:animated-gif:1.5.0'
+        // 支持 WebP （静态图+动图），需要添加
+        compile 'com.facebook.fresco:animated-webp:1.5.0'
+        compile 'com.facebook.fresco:webpsupport:1.5.0'
+    */
+    //相册选择，没有一个大厂商在做这一块，下面两个供选择吧。都不咋样，好多人遇见问题。
+    //使用中，别更改源码啦，作者一直在更新。  测试一下当前版本下两者的速度。。。
+    //    compile 'cn.finalteam.rxgalleryfinal:library:1.0.9'//相册选择，没有一个大厂商在做这一块
+    //    compile 'com.jph.takephoto:takephoto_library:4.0.3'// 相册选择
+    //    compile 'com.yanzhenjie:album:1.0.7'
+    compile 'com.yanzhenjie:album:2.0.0-alpha'
+    //Album框架 2.0测试版本，首次加载速度太慢，没有使用。。。
+    compile 'org.greenrobot:eventbus:3.0.0'
+    // 消息发布和接收。
+    testCompile 'junit:junit:4.12'
+}

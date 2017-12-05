@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:gravity="center_vertical"
+    android:orientation="vertical">
+
+    <View
+        style="@style/view_h"
+        android:layout_marginLeft="@dimen/activity_margin"
+        android:layout_marginRight="@dimen/activity_margin" />
+
+    <TextView
+        android:id="@+id/fr_head_abc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/deepgray"
+        android:padding="@dimen/simall_margin"
+        android:textSize="@dimen/text_small" />
+
+    <TextView
+        android:id="@+id/fr_rid"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:id="@+id/fr_biglinear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/simall_margin"
+        android:paddingLeft="@dimen/activity_margin"
+        android:paddingRight="@dimen/activity_margin"
+        android:paddingTop="@dimen/simall_margin">
+
+        <ImageView
+            android:id="@+id/fr_imagehead"
+            android:layout_width="@dimen/head_friend"
+            android:layout_height="@dimen/head_friend"
+            android:contentDescription="@string/head"
+            android:scaleType="centerInside" />
+
+        <TextView
+            android:id="@+id/fr_uname"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="100"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/nor_margin"
+            android:paddingRight="@dimen/nor_margin"
+            android:typeface="monospace" />
+
+        <ImageView
+            android:id="@+id/fr_phone"
+            style="@style/click_img"
+            android:contentDescription="@string/call"
+            android:src="@drawable/ic_cellphone" />
+
+    </LinearLayout>
+
+    <View
+        style="@style/view_h"
+        android:layout_marginLeft="@dimen/activity_margin"
+        android:layout_marginRight="@dimen/activity_margin" />
+</LinearLayout>

@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/lightgray"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.w8.MineSetingActivity"
+    tools:showIn="@layout/activity_mine_seting">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <!--   账号    -->
+        <TextView
+            android:id="@+id/set_acc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:gravity="center"
+            android:padding="@dimen/activity_margin"
+            android:textColor="@color/deepmoregray"
+            android:textStyle="bold" />
+
+        <View style="@style/view_h" />
+
+        <!--  昵称  -->
+        <LinearLayout
+            android:id="@+id/set_n_linear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/big_margin"
+                android:text="@string/namedes"
+                android:textSize="@dimen/text_overt" />
+
+            <TextView
+                android:id="@+id/set_nickname"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="100"
+                android:gravity="right"
+                android:paddingLeft="@dimen/big_margin"
+                android:paddingRight="@dimen/big_margin"/>
+
+            <ImageView
+                style="@style/right_postion"
+                android:contentDescription="@string/right_postion" />
+        </LinearLayout>
+
+        <View
+            style="@style/view_h"
+            android:layout_marginLeft="@dimen/big_margin" />
+
+        <!--  头像  -->
+        <LinearLayout
+            android:id="@+id/details_head"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/head_one"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="100"
+                android:padding="@dimen/big_margin"
+                android:text="@string/head"
+                android:textSize="@dimen/text_overt" />
+
+            <ImageView
+                style="@style/right_postion"
+                android:contentDescription="@string/right_postion" />
+        </LinearLayout>
+
+        <View
+            style="@style/view_h"
+            android:layout_marginLeft="@dimen/big_margin" />
+
+        <!--   二维码  -->
+        <LinearLayout
+            android:id="@+id/details_QRcode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/QRcode_one"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="100"
+                android:padding="@dimen/big_margin"
+                android:text="@string/qrcode"
+                android:textSize="@dimen/text_overt" />
+
+            <ImageView
+                style="@style/right_postion"
+                android:contentDescription="@string/right_postion" />
+        </LinearLayout>
+
+        <View
+            style="@style/view_h"
+            android:layout_height="@dimen/big_boundary" />
+
+        <!--
+        手机网络接受图片
+        消息通知：声音通知
+        消息通知：震动
+        更多：字体，背景，语言，功能和反馈，关于xx
+        安全：手机，邮箱，密保,黑名单等
+        退出登录
+
+        未解决问题：背景如何更换？  表情图标未解决
+        -->
+        <!--   消息通知：声音通知   -->
+        <LinearLayout
+            android:id="@+id/set_sound"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/sound_one"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="100"
+                android:padding="@dimen/big_margin"
+                android:text="@string/sound"
+                android:textSize="@dimen/text_overt" />
+
+            <Switch
+                android:id="@+id/sound_two"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:padding="@dimen/big_margin"
+                android:textOff="@string/close"
+                android:textOn="@string/open"/>
+
+        </LinearLayout>
+
+        <View
+            style="@style/view_h"
+            android:layout_marginLeft="@dimen/big_margin" />
+
+        <!--   安全：手机，邮箱，密保,黑名单等   -->
+        <LinearLayout
+            android:id="@+id/set_safe"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/set_safe_one"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="100"
+                android:padding="@dimen/big_margin"
+                android:text="@string/safe"
+                android:textSize="@dimen/text_overt" />
+
+            <ImageView
+                style="@style/right_postion"
+                android:contentDescription="@string/right_postion" />
+
+        </LinearLayout>
+
+        <View
+            style="@style/view_h"
+            android:layout_marginLeft="@dimen/big_margin" />
+
+        <LinearLayout
+            android:id="@+id/set_more"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/set_more_one"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="100"
+                android:padding="@dimen/big_margin"
+                android:text="@string/more"
+                android:textSize="@dimen/text_overt" />
+
+            <ImageView
+                style="@style/right_postion"
+                android:contentDescription="@string/right_postion" />
+        </LinearLayout>
+
+        <View
+            style="@style/view_h"
+            android:layout_marginLeft="@dimen/big_margin" />
+        <!--   更多：字体，背景，语言，功能和反馈，关于xx   -->
+        <Button
+            android:id="@+id/sign_out"
+            style="?android:textAppearanceSmall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/set_more"
+            android:layout_margin="@dimen/big_margin"
+            android:text="@string/sign_out"
+            android:textStyle="bold"
+            tools:ignore="ObsoleteLayoutParam" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/big_margin"
+            android:paddingRight="@dimen/big_margin">
+
+            <TextView
+                android:id="@+id/seting_auto_edit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@mipmap/ic_edit"
+                android:paddingLeft="@dimen/big_margin"
+                android:paddingTop="@dimen/big_margin"
+                android:text="@string/autograph"
+                android:textSize="@dimen/text_overt" />
+
+            <TextView
+                android:id="@+id/seting_auto_txt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/activity_margin"
+                android:paddingRight="@dimen/activity_margin"
+                android:paddingBottom="@dimen/activity_margin"
+                android:text="@string/seting_auto"
+                android:textSize="@dimen/text_small" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>
+

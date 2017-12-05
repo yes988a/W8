@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.w8.FriendDesActivity"
+    tools:showIn="@layout/activity_friend_des">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="@dimen/big_margin">
+
+            <ImageView
+                android:id="@+id/friend_des_head"
+                android:layout_width="@dimen/head_active"
+                android:layout_height="@dimen/head_active"
+                android:contentDescription="@string/head"
+                android:src="@drawable/ic_smiling" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="100"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/chat_margin">
+
+                <TextView
+                    android:id="@+id/friend_des_bzname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/friend_des_bzname"
+                    android:textSize="@dimen/text_overt"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/friend_des_rname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/friend_des_uname"
+                    android:textColor="@color/brown"
+                    android:textSize="@dimen/text_nor" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/big_margin"
+            android:paddingRight="@dimen/big_margin">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="100"
+                android:orientation="vertical"
+                android:paddingRight="@dimen/nor_margin">
+
+                <TextView
+                    android:id="@+id/friend_des_phonenum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/simall_margin"
+                    android:paddingTop="@dimen/simall_margin"
+                    android:text=""
+                    android:textSize="@dimen/text_nor"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/friend_des_phoneaddress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/simall_margin"
+                    android:paddingTop="@dimen/simall_margin"
+                    android:text="@string/friend_des_address"
+                    android:textSize="@dimen/text_small" />
+
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/friend_des_sendmess"
+                style="@style/click_img"
+                android:contentDescription="@string/click_img"
+                android:src="@drawable/ic_send_phone_mess" />
+
+            <ImageView
+                android:id="@+id/friend_des_cell"
+                style="@style/click_img"
+                android:contentDescription="@string/click_img"
+                android:src="@drawable/ic_cellphone" />
+
+        </LinearLayout>
+
+        <View style="@style/view_h" />
+
+        <TextView
+            android:id="@+id/friend_des_nowtime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/big_margin"
+            android:text="@string/friend_des_nowtime"
+            android:textSize="@dimen/text_nor_overt" />
+
+        <View style="@style/view_h" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="@dimen/big_margin">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="100"
+                android:text="@string/friend_des_shield"
+                android:textSize="@dimen/text_overt" />
+
+            <Switch
+                android:id="@+id/friend_des_shield_switch"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textOff="@string/close"
+                android:textOn="@string/open" />
+        </LinearLayout>
+
+        <View style="@style/view_h" />
+
+        <Button
+            android:id="@+id/friend_des_sendidcard"
+            style="?android:textAppearanceMedium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/simall_margin"
+            android:layout_marginLeft="@dimen/big_margin"
+            android:layout_marginRight="@dimen/big_margin"
+            android:layout_marginTop="@dimen/simall_margin"
+            android:text="@string/activity_frienddes_sendto" />
+
+        <Button
+            android:id="@+id/friend_des_clear"
+            style="?android:textAppearanceMedium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/simall_margin"
+            android:layout_marginLeft="@dimen/big_margin"
+            android:layout_marginRight="@dimen/big_margin"
+            android:layout_marginTop="@dimen/simall_margin"
+            android:text="@string/activity_frienddes_clear" />
+
+        <View style="@style/view_h" />
+    </LinearLayout>
+</ScrollView>

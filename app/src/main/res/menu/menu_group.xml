@@ -1,0 +1,9 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/gro_add"
+        android:icon="@mipmap/ic_addgroup"
+        android:orderInCategory="100"
+        android:title="@string/new_group"
+        app:showAsAction="always" />
+</menu>

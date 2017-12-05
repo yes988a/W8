@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.w8.GroupDesActivity"
+    tools:showIn="@layout/activity_group_des">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/big_boundary"
+            android:paddingTop="@dimen/big_boundary"
+            tools:ignore="UseCompoundDrawables">
+
+            <!--  头像  -->
+            <ImageView
+                android:id="@+id/group_des_head"
+                android:layout_width="@dimen/head_group_des"
+                android:layout_height="@dimen/head_group_des"
+                android:contentDescription="@string/head"
+                android:src="@drawable/ic_add_chat" />
+
+            <!--  群名称  -->
+            <TextView
+                android:id="@+id/group_des_gname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/groupname"
+                android:textSize="@dimen/text_overt" />
+
+        </LinearLayout>
+        <!--  群备注  -->
+        <LinearLayout
+            android:id="@+id/group_des_gremark_linear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="100"
+                android:paddingBottom="@dimen/big_margin"
+                android:paddingLeft="@dimen/big_margin"
+                android:paddingRight="@dimen/big_margin"
+                android:paddingTop="@dimen/big_margin"
+                android:text="@string/groupnamefromuser"
+                android:textSize="@dimen/text_overt" />
+
+            <TextView
+                android:id="@+id/group_des_gremark_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="@dimen/big_margin"
+                android:textSize="@dimen/text_overt" />
+
+            <ImageView
+                style="@style/right_postion"
+                android:contentDescription="@string/right_postion" />
+        </LinearLayout>
+
+        <View style="@style/view_h" />
+
+        <!--  群人员  -->
+        <LinearLayout
+            android:id="@+id/group_des_usernum_linear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="100"
+                android:paddingBottom="@dimen/big_margin"
+                android:paddingLeft="@dimen/big_margin"
+                android:paddingRight="@dimen/big_margin"
+                android:paddingTop="@dimen/big_margin"
+                android:text="@string/groupusernum"
+                android:textSize="@dimen/text_overt" />
+
+            <TextView
+                android:id="@+id/group_des_usernum_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="@dimen/big_margin"
+                android:textSize="@dimen/text_overt" />
+
+            <ImageView
+                style="@style/right_postion"
+                android:contentDescription="@string/right_postion" />
+        </LinearLayout>
+
+        <View style="@style/view_h" />
+
+        <!--  公告  -->
+        <LinearLayout
+            android:id="@+id/group_des_notice_linear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="100"
+                android:gravity="left"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/big_margin"
+                    android:paddingRight="@dimen/big_margin"
+                    android:text="@string/group_notice"
+                    android:textSize="@dimen/text_overt" />
+
+                <TextView
+                    android:id="@+id/group_des_notice_txt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/big_margin"
+                    android:paddingLeft="@dimen/big_margin"
+                    android:paddingRight="@dimen/big_margin"
+                    android:paddingTop="@dimen/big_margin"
+                    android:text="@string/group_notice_no"
+                    android:textSize="@dimen/text_small" />
+            </LinearLayout>
+
+            <ImageView
+                style="@style/right_postion"
+                android:contentDescription="@string/right_postion" />
+        </LinearLayout>
+
+        <View
+            style="@style/view_h"
+            android:layout_height="@dimen/big_boundary" />
+
+        <!--  我在群中备注  -->
+        <LinearLayout
+            android:id="@+id/group_des_nickname_linear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="100"
+                android:paddingBottom="@dimen/big_margin"
+                android:paddingLeft="@dimen/big_margin"
+                android:paddingRight="@dimen/big_margin"
+                android:paddingTop="@dimen/big_margin"
+                android:text="@string/groupdes_myname"
+                android:textSize="@dimen/text_overt" />
+
+            <TextView
+                android:id="@+id/group_des_nickname_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="@dimen/big_margin"
+                android:textSize="@dimen/text_overt" />
+
+            <ImageView
+                style="@style/right_postion"
+                android:contentDescription="@string/right_postion" />
+        </LinearLayout>
+
+        <View
+            style="@style/view_h"
+            android:layout_marginLeft="@dimen/big_margin" />
+
+        <!--  屏蔽  -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="@dimen/big_margin">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="100"
+                android:text="@string/group_des_shield"
+                android:textSize="@dimen/text_overt" />
+
+            <Switch
+                android:id="@+id/group_des_shield_switch"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textOff="@string/close"
+                android:textOn="@string/open" />
+        </LinearLayout>
+
+        <View style="@style/view_h" />
+
+        <!--  清空记录  -->
+        <Button
+            android:id="@+id/group_des_clear"
+            style="?android:textAppearanceMedium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/simall_margin"
+            android:layout_marginLeft="@dimen/big_margin"
+            android:layout_marginRight="@dimen/big_margin"
+            android:layout_marginTop="@dimen/simall_margin"
+            android:text="@string/activity_frienddes_clear" />
+
+        <View style="@style/view_h" />
+    </LinearLayout>
+</ScrollView>

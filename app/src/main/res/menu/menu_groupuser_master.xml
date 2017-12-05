@@ -1,0 +1,24 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/groupuser_master_dele"
+        android:orderInCategory="100"
+        android:title="@string/complete"
+        android:visible="false"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/groupuser_master_add"
+        android:icon="@drawable/ic_friend_add"
+        android:orderInCategory="100"
+        android:title="@string/groupuser_add"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/groupuser_master_remove"
+        android:icon="@drawable/ic_dele"
+        android:orderInCategory="100"
+        android:title="@string/groupuser_remove"
+        app:showAsAction="never" />
+
+</menu>

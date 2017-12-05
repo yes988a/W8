@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:padding="@dimen/big_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.w8.RemovephoneActivity"
+    tools:showIn="@layout/activity_removephone">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/removephonedes11"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/removephonedes22"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/progressBar_removephone"
+        style="?android:attr/progressBarStyleSmallInverse"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="2dp"
+        android:visibility="gone" />
+
+    <View style="@style/view_h" />
+
+    <TextView
+        android:id="@+id/removephonenum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/big_margin"
+        android:text="@string/phone_register"
+        android:textStyle="bold" />
+
+    <View style="@style/view_h" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="@dimen/big_margin">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/remove_test"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="100"
+            android:hint="@string/test_register"
+            android:inputType="number"
+            android:maxLength="5"
+            android:maxLines="1" />
+
+        <Button
+            android:id="@+id/getagin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:maxLines="1"
+            android:text="@string/agin_get" />
+
+    </LinearLayout>
+
+    <View style="@style/view_h" />
+
+    <Button
+        android:id="@+id/removephone_butt"
+        style="?android:textAppearanceMedium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/orange"
+        android:paddingLeft="@dimen/big_margin"
+        android:paddingRight="@dimen/big_margin"
+        android:text="@string/removephonebutton" />
+
+</LinearLayout>

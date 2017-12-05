@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="@color/white"/>
+    <stroke
+        android:width="@dimen/simalls"
+        android:color="@color/white" />
+    <corners
+        android:bottomLeftRadius="@dimen/activity_margin"
+        android:bottomRightRadius="@dimen/activity_margin"
+        android:topLeftRadius="@dimen/activity_margin"
+        android:topRightRadius="@dimen/activity_margin" />
+</shape>

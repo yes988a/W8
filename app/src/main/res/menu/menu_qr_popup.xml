@@ -1,0 +1,13 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/qr_popup_save"
+        android:orderInCategory="100"
+        android:title="@string/qr_popup_save"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/qr_popup_reset"
+        android:orderInCategory="100"
+        android:title="@string/qr_popup_reset"
+        app:showAsAction="ifRoom" />
+</menu>

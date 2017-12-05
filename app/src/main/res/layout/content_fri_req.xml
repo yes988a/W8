@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/lightgray"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.w8.FriReqActivity"
+    tools:showIn="@layout/activity_fri_req">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="@dimen/big_margin">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/big_margin"
+            android:textSize="@dimen/text_overt"
+            android:text="@string/namedes"/>
+
+        <TextView
+            android:id="@+id/fri_req_nickname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/search_null_nickname"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/big_margin"
+            android:text="@string/autograph"
+            android:textSize="@dimen/text_overt" />
+
+        <TextView
+            android:id="@+id/fri_req_autograph"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/seting_auto"
+            android:textSize="@dimen/text_small" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_marginBottom="@dimen/big_margin"
+            android:paddingTop="@dimen/big_margin">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/req_met"
+                android:textColor="@color/brown" />
+
+            <RadioGroup
+                android:id="@+id/fri_req_radioGroup"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="100"
+                android:gravity="right"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/fri_req_radioyes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/big_margin"
+                    android:layout_marginRight="@dimen/big_margin"
+                    android:text="@string/yes" />
+
+                <RadioButton
+                    android:id="@+id/fri_req_radiono"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/big_margin"
+                    android:text="@string/no" />
+            </RadioGroup>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/fri_req_add"
+            style="?android:textAppearanceSmall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/big_margin"
+            android:text="@string/new_friend_friReq_sendto"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/big_margin"
+            android:paddingTop="@dimen/big_margin">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/req_des"
+                android:textColor="@color/brown" />
+
+            <EditText
+                android:id="@+id/fri_req_des"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="100"
+                android:background="@color/white"
+                android:maxLength="80"
+                android:padding="@dimen/simall_margin" />
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

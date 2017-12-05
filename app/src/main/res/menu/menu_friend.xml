@@ -1,0 +1,21 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/fri_scan"
+        android:icon="@drawable/ic_scan"
+        android:orderInCategory="100"
+        android:title="@string/scan_des"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/fri_addfri"
+        android:icon="@drawable/ic_friend_add"
+        android:orderInCategory="100"
+        android:title="@string/new_friReq"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/fri_setting"
+        android:icon="@drawable/ic_set"
+        android:orderInCategory="100"
+        android:title="@string/setting"
+        app:showAsAction="never" />
+</menu>
