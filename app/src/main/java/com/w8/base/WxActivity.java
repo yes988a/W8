@@ -10,7 +10,6 @@ import android.util.Log;
 import android.view.Gravity;
 import android.widget.TextView;
 
-import com.google.gson.JsonObject;
 import com.w8.LoginActivity;
 import com.w8.R;
 import com.w8.base.event.Common_close_all;
@@ -20,7 +19,6 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import java.security.MessageDigest;
-import java.util.UUID;
 
 /**
  * 常用工具类封装？
@@ -43,6 +41,20 @@ public class WxActivity extends AppCompatActivity {
         EventBus.getDefault().unregister(this);//可以多次解除注册
     }
 
+    //可以多个方法。方法名字没有什么意思。
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void c(Common_close_all all) {
+        //清空所有登录信息，(不需要做，因为所有到非登录页面都会清空所有登录信息。)
+        //跳转到登录页面。
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    protected void mwErr(String TAG, String where, Exception e) {
+        Log.e(TAG, where + ":::::::::::" + e.toString());
+    }
+
     // 弹框提示。仅仅通知（此方法后面不可以直接跟finish()）
     protected void alertDialogText(String msg) {
         TextView edi = new TextView(WxActivity.this);//textAppearanceMedium
@@ -58,35 +70,6 @@ public class WxActivity extends AppCompatActivity {
                         dialog.dismiss();
                     }
                 }).show();
-    }
-
-    //可以多个方法。方法名字没有什么意思。
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void c(Common_close_all all) {
-        //清空所有登录信息，(不需要做，因为所有到非登录页面都会清空所有登录信息。)
-        //跳转到登录页面。
-        startAct(this, LoginActivity.class);
-    }
-
-    protected void mwErr(String TAG, String where, Exception e) {
-        Log.e(TAG, where + ":::::::::::" + e.toString());
-    }
-
-    /**
-     * 跳转到activity，当前旧activity.finish
-     */
-    protected void startAct(WxActivity finshAct, Class<? extends WxActivity> t) {
-        if (t != null) {
-            Intent intent = new Intent(this, t);
-            if (finshAct != null) {
-                finshAct.startActivity(intent);
-            } else {
-                this.startActivity(intent);
-            }
-        }
-        if (finshAct != null) {
-            finshAct.finish();
-        }
     }
 
     /**

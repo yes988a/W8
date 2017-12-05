@@ -1,5 +1,6 @@
 package com.w8;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
 import android.view.KeyEvent;
@@ -88,7 +89,9 @@ public class LoginActivity extends LoginTestAcc {
         login_reg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startAct(LoginActivity.this, RegisterAccPhoneActivity.class);
+                Intent intent = new Intent(LoginActivity.this, RegisterAccPhoneActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
     }

@@ -1,14 +1,18 @@
 package com.w8;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -126,7 +130,9 @@ public class FriSearchActivity extends OnlineActivity implements View.OnClickLis
                                     String nickname = jo.get(MineUtil.para_nickname).getAsString();
                                     String autograph = jo.get(MineUtil.para_autograph).getAsString();
                                     if (uid.equals(AppUtil.getUid())) {
-                                        startAct(FriSearchActivity.this, MineSetingActivity.class);
+                                        Intent intent = new Intent(FriSearchActivity.this, MineSetingActivity.class);
+                                        startActivity(intent);
+                                        finish();
                                     } else {
                                         //跳转到，请求好友列表。
                                         Intent intent = new Intent(FriSearchActivity.this, FriReqActivity.class);

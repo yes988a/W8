@@ -76,7 +76,9 @@ public class ActiveActivity extends OnlineActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startAct(ActiveActivity.this, FriendActivity.class);
+                Intent intent = new Intent(ActiveActivity.this, FriendActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
@@ -88,10 +90,12 @@ public class ActiveActivity extends OnlineActivity {
 //扫一扫
                         break;
                     case R.id.fri_addfri:
-                        startAct(null, FriSearchActivity.class);//新朋友
+                        Intent intentAAA = new Intent(ActiveActivity.this, FriSearchActivity.class);//新朋友
+                        startActivity(intentAAA);
                         break;
                     case R.id.fri_setting:
-                        startAct(null, MineSetingActivity.class);//个人详情和设置
+                        Intent intentBB = new Intent(ActiveActivity.this, MineSetingActivity.class);//个人详情和设置
+                        startActivity(intentBB);
                         break;
                 }
                 return false;

@@ -249,5 +249,4 @@ public class FriResActivity extends OnlineActivity {
             // 优化
         }
     }
-
 }

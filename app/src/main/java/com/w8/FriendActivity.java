@@ -1,5 +1,6 @@
 package com.w8;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -121,7 +122,8 @@ public class FriendActivity extends OnlineActivity {
                 m.fri_gs.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        startAct(null, GroupActivity.class);
+                        Intent intent = new Intent(FriendActivity.this, GroupActivity.class);
+                        startActivity(intent);
                     }
                 });
             } else if (AppUtil.FRI_LIST_SYS_LABEL_ADD == viewType) {//43标签添加
@@ -244,7 +246,9 @@ public class FriendActivity extends OnlineActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startAct(FriendActivity.this, ActiveActivity.class);
+                Intent intent = new Intent(FriendActivity.this, ActiveActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
@@ -256,10 +260,12 @@ public class FriendActivity extends OnlineActivity {
                         //扫一扫
                         break;
                     case R.id.fri_addfri:
-                        startAct(null, FriSearchActivity.class);//新朋友
+                        Intent intentAAA = new Intent(FriendActivity.this, FriSearchActivity.class);//新朋友
+                        startActivity(intentAAA);
                         break;
                     case R.id.fri_setting:
-                        startAct(null, MineSetingActivity.class);//个人详情和设置
+                        Intent intentBBB = new Intent(FriendActivity.this, MineSetingActivity.class);//个人详情和设置
+                        startActivity(intentBBB);
                         break;
                 }
                 return false;

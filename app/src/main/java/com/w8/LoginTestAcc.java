@@ -102,9 +102,7 @@ public abstract class LoginTestAcc extends NologinActivity {
                                 cc.setIpp(loginIp);
                                 cc.setAcc(acc);
                                 computerDao.insert(cc);
-
                                 loginComplete(acc, pass, loginIp);
-
                             } else if (RetNumUtil.n_23 == r) {
                                 endWeb();
                                 accErr();
@@ -157,15 +155,15 @@ public abstract class LoginTestAcc extends NologinActivity {
 
                                 String rawKeyB64 = AppUtil.getRawKey(aesUUID + Long.toString(ctim));
 
-                                if (AppUtil.getUid().equals(uid)) {
-                                    //和上次登录的是同一人，并且初始化friend列表正确
+                                if (AppUtil.getUid().equals(uid)) { //和上次登录的是同一人，并且初始化friend列表正确
                                     AppUtil.clearAll();
-                                } else {
-                                    //不是同一人，清空数据
+                                } else { //不是同一人，清空数据
                                     AppUtil.clearAll();
                                     DaoMaster.dropAllTables(MyApp.mC.getDM().getDatabase(), true);
                                     DaoMaster.createAllTables(MyApp.mC.getDM().getDatabase(), true);
                                 }
+                                // 验证，信息个数是否有变化。（好友、群）
+
                                 AppUtil.setUrl(ip);
                                 AppUtil.setLogin(uid, randomid, token, rawKeyB64, sound, acc, nickname, ctim);
                                 //插入好友列表数据。
@@ -173,7 +171,6 @@ public abstract class LoginTestAcc extends NologinActivity {
 
                                 //启动闹钟，不应该只是在这里。在MyApp中也有，用于用户强行结束App后再次打开
                                 AppUtil.setTag(ActiveActivity.class.getSimpleName());
-
                                 startActivity(new Intent(LoginTestAcc.this, ActiveActivity.class));
                                 finish();
                             } else if (RetNumUtil.n_12 == r) {

@@ -69,7 +69,9 @@ public class RegisterCompleteActivity extends RegisterTestNum implements View.On
             delPhone = bundle.getString(PhoneUtil.para_know_del_phone);
             if (delPhone == null || phone == null || "".equals(phone) || acc == null || "".equals(acc)
                     || uuidTestNum == null || "".equals(uuidTestNum)) {
-                startAct(RegisterCompleteActivity.this, RegisterAccPhoneActivity.class);
+                Intent intent = new Intent(RegisterCompleteActivity.this, RegisterAccPhoneActivity.class);
+                startActivity(intent);
+                finish();
             } else {
                 register_complete_phone.setText(phone);
                 AuthCodeUtil authCodeUtil = new AuthCodeUtil(RegisterCompleteActivity.this, register_complete_getagin);

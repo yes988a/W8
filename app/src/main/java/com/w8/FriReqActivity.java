@@ -195,5 +195,4 @@ public class FriReqActivity extends OnlineActivity {
             // 优化
         }
     }
-
 }

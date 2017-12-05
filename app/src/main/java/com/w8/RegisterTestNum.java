@@ -43,7 +43,9 @@ public abstract class RegisterTestNum extends LoginTestAcc {
         reg_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {//已有账号，马上登陆
-                startAct(RegisterTestNum.this, LoginActivity.class);
+                Intent intent = new Intent(RegisterTestNum.this, LoginActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
     }

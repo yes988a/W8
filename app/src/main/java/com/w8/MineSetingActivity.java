@@ -1,6 +1,7 @@
 package com.w8;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
@@ -185,7 +186,8 @@ public class MineSetingActivity extends OnlineActivity implements View.OnClickLi
         } else if (id == R.id.set_safe) {
 
         } else if (id == R.id.details_QRcode) {
-            startAct(null, MineQRCodeActivity.class);
+            Intent intent = new Intent(this, MineQRCodeActivity.class);
+            startActivity(intent);
         } else if (id == R.id.details_head) {
 //            Intent intent = new Intent(MineSetingActivity.this, ChatBigimgActivity.class);
 //       头像问题         intent.putExtra(WxUtil.URL, AppUtil.getHeadportrait(MyDetailsActivity.this));
@@ -243,7 +245,7 @@ public class MineSetingActivity extends OnlineActivity implements View.OnClickLi
             Log.e(TAG, e.getMessage());
         }
         if (bb) {
-            StringRequest wxr = new StringRequest( getString(R.string.httpHomeAddress) + into.toString(),
+            StringRequest wxr = new StringRequest(getString(R.string.httpHomeAddress) + into.toString(),
                     new Response.Listener<String>() {
                         @Override
                         public void onResponse(String msg) {
