@@ -5,7 +5,6 @@ package com.w8.base.pcurl;
  */
 public class AccountUtil {
 
-
     /* 账号 */
     public final static String para_acc = "a75c";
 

@@ -25,22 +25,25 @@ import java.util.GregorianCalendar;
 public class GuardService extends Service {
 
     public static String TAG = GuardService.class.getSimpleName();
+    public static Long login_close = 2 * 60L * 1000;// 登陆未打开app时，短链接轮值间隔。
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+        String tt = AppUtil.getTag();
 
         // 所有状态：
         // 一、未登录，tag为"NologinActivity.class"，不管打开还是关闭者activity。。。
         // 二、登录状态，并打开着activity，Tag有值为simpleName。。。
         // 三、登录状态，关闭activity后，tag为"OnlineActivity.class"。。。
         // 不应该有"" 的情况发生。如果有，也视为未登录吧。
-        String tt = AppUtil.getTag();
-        if (NologinActivity.class.getSimpleName().equals(tt)) {
-            // 未登录，不应该有闹钟，应该判断到底是否登录。
-        } else if (OnlineActivity.class.getSimpleName().equals(tt)) {
-            if (MyApp.webSocket == null) {
-                //登录，但是关闭着activity页面。
-                long tim = AppUtil.getTimeReal();
+
+        if (NologinActivity.class.getSimpleName().equals(tt)) { // 未登录，不应该有闹钟，应该判断到底是否登录。
+            AppUtil.quitSafe();
+        } else if (OnlineActivity.class.getSimpleName().equals(tt)) { // 已经登陆，未打开页面。
+            long tim = AppUtil.getTimeReal();
+            if (MyApp.webSocket == null && login_close + AppUtil.web_succ_tim_chat < tim) {  // 无长连接时才做短链接。
+                // 过啦时长，但是请注意。存在的时间不稳定性（和GuardService的运行时间关系很大。）
+
                 Calendar date = new GregorianCalendar();
                 date.setTimeInMillis(tim);
                 int hh = date.get(Calendar.HOUR_OF_DAY);
@@ -50,11 +53,8 @@ public class GuardService extends Service {
                     AppUtil.startAlarmDay();
                 }
             }
-        } else {
-            //登录状态，并开着UI页面。
-            if (MyApp.webSocket == null) {
-                MyApp.mC.newWS();
-            }
+        } else { //登录状态，并开着UI页面。
+            MyApp.mC.newWS();
         }
         return super.onStartCommand(intent, flags, startId);
     }

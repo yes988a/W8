@@ -192,7 +192,7 @@ public class ActiveActivity extends OnlineActivity {
             if (typ == AppUtil.n_typ_frireq || typ == AppUtil.active_chatgroup || typ == AppUtil.active_chatsingle) {
                 return typ;
             } else {
-                return AppUtil.nodata_erro;
+                return 0;
             }
         }
 

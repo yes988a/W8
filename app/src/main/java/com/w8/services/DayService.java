@@ -13,7 +13,7 @@ import com.w8.base.MyApp;
 public class DayService extends Service {
 
     public int onStartCommand(Intent intent, final int flags, int startId) {
-        MyApp.mC.getChat(false);
+        MyApp.mC.getChat();
         return super.onStartCommand(intent, flags, startId);
     }
 

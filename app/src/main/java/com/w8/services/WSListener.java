@@ -2,8 +2,6 @@ package com.w8.services;
 
 import android.util.Log;
 
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 import com.w8.R;
 import com.w8.base.AppUtil;
 import com.w8.base.MyApp;
@@ -24,7 +22,6 @@ import okhttp3.WebSocketListener;
  */
 public class WSListener extends WebSocketListener {
     public static String TAG = WSListener.class.getSimpleName();
-    public static boolean needChat = false;//标记是否成功：在长连接创建成功后获取一次getChat。
 
     @Override
     public void onOpen(WebSocket webSocket, Response response) {
@@ -47,8 +44,7 @@ public class WSListener extends WebSocketListener {
         AppUtil.stopAlarmNight();
         AppUtil.stopAlarmDay();
 
-        needChat = true;
-        MyApp.mC.getChat(true);
+        MyApp.mC.getChat();
         // 总是不一定成功，导致因为有长连接啦就不能在更新遗漏信息。
         // 所有非用户触发不能及时返回给用户的，都应该分级并存储失败结果定时检查。
         // （暂时解决方法）
@@ -101,11 +97,9 @@ public class WSListener extends WebSocketListener {
 
     private void clo(WebSocket webSocket) {
         MyApp.canNewWs = true;
-        if (webSocket == MyApp.webSocket) {
+        if (webSocket == MyApp.webSocket) { // 添加是否相等的判断：因为OkHttpClient一个可以创建多个WSListener？
             MyApp.webSocket = null;
-
         }
-
         //启动，其他http轮询。（危险举动，容易造成连接请求死循环不？）应该在用户切换activity等操作或者启用定时任务，不可以在这里调用
 //        AppUtil.startAlarmGuard();
         Log.e(TAG, "长连接，，，关闭。");

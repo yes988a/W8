@@ -121,12 +121,13 @@ public class AppUtil {
     //群聊,单聊,用于跳转聊天界面判断
     public static int active_chatgroup = 2010;
 
-    //好友请求显示，
-    public static int n_typ_frireq = 2010;
-    //无数据，显示使用手册吧
-    public static int nodata_erro = 40;
+    // app和pc分开。（因为app应该比pc多）。不一致。。。------------------  存储数据和activeactivity列表分类也不一样。因为数量也不一样。 ------------------ ------------------
+    public static int n_typ_frireq = 2010;//好友请求显示，
+    //无数据，时，显示没有内容和高度的view
 
     public static int c_err = 660;// 仅仅用于聊天，信息发送失败
+
+    public static long  web_succ_tim_chat = 0L;// 获取最新信息，上次访问时间。
 
     //插入账号，关联，ipp
     public synchronized static void insertAccIp(String acc, String iipp) {
@@ -242,10 +243,10 @@ public class AppUtil {
     //-----------------          闹钟   start    -----------------------------------------------------------------------------------------------
 
     /**
-     * 常驻定时器，（2分钟）,,,检测各种状态，切换各种状态。
+     * 常驻定时器，（1分钟）,,,检测各种状态，切换各种状态。
      * app打开状态。尝试建立长连接，如果建立失败，那么此service中检测一下是否有新消息。
      */
-    public static int app_service_often = 120 * 1000;
+    public static int app_service_often = 60 * 1000;
 
     /**
      * app关闭状态（白天），长连接已经断开状态。3分钟
@@ -265,7 +266,7 @@ public class AppUtil {
         intent.setAction(GuardService.class.getSimpleName());
         PendingIntent sender = PendingIntent.getService(MyApp.mC, 0, intent, 0);
         AlarmManager am = (AlarmManager) MyApp.mC.getSystemService(MyApp.mC.ALARM_SERVICE);
-        am.setRepeating(AlarmManager.RTC_WAKEUP, SystemClock.elapsedRealtime(), app_service_often, sender);
+        am.setRepeating(AlarmManager.RTC_WAKEUP, SystemClock.elapsedRealtime()+2, app_service_often, sender);
     }
 
     public static void stopAlarmGuard() {
@@ -635,7 +636,7 @@ public class AppUtil {
     /**
      * 安全退出，然后finish();当前activity即可，其它打开的App就会跟着判断token然后关闭。
      */
-    public static void quitSafe(AppCompatActivity context) {
+    public static void quitSafe() {
         //清除保密信息
         AppUtil.stopAlarmGuard();
         AppUtil.stopAlarmDay();

@@ -169,6 +169,7 @@ public abstract class LoginTestAcc extends NologinActivity {
                                 //插入好友列表数据。
                                 AppUtil.insertFrind(userList);
 
+                                MyApp.canNewWs = true;
                                 //启动闹钟，不应该只是在这里。在MyApp中也有，用于用户强行结束App后再次打开
                                 AppUtil.setTag(ActiveActivity.class.getSimpleName());
                                 startActivity(new Intent(LoginTestAcc.this, ActiveActivity.class));
