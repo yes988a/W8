@@ -6,7 +6,7 @@ public class NologinActivity extends WxActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        AppUtil.quitSafe(NologinActivity.this);
+        AppUtil.quitSafe();
     }
 
     @Override

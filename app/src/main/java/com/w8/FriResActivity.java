@@ -216,7 +216,7 @@ public class FriResActivity extends OnlineActivity {
         if (reqid != null) {
             List<Active> al = MyApp.mC.getDS().getActiveDao().queryBuilder()
                     .where(ActiveDao.Properties.Uuid.eq(reqid)
-                            , ActiveDao.Properties.Type.eq(AppUtil.n_typ_frireq)).list();
+                            , ActiveDao.Properties.Btyp.eq(AppUtil.active_frireq)).list();
             MyApp.mC.getDS().getActiveDao().deleteInTx(al);
         }
     }

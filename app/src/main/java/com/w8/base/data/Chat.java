@@ -40,7 +40,7 @@ public class Chat {
      * 类型 0 文本 1图片 3附件 4链接 其它
      */
     @NotNull
-    private int typ;
+    private int dtyp;
     /** Not-null value. */
     /**
      * 文本 内容
@@ -54,14 +54,14 @@ public class Chat {
     @NotNull
     private int stat;
 
-    @Generated(hash = 1054477464)
+    @Generated(hash = 2115544561)
     public Chat(Long _id, @NotNull String requid, @NotNull String resuid, long tim,
-            int typ, @NotNull String txt, int stat) {
+            int dtyp, @NotNull String txt, int stat) {
         this._id = _id;
         this.requid = requid;
         this.resuid = resuid;
         this.tim = tim;
-        this.typ = typ;
+        this.dtyp = dtyp;
         this.txt = txt;
         this.stat = stat;
     }
@@ -102,12 +102,12 @@ public class Chat {
         this.tim = tim;
     }
 
-    public int getTyp() {
-        return this.typ;
+    public int getDtyp() {
+        return this.dtyp;
     }
 
-    public void setTyp(int typ) {
-        this.typ = typ;
+    public void setDtyp(int dtyp) {
+        this.dtyp = dtyp;
     }
 
     public String getTxt() {

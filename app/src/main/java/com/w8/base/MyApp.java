@@ -144,6 +144,7 @@ public class MyApp extends Application {
 
     // 关于获取消息时频率限制。可能忽略某次getChat。所以特殊的紧急获取，还是要有，比如，某个正在聊天的连接失败啦，还是应该马上再次请求，而不是因为时间限制忽略
     // 因为已经有_webing参数限制啦，所以，时间频率可以适当写小点，
+
     /**
      * 获取最新，消息通知。 《 Service 和 WSListener会调用此方法。    此方法不应该调用WSListener注意死循环》
      */
@@ -165,10 +166,10 @@ public class MyApp extends Application {
 
             StringRequest wj = new StringRequest(getString(R.string.httpHomeAddress) + into.toString(), new Response.Listener<String>() {
                 @Override
-                public void onResponse(String msg) {
+                public void onResponse(String msgJobj) {
                     ChatUtil.url_app_findChatsingle_webing = false;
                     ChatUtil.url_app_findChatsingle_tim_old = System.currentTimeMillis();
-                    succGetChat(msg);
+                    succGetChat(msgJobj);
                 }
             }, new Response.ErrorListener() {
                 @Override
@@ -186,12 +187,12 @@ public class MyApp extends Application {
     }
 
     //成功获取具体chat内容后处理。仅仅处理获取的数据，不管其他通讯状态（）
-    public void succGetChat(String msg) {
+    public void succGetChat(String msgJobj) {
         try {
-            JsonObject jo = new JsonParser().parse(msg).getAsJsonObject();
+            JsonObject jo = new JsonParser().parse(msgJobj).getAsJsonObject();
             Integer r = jo.get(WxUtil.para_r).getAsInt();
             if (RetNumUtil.n_0 == r) {
-                String listStr = jo.get(WxUtil.para_json).getAsString();
+                String listStr = jo.get(WxUtil.para_json).getAsString();  // list内容
                 List<ChatEntity> chatList = new Gson()
                         .fromJson(listStr,
                                 new TypeToken<List<ChatEntity>>() {
@@ -201,24 +202,22 @@ public class MyApp extends Application {
                 List<Long> tims = new ArrayList<Long>();
 
                 for (int i = 0; i < chatList.size(); i++) {
-                    ChatEntity pc = chatList.get(i);
-
-                    tims.add(pc.getTim());
-
-                    int typ = pc.getTyp();
-                    if (FriendUtil.typ_add_fri == typ) {
+                    ChatEntity serChat = chatList.get(i);
+                    tims.add(serChat.getTim());
+                    int btyp = serChat.getBtyp();
+                    if (FriendUtil.typ_add_fri == btyp) {
                         Log.e(TAG, "-------被好友---请求-------------------------------");
 
                         //判断是否我的好友。
                         List<Friend> numFri = getDS().getFriendDao().queryBuilder()
-                                .where(FriendDao.Properties.Fid.eq(pc.getReqid())).list();
+                                .where(FriendDao.Properties.Fid.eq(serChat.getReqid())).list();
 
                         if (numFri.size() != 1) {
                             //添加好友请求。
                             getDS().getFriendDao().deleteInTx(numFri);
 
                             //reqaccount ，reqnickname 、reqdes、met
-                            JsonObject jpc = new JsonParser().parse(pc.getDes()).getAsJsonObject();
+                            JsonObject jpc = new JsonParser().parse(serChat.getDes()).getAsJsonObject();
 
                             //{"m0t":"n","Q5L":"","R6c":"yes988a1","Fn6i":"yes988a1111昵称"}
                             String reqaccount = jpc.get(FriendUtil.para_reqacc).getAsString();
@@ -228,30 +227,30 @@ public class MyApp extends Application {
 
                             Frireq frireq = new Frireq();
                             frireq.setMet(met);
-                            frireq.setRequid(pc.getReqid());
+                            frireq.setRequid(serChat.getReqid());
                             frireq.setReqaccount(reqaccount);
                             frireq.setReqnickname(reqnickname);
                             frireq.setReqdes(reqdes);
 
-                            frireq.setResuid(pc.getUid());
-                            frireq.setTim(pc.getTim());
+                            frireq.setResuid(serChat.getUid());
+                            frireq.setTim(serChat.getTim());
                             frireq.setTyp(0);
 
                             getDS().getFrireqDao().insertOrReplace(frireq);
 
                             //插入active  ------------     ------------     ------------   ------------     ------------
                             List<Active> lActive = getDS().getActiveDao().queryBuilder()
-                                    .where(ActiveDao.Properties.Uuid.eq(pc.getReqid())).list();
+                                    .where(ActiveDao.Properties.Uuid.eq(serChat.getReqid())).list();
                             if (lActive.size() != 1) {
                                 getDS().getActiveDao().deleteInTx(lActive);
                                 Active active = new Active();
-                                active.setUuid(pc.getReqid());
+                                active.setUuid(serChat.getReqid());
                                 active.setTitle("好友添加请求");
                                 active.setNum(0);
-                                active.setType(AppUtil.n_typ_frireq);
+                                active.setBtyp(AppUtil.active_frireq);
                                 active.setDes(reqnickname);
-                                active.setTim(pc.getTim());
-                                active.setTimstr(TimUtil.formatTimeToStr(pc.getTim()));
+                                active.setTim(serChat.getTim());
+                                active.setTimstr(TimUtil.formatTimeToStr(serChat.getTim()));
                                 getDS().getActiveDao().save(active);
                             }
                             //广播到active
@@ -259,15 +258,18 @@ public class MyApp extends Application {
                                 EventBus.getDefault().post(new Refresh_active());
                             }
                         }
-                    } else if (FriendUtil.typ_del_fri == typ) {
+                    } else if (FriendUtil.typ_del_fri == btyp) {
                         Log.e(TAG, "-------被好友删除-------------------------------");
                         //被好友删除
-                        String fid = pc.getReqid();
+                        String fid = serChat.getReqid();
                         List<Friend> fs = getDS().getFriendDao().queryBuilder().where(FriendDao.Properties.Fid.eq(fid)).list();
                         getDS().getFriendDao().deleteInTx(fs);
                         //缺少，应该定义一个，我已经被好友删除的记录？  从新设计如何展现是否删除。
-                    } else{   // ----  ------ ----  要精确到 ==typ 从新定义 chat中typ，现在聊天存0123这种放弃。
+                    } else if (ChatUtil.url_app_addChatsingle == btyp) {   // ----  ------ ----  要精确到 ==typ 从新定义 chat中typ，现在聊天存0123这种放弃。
                         //聊天。判断TAG，如果是在聊天的人，更新列表，如果没在聊天更新返回键的新消息数量。
+                    } else {
+//业务类型不正确。。。
+
                     }
                 }
                 delChat(tims);
@@ -292,7 +294,7 @@ public class MyApp extends Application {
             tims.add(oldTims.get(i).getOldTim());
         }
         if (tims.size() == 0 || AppUtil.getUid().equals("")) {
-            Log.e(TAG,"-------报错。。。。its:"+tims.size()+"Uid:"+AppUtil.getUid().equals(""));
+            Log.e(TAG, "-------报错。。。。its:" + tims.size() + "Uid:" + AppUtil.getUid().equals(""));
         } else {
             JsonObject into = new JsonObject();
             into.addProperty(WxUtil.para_url, ChatUtil.url_app_delChatsingleByTims);
@@ -308,7 +310,7 @@ public class MyApp extends Application {
                         getDS().getChatTimsDao().deleteInTx(oldTims);
                         Log.e(TAG, "-------删除，过期，chat，成功。。。-------------------------------");
                     } catch (Exception e) {
-                        Log.e(TAG,"------报错--------delChat(final失败啦。。。。。。。。。。。");
+                        Log.e(TAG, "------报错--------delChat(final失败啦。。。。。。。。。。。");
                     }
                 }
             }, new Response.ErrorListener() {

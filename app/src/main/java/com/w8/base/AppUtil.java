@@ -116,13 +116,10 @@ public class AppUtil {
      */
     public static int tim_back_chat = 1000 * 4 * 60;
 
-    //群聊,单聊,用于跳转聊天界面判断
-    public static int active_chatsingle = 1030;
-    //群聊,单聊,用于跳转聊天界面判断
-    public static int active_chatgroup = 2010;
+    public static int active_chatsingle = 1030;     //群聊,单聊,用于跳转聊天界面判断
+    public static int active_chatgroup = 2010;    //群聊,单聊,用于跳转聊天界面判断
+    public static int active_frireq = 2010;     //好友请求显示，
 
-    // app和pc分开。（因为app应该比pc多）。不一致。。。------------------  存储数据和activeactivity列表分类也不一样。因为数量也不一样。 ------------------ ------------------
-    public static int n_typ_frireq = 2010;//好友请求显示，
     //无数据，时，显示没有内容和高度的view
 
     public static int c_err = 660;// 仅仅用于聊天，信息发送失败
@@ -176,7 +173,7 @@ public class AppUtil {
         delChat.addAll(qb3.list());
 
         for (int i = delChat.size() - 1; i >= 0; i--) {
-            if (ChatUtil.typ_img == delChat.get(i).getTyp()) {
+            if (ChatUtil.typ_des_img == delChat.get(i).getDtyp()) {
                 AppUtil.deleFile(delChat.get(i).getTxt());
             }
             //缺少删除附件。

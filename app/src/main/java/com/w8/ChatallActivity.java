@@ -1088,7 +1088,7 @@ public class ChatallActivity extends OnlineActivity implements View.OnClickListe
                 active.setUuid(uuid);
                 active.setTitle(remark);
                 active.setNum(0);
-                active.setType(cc.getTyp());
+                active.setBtyp(AppUtil.active_frireq);
                 active.setDes(cc.getTxt());
                 active.setTim(cc.getTim());
                 active.setTimstr(TimUtil.formatTimeToStr(cc.getTim()));

@@ -116,7 +116,7 @@ public class ActiveActivity extends OnlineActivity {
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             if (viewType == AppUtil.active_chatsingle || viewType == AppUtil.active_chatgroup) {
                 return new MyViewHolder(LayoutInflater.from(ActiveActivity.this).inflate(R.layout.recycler_active, parent, false));
-            } else if (viewType == AppUtil.n_typ_frireq) {//好友请求显示，当同意后，不在active显示啦就，直接是好友啦，忽略后也不现实啦
+            } else if (viewType == AppUtil.active_frireq) {//好友请求显示，当同意后，不在active显示啦就，直接是好友啦，忽略后也不现实啦
                 return new MyViewHolder_friReqrequest(LayoutInflater.from(ActiveActivity.this).inflate(R.layout.recycler_frireq_request, parent, false));
             } else {
                 //错误数据显示用户手册
@@ -152,7 +152,7 @@ public class ActiveActivity extends OnlineActivity {
                 } else {
                     //错误信息待纠正
                 }
-            } else if (viewType == AppUtil.n_typ_frireq) {
+            } else if (viewType == AppUtil.active_frireq) {
                 MyViewHolder_friReqrequest ho = (MyViewHolder_friReqrequest) h;
                 Active f = datas_ac.get(position);
                 final String rid = f.getUuid();
@@ -188,8 +188,8 @@ public class ActiveActivity extends OnlineActivity {
 
         @Override
         public int getItemViewType(int position) {
-            int typ = datas_ac.get(position).getType();
-            if (typ == AppUtil.n_typ_frireq || typ == AppUtil.active_chatgroup || typ == AppUtil.active_chatsingle) {
+            int typ = datas_ac.get(position).getBtyp();
+            if (typ == AppUtil.active_frireq || typ == AppUtil.active_chatgroup || typ == AppUtil.active_chatsingle) {
                 return typ;
             } else {
                 return 0;

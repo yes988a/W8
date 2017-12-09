@@ -26,7 +26,7 @@ public class ChatDao extends AbstractDao<Chat, Long> {
         public final static Property Requid = new Property(1, String.class, "requid", false, "REQUID");
         public final static Property Resuid = new Property(2, String.class, "resuid", false, "RESUID");
         public final static Property Tim = new Property(3, long.class, "tim", false, "TIM");
-        public final static Property Typ = new Property(4, int.class, "typ", false, "TYP");
+        public final static Property Dtyp = new Property(4, int.class, "dtyp", false, "DTYP");
         public final static Property Txt = new Property(5, String.class, "txt", false, "TXT");
         public final static Property Stat = new Property(6, int.class, "stat", false, "STAT");
     }
@@ -48,7 +48,7 @@ public class ChatDao extends AbstractDao<Chat, Long> {
                 "\"REQUID\" TEXT NOT NULL ," + // 1: requid
                 "\"RESUID\" TEXT NOT NULL ," + // 2: resuid
                 "\"TIM\" INTEGER NOT NULL ," + // 3: tim
-                "\"TYP\" INTEGER NOT NULL ," + // 4: typ
+                "\"DTYP\" INTEGER NOT NULL ," + // 4: dtyp
                 "\"TXT\" TEXT NOT NULL ," + // 5: txt
                 "\"STAT\" INTEGER NOT NULL );"); // 6: stat
     }
@@ -70,7 +70,7 @@ public class ChatDao extends AbstractDao<Chat, Long> {
         stmt.bindString(2, entity.getRequid());
         stmt.bindString(3, entity.getResuid());
         stmt.bindLong(4, entity.getTim());
-        stmt.bindLong(5, entity.getTyp());
+        stmt.bindLong(5, entity.getDtyp());
         stmt.bindString(6, entity.getTxt());
         stmt.bindLong(7, entity.getStat());
     }
@@ -86,7 +86,7 @@ public class ChatDao extends AbstractDao<Chat, Long> {
         stmt.bindString(2, entity.getRequid());
         stmt.bindString(3, entity.getResuid());
         stmt.bindLong(4, entity.getTim());
-        stmt.bindLong(5, entity.getTyp());
+        stmt.bindLong(5, entity.getDtyp());
         stmt.bindString(6, entity.getTxt());
         stmt.bindLong(7, entity.getStat());
     }
@@ -103,7 +103,7 @@ public class ChatDao extends AbstractDao<Chat, Long> {
             cursor.getString(offset + 1), // requid
             cursor.getString(offset + 2), // resuid
             cursor.getLong(offset + 3), // tim
-            cursor.getInt(offset + 4), // typ
+            cursor.getInt(offset + 4), // dtyp
             cursor.getString(offset + 5), // txt
             cursor.getInt(offset + 6) // stat
         );
@@ -116,7 +116,7 @@ public class ChatDao extends AbstractDao<Chat, Long> {
         entity.setRequid(cursor.getString(offset + 1));
         entity.setResuid(cursor.getString(offset + 2));
         entity.setTim(cursor.getLong(offset + 3));
-        entity.setTyp(cursor.getInt(offset + 4));
+        entity.setDtyp(cursor.getInt(offset + 4));
         entity.setTxt(cursor.getString(offset + 5));
         entity.setStat(cursor.getInt(offset + 6));
      }

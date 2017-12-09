@@ -8,24 +8,19 @@ public class ChatUtil {
     //回复者ID
     public final static String para_res = "s92m";
 
-    // 单聊，数据标示
-    public final static int typ_chat_single = 5278;
+    public final static int typ_des_txt = 725;//文本
+    public final static int typ_des_img = 185;//图片
+    public final static int typ_des_file = 326;//附件
+    public final static int typ_des_url = 486;//链接
 
-    // 0 文本 1图片 3附件 4链接
-    public final static int typ_txt = 0;
-    public final static int typ_img = 1;
-    public final static int typ_file = 3;
-    public final static int typ_url = 4;
+    // 内容类型
+    public final static String para_chat_des_tif = "i5sv";
 
-    //聊天信息类型前缀。文本？图片？等
-    public final static String para_chat_business_tif = "c9tp";
-
-    //聊天内容
+    //txt具体内容
     public final static String para_chat_txt = "3tx5";
 
-    //文件内容
+    //图片 或者 文件 内容
     public final static String para_f_str = "f2s0";
-
 
     //撤回，和发送聊天，由url来决定，不适用typ判断。(暂时取消撤回信息操作。。。。)
     //单聊，群聊，也通过url判定。

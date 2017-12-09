@@ -169,7 +169,7 @@ public class MineSetingActivity extends OnlineActivity implements View.OnClickLi
                     .setPositiveButton(R.string.alert_choose_true, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            AppUtil.quitSafe(MineSetingActivity.this);
+                            AppUtil.quitSafe();
                             finish();
                             dialog.dismiss();
                         }

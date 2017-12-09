@@ -32,10 +32,10 @@ public class Active {
     @NotNull
     private String des;
     /**
-     * 参考:group_chat_disturb，nodata_erro等
+     * 业务类型
      */
     @NotNull
-    private Integer type;
+    private Integer btyp;
     /**
      * 消息数量
      */
@@ -52,15 +52,15 @@ public class Active {
      */
     @NotNull
     private Long tim;
-    @Generated(hash = 2125596085)
+    @Generated(hash = 364595792)
     public Active(Long _id, @NotNull String uuid, @NotNull String title,
-            @NotNull String des, @NotNull Integer type, int num,
+            @NotNull String des, @NotNull Integer btyp, int num,
             @NotNull String timstr, @NotNull Long tim) {
         this._id = _id;
         this.uuid = uuid;
         this.title = title;
         this.des = des;
-        this.type = type;
+        this.btyp = btyp;
         this.num = num;
         this.timstr = timstr;
         this.tim = tim;
@@ -92,11 +92,11 @@ public class Active {
     public void setDes(String des) {
         this.des = des;
     }
-    public Integer getType() {
-        return this.type;
+    public Integer getBtyp() {
+        return this.btyp;
     }
-    public void setType(Integer type) {
-        this.type = type;
+    public void setBtyp(Integer btyp) {
+        this.btyp = btyp;
     }
     public int getNum() {
         return this.num;
@@ -116,6 +116,5 @@ public class Active {
     public void setTim(Long tim) {
         this.tim = tim;
     }
-
-
+    
 }

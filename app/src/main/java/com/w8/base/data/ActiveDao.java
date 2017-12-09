@@ -26,7 +26,7 @@ public class ActiveDao extends AbstractDao<Active, Long> {
         public final static Property Uuid = new Property(1, String.class, "uuid", false, "UUID");
         public final static Property Title = new Property(2, String.class, "title", false, "TITLE");
         public final static Property Des = new Property(3, String.class, "des", false, "DES");
-        public final static Property Type = new Property(4, Integer.class, "type", false, "TYPE");
+        public final static Property Btyp = new Property(4, Integer.class, "btyp", false, "BTYP");
         public final static Property Num = new Property(5, int.class, "num", false, "NUM");
         public final static Property Timstr = new Property(6, String.class, "timstr", false, "TIMSTR");
         public final static Property Tim = new Property(7, Long.class, "tim", false, "TIM");
@@ -49,7 +49,7 @@ public class ActiveDao extends AbstractDao<Active, Long> {
                 "\"UUID\" TEXT NOT NULL UNIQUE ," + // 1: uuid
                 "\"TITLE\" TEXT NOT NULL ," + // 2: title
                 "\"DES\" TEXT NOT NULL ," + // 3: des
-                "\"TYPE\" INTEGER NOT NULL ," + // 4: type
+                "\"BTYP\" INTEGER NOT NULL ," + // 4: btyp
                 "\"NUM\" INTEGER NOT NULL ," + // 5: num
                 "\"TIMSTR\" TEXT NOT NULL ," + // 6: timstr
                 "\"TIM\" INTEGER NOT NULL );"); // 7: tim
@@ -72,7 +72,7 @@ public class ActiveDao extends AbstractDao<Active, Long> {
         stmt.bindString(2, entity.getUuid());
         stmt.bindString(3, entity.getTitle());
         stmt.bindString(4, entity.getDes());
-        stmt.bindLong(5, entity.getType());
+        stmt.bindLong(5, entity.getBtyp());
         stmt.bindLong(6, entity.getNum());
         stmt.bindString(7, entity.getTimstr());
         stmt.bindLong(8, entity.getTim());
@@ -89,7 +89,7 @@ public class ActiveDao extends AbstractDao<Active, Long> {
         stmt.bindString(2, entity.getUuid());
         stmt.bindString(3, entity.getTitle());
         stmt.bindString(4, entity.getDes());
-        stmt.bindLong(5, entity.getType());
+        stmt.bindLong(5, entity.getBtyp());
         stmt.bindLong(6, entity.getNum());
         stmt.bindString(7, entity.getTimstr());
         stmt.bindLong(8, entity.getTim());
@@ -107,7 +107,7 @@ public class ActiveDao extends AbstractDao<Active, Long> {
             cursor.getString(offset + 1), // uuid
             cursor.getString(offset + 2), // title
             cursor.getString(offset + 3), // des
-            cursor.getInt(offset + 4), // type
+            cursor.getInt(offset + 4), // btyp
             cursor.getInt(offset + 5), // num
             cursor.getString(offset + 6), // timstr
             cursor.getLong(offset + 7) // tim
@@ -121,7 +121,7 @@ public class ActiveDao extends AbstractDao<Active, Long> {
         entity.setUuid(cursor.getString(offset + 1));
         entity.setTitle(cursor.getString(offset + 2));
         entity.setDes(cursor.getString(offset + 3));
-        entity.setType(cursor.getInt(offset + 4));
+        entity.setBtyp(cursor.getInt(offset + 4));
         entity.setNum(cursor.getInt(offset + 5));
         entity.setTimstr(cursor.getString(offset + 6));
         entity.setTim(cursor.getLong(offset + 7));
