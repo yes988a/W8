@@ -21,12 +21,14 @@ import com.w8.base.AppUtil;
 import com.w8.base.MyApp;
 import com.w8.base.OnlineActivity;
 import com.w8.base.RetNumUtil;
+import com.w8.base.TimUtil;
 import com.w8.base.WxUtil;
 import com.w8.base.data.Active;
 import com.w8.base.data.ActiveDao;
 import com.w8.base.data.FriendDao;
 import com.w8.base.data.Frireq;
 import com.w8.base.data.FrireqDao;
+import com.w8.base.pcurl.ChatUtil;
 import com.w8.base.pcurl.FriendUtil;
 
 import java.util.List;
@@ -42,6 +44,7 @@ public class FriResActivity extends OnlineActivity {
 
     private TextView fri_res_acc;       //账号
     private TextView fri_res_nickname;  // 昵称
+    private TextView fri_res_tim;  // 昵称
     private EditText fri_res_des;//请求描述
 
     private RadioGroup fri_res_radioGroup;
@@ -57,7 +60,7 @@ public class FriResActivity extends OnlineActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_fri_req);
+        setContentView(R.layout.activity_fri_res);
         TAG = FriReqActivity.class.getSimpleName();
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setNavigationIcon(R.mipmap.ic_return);
@@ -70,6 +73,7 @@ public class FriResActivity extends OnlineActivity {
         });
         fri_res_acc = (TextView) findViewById(R.id.fri_res_acc);
         fri_res_nickname = (TextView) findViewById(R.id.fri_res_nickname);
+        fri_res_tim = (TextView) findViewById(R.id.fri_res_tim);
         fri_res_des = (EditText) findViewById(R.id.fri_res_des);
         fri_res_radioGroup = (RadioGroup) findViewById(R.id.fri_res_radioGroup);
         fri_res_agress = (Button) findViewById(R.id.fri_res_agress);
@@ -105,14 +109,13 @@ public class FriResActivity extends OnlineActivity {
                     String reqacc = frireq.getReqaccount();//账号
                     String reqnickname = frireq.getReqnickname();//昵称
                     String reqdes = frireq.getReqdes();//请求描述
-                    String timStr = bundle.getString(WxUtil.para_tim);//时间
+                    tim = frireq.getTim();//请求描述
 
-                    if (reqacc == null || reqnickname == null || reqdes == null || timStr == null ||
-                            reqid == null || yn == null || (!yn.equals(WxUtil.para_yes) && !yn.equals(WxUtil.para_no))) {
+                    if (reqacc == null || reqnickname == null || reqdes == null || reqid == null
+                            || yn == null || (!yn.equals(WxUtil.para_yes) && !yn.equals(WxUtil.para_no))) {
                         finish();
                     } else {
                         try {
-                            tim = Long.valueOf(timStr);
                             if (yn.equals(WxUtil.para_yes)) {
                                 fri_res_radioGroup.check(R.id.fri_res_radioyes);
                                 fri_res_radioGroup.getChildAt(1).setEnabled(false);
@@ -122,6 +125,7 @@ public class FriResActivity extends OnlineActivity {
                             }
                             fri_res_acc.setText(reqacc);
                             fri_res_nickname.setText(reqnickname);
+                            fri_res_tim.setText(TimUtil.formatTimeToStr(tim));
 
                             //fri_res_des应该是不尅编辑但可以复制。
                             fri_res_des.setFocusable(false);
@@ -131,10 +135,8 @@ public class FriResActivity extends OnlineActivity {
                         } catch (Exception e) {
                             finish();
                         }
-                        if (tim != null) {
-                            //判断是否本来就是我的好友。
-                            isFri();
-                        }
+                        //判断是否本来就是我的好友。
+                        isFri();
                     }
                 }
             }
@@ -216,7 +218,7 @@ public class FriResActivity extends OnlineActivity {
         if (reqid != null) {
             List<Active> al = MyApp.mC.getDS().getActiveDao().queryBuilder()
                     .where(ActiveDao.Properties.Uuid.eq(reqid)
-                            , ActiveDao.Properties.Btyp.eq(AppUtil.active_frireq)).list();
+                            , ActiveDao.Properties.Btyp.eq(ChatUtil.url_app_findChatsingle)).list();
             MyApp.mC.getDS().getActiveDao().deleteInTx(al);
         }
     }
@@ -244,9 +246,6 @@ public class FriResActivity extends OnlineActivity {
                         }
                     }).show();
             deleActive();
-        } else {
-            //更新我的好友列表。web
-            // 优化
         }
     }
 }

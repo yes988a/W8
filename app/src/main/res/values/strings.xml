@@ -188,9 +188,9 @@
     <string name="new_friend_friReq_sendto">添加好友</string>
     <string name="new_friend_send_temp">发送临时消息</string>
     <string name="new_friend_sendmessage">发送消息</string>
-    <string name="friend_request_agress">同意添加</string>
-    <string name="friend_request_refuse">拒绝</string>
+    <string name="friend_request_agress">接受</string>
     <string name="friend_request_ignore">忽略</string>
+    <string name="req_fri_tim">请求时间</string>
     <string name="title_activity_friend_request">好友添加请求</string>
     <string name="myfriend_now">本来就是您的好友</string>
     <string name="seting_auto">未设置签名内容</string>

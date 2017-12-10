@@ -116,10 +116,6 @@ public class AppUtil {
      */
     public static int tim_back_chat = 1000 * 4 * 60;
 
-    public static int active_chatsingle = 1030;     //群聊,单聊,用于跳转聊天界面判断
-    public static int active_chatgroup = 2010;    //群聊,单聊,用于跳转聊天界面判断
-    public static int active_frireq = 2010;     //好友请求显示，
-
     //无数据，时，显示没有内容和高度的view
 
     public static int c_err = 660;// 仅仅用于聊天，信息发送失败
@@ -182,9 +178,15 @@ public class AppUtil {
     }
 
     //转到聊天,不关闭上一个activity
-    public static void toChat(String fid, boolean isFri) {
+
+    /**
+     *
+     * @param uuid  好友id或者群id。
+     * @param isFri  用于判断是我的好友还是群。
+     */
+    public static void toChat(String uuid, int isFri) {
         Intent intent = new Intent(MyApp.mC, ChatallActivity.class);
-        intent.putExtra(WxUtil.para_uuid, fid);
+        intent.putExtra(WxUtil.para_uuid, uuid);
         intent.putExtra(AppUtil.para_boolean, isFri);
         MyApp.mC.startActivity(intent);
     }
@@ -641,6 +643,9 @@ public class AppUtil {
 //        AppUtil.setLogin(null);
         //关闭所有的后台更新通知
         AppUtil.clearAll();
+        if(MyApp.webSocket!=null){
+            MyApp.webSocket.close(7900, MyApp.mC.getString(R.string.sign_out));
+        }
     }
 
     //---------------------------   文件操作     ---------------------------------------------------------------------------------

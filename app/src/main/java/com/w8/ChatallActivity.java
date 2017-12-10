@@ -56,6 +56,7 @@ import com.w8.base.data.Group;
 import com.w8.base.data.GroupDao;
 import com.w8.base.data.Smile;
 import com.w8.base.event.Ret_chat;
+import com.w8.base.pcurl.ChatUtil;
 
 import org.greenrobot.eventbus.Subscribe;
 
@@ -115,7 +116,7 @@ public class ChatallActivity extends OnlineActivity implements View.OnClickListe
     private Button chat_more;               //更多。按钮
     private Button chat_send;               //发送按钮
 
-    private Boolean isFri;//是不是我的好友。true表示好友，false表示群。
+    private int isFri;//是不是我的好友。true表示好友，false表示群。
     private String remark;  //群名称，或者，好友名称
 
     @Override
@@ -177,13 +178,13 @@ public class ChatallActivity extends OnlineActivity implements View.OnClickListe
             return;
         } else {
             uuid = bundle.getString(WxUtil.para_uuid);
-            isFri = bundle.getBoolean(AppUtil.para_boolean);
-            if (isFri == null || uuid == null || "".equals(uuid) || "".equals(myid)) {
+            isFri = bundle.getInt(AppUtil.para_boolean);
+            if (uuid == null || "".equals(uuid) || "".equals(myid)) {
                 //错误分析。
                 finish();
                 return;
             } else {
-                if (isFri) { // 好友。
+                if (ChatUtil.url_app_findChatsingle == isFri) { // 好友。
                     List<Friend> cc = MyApp.mC.getDS().getFriendDao().queryBuilder()
                             .where(FriendDao.Properties.Fid.eq(uuid)).list();
                     if (cc.size() == 1) {
@@ -252,7 +253,7 @@ public class ChatallActivity extends OnlineActivity implements View.OnClickListe
                 int id = item.getItemId();
                 switch (id) {
                     case R.id.action_chat_details: //详情。
-                        if (isFri) { // 好友
+                        if (ChatUtil.url_app_findChatsingle == isFri) { // 好友
                             AppUtil.toFriDes(uuid);
                         } else {    //群
                             AppUtil.toGroDes(uuid);
@@ -1088,7 +1089,7 @@ public class ChatallActivity extends OnlineActivity implements View.OnClickListe
                 active.setUuid(uuid);
                 active.setTitle(remark);
                 active.setNum(0);
-                active.setBtyp(AppUtil.active_frireq);
+                active.setBtyp(isFri);
                 active.setDes(cc.getTxt());
                 active.setTim(cc.getTim());
                 active.setTimstr(TimUtil.formatTimeToStr(cc.getTim()));

@@ -120,7 +120,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/big_margin"
-            android:text="@string/friend_request_agress"/>
+            android:text="@string/friend_request_ignore"/>
+
+        <TextView
+            android:id="@+id/fri_res_tim"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/req_fri_tim"/>
 
     </LinearLayout>
 </ScrollView>

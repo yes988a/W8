@@ -23,6 +23,7 @@ import com.w8.base.data.Friend;
 import com.w8.base.data.FriendDao;
 import com.w8.base.holder.FriList_head_holder;
 import com.w8.base.holder.FriList_holder;
+import com.w8.base.pcurl.ChatUtil;
 
 import org.greenrobot.greendao.query.QueryBuilder;
 
@@ -176,7 +177,7 @@ public class FriendActivity extends OnlineActivity {
             m.fr_uname.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    AppUtil.toChat(rid,true);
+                    AppUtil.toChat(rid, ChatUtil.url_app_findChatsingle);
                 }
             });
         }

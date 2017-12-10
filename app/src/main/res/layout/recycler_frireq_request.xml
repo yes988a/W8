@@ -46,7 +46,8 @@
                     android:layout_alignParentLeft="true"
                     android:minLines="1"
                     android:textSize="@dimen/text_overt"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:text="@string/acc_error"/>
 
                 <TextView
                     android:id="@+id/friReq_endtime"
@@ -57,7 +58,8 @@
                     android:minLines="1"
                     android:paddingLeft="@dimen/nor_margin"
                     android:paddingRight="@dimen/activity_margin"
-                    android:textSize="@dimen/text_small" />
+                    android:textSize="@dimen/text_small"
+                    android:text="timmmmmmmmmmm"/>
 
             </RelativeLayout>
 
@@ -65,7 +67,8 @@
                 android:id="@+id/friReq_enddes"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/text_small" />
+                android:textSize="@dimen/text_small"
+                android:text="aaaa"/>
 
         </LinearLayout>
     </LinearLayout>

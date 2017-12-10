@@ -95,7 +95,7 @@ public class MyApp extends Application {
     }
 
 
-    private OkHttpClient getOkHttpClient() {
+    private synchronized OkHttpClient getOkHttpClient() {
         //长连接：只要不运行mOkHttpClient.dispatcher().executorService().shutdown();
         //客户端就一直存在，关闭长连接使用WebSocket的关闭吧。
         if (mOkHttpClient_get == null) {
@@ -118,7 +118,7 @@ public class MyApp extends Application {
      *
      * @return
      */
-    public void newWS() {  //从新建立一个OkHttpClient，并关闭原来的OkHttpClient，如果存在。
+    public synchronized void newWS() {  //从新建立一个OkHttpClient，并关闭原来的OkHttpClient，如果存在。
         //  调用newWS前，请判断webSocket是否为null。将判断放到外面，可以把发送和创建连接分开，灵活使用ws和http
         if (MyApp.webSocket == null && canNewWs) { // 允许
             try {
@@ -247,7 +247,7 @@ public class MyApp extends Application {
                                 active.setUuid(serChat.getReqid());
                                 active.setTitle("好友添加请求");
                                 active.setNum(0);
-                                active.setBtyp(AppUtil.active_frireq);
+                                active.setBtyp(btyp);
                                 active.setDes(reqnickname);
                                 active.setTim(serChat.getTim());
                                 active.setTimstr(TimUtil.formatTimeToStr(serChat.getTim()));
