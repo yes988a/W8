@@ -18,6 +18,7 @@ import com.w8.base.WxUtil;
 import com.w8.base.pcurl.AccountUtil;
 import com.w8.base.pcurl.PhoneUtil;
 import com.w8.base.pcurl.RegisterUtil;
+import com.w8.base.pcurl.TestnumUtil;
 
 /**
  * 注册，验证码公用。  正好有其他可以公用的。顺便公用吧。如：马上登陆。
@@ -95,13 +96,13 @@ public abstract class RegisterTestNum extends LoginTestAcc {
                         JsonObject into = new JsonParser().parse(s).getAsJsonObject();
                         int rrr = into.get(WxUtil.para_r).getAsInt();
                         if (rrr == RetNumUtil.n_0) {
-                            String uuidTestNum = into.get(WxUtil.para_uuid).getAsString();
+                            String uuidTestNum = into.get(TestnumUtil.para_testnum_random).getAsString();
                             if (comp) {
                                 Intent iii = new Intent(RegisterTestNum.this, RegisterCompleteActivity.class);
                                 iii.putExtra(PhoneUtil.para_know_del_phone, delPhone);
                                 iii.putExtra(PhoneUtil.para_phone, phone);
                                 iii.putExtra(AccountUtil.para_acc, acc);
-                                iii.putExtra(WxUtil.para_uuid, uuidTestNum);
+                                iii.putExtra(TestnumUtil.para_testnum_random, uuidTestNum);
                                 startActivity(iii);
                                 finish();
                             } else {

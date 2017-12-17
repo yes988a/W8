@@ -29,9 +29,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 聊天转发。选择一个好友或者群界面
+ * 聊天转发。选择一个好友或者群界面。返回可能是群id(ret_gro_id)，或者好友id(ret_fri_id)
  */
 public class ChatSearchFriActivity extends OnlineActivity {
+
+    public static final String ret_fri_id = "l2a1c";
+
     private static int search_des = 71;  //简单描述
     private static int friend = 77; //无标题好友描述
     private static int friend_group = 88;//有abc描述
@@ -113,10 +116,10 @@ public class ChatSearchFriActivity extends OnlineActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == resultSFCSa && resultCode == resultSFCSa) {
-            String uid = data.getStringExtra(WxUtil.para_uuid);
+            String uid = data.getStringExtra(ChatSearchGroActivity.ret_gro_id);
             if (uid != null) {
                 Intent intent = new Intent();
-                intent.putExtra(WxUtil.para_uuid, uid);
+                intent.putExtra(ChatSearchGroActivity.ret_gro_id, uid);
                 setResult(result, intent);
                 finish();
             }
@@ -217,7 +220,7 @@ public class ChatSearchFriActivity extends OnlineActivity {
                                 public void onClick(DialogInterface dialog, int which) {
                                     dialog.dismiss();
                                     Intent intent = new Intent();
-                                    intent.putExtra(WxUtil.para_uuid, rid);
+                                    intent.putExtra(ret_fri_id, rid);
                                     setResult(result, intent);
                                     finish();
                                 }

@@ -105,7 +105,7 @@ public class FriSearchActivity extends OnlineActivity implements View.OnClickLis
                 return;
             } else {
                 JsonObject into = new JsonObject();
-                into.addProperty(WxUtil.para_uuid, sear_add_fri_uuid.getEditableText().toString());
+                into.addProperty(SearchUtil.para_acc_or_phone, sear_add_fri_uuid.getEditableText().toString());
                 into.addProperty(WxUtil.para_url, SearchUtil.url_app_findUserByuu);
                 StringRequest wj = new StringRequest(getString(R.string.httpHomeAddress) + into.toString(), new Response.Listener<String>() {
                     @Override

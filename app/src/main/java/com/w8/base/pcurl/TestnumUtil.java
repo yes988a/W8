@@ -10,6 +10,9 @@ public class TestnumUtil {
      */
     public final static String para_testnum = "T04n";
 
+    //随机一个UUID，获取验证码操作返回给app
+    public final static String para_testnum_random = "roc5n";
+
     //同步验证码发送次数到其他服务器。
     public final static int url_ser_syn_testSfe = 9412;
 

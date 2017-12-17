@@ -44,6 +44,8 @@ public class LoginUtil {
     //前缀：用户创建时间。
     public final static String para_login_ctim = "C8_M";
 
+    //登录后随机ID
+    public final static String para_ranid = "r4D";
 
     //前缀：加密后的安全验证信息（用户验证是否真正的登录用户使用，，，不同的业务有不同的内容传送。）
     public final static String para_login_aes_safedes = "s_ad";

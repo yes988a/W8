@@ -65,7 +65,7 @@ public class RegisterCompleteActivity extends RegisterTestNum implements View.On
         } else {
             phone = bundle.getString(PhoneUtil.para_phone);
             acc = bundle.getString(AccountUtil.para_acc);
-            uuidTestNum = bundle.getString(WxUtil.para_uuid);
+            uuidTestNum = bundle.getString(TestnumUtil.para_testnum_random);
             delPhone = bundle.getString(PhoneUtil.para_know_del_phone);
             if (delPhone == null || phone == null || "".equals(phone) || acc == null || "".equals(acc)
                     || uuidTestNum == null || "".equals(uuidTestNum)) {

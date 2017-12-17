@@ -30,6 +30,8 @@ import java.util.List;
  */
 public class ChatSearchGroActivity extends OnlineActivity {
 
+    public static final String ret_gro_id = "l2l5v";
+
     private LinearLayoutManager lmfr;
     private RecyclerView mRecycler_group;
     private List<Group> datas_group;
@@ -108,7 +110,7 @@ public class ChatSearchGroActivity extends OnlineActivity {
                                 public void onClick(DialogInterface dialog, int which) {
                                     dialog.dismiss();
                                     Intent intent = new Intent();
-                                    intent.putExtra(WxUtil.para_uuid, gid);
+                                    intent.putExtra(ret_gro_id, gid);
                                     setResult(result, intent);
                                     finish();
                                 }

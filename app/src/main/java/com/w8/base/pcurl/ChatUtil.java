@@ -8,6 +8,21 @@ public class ChatUtil {
     //回复者ID
     public final static String para_res = "s92m";
 
+    //tim集合，删除已读消息使用
+    public final static String para_del_tims_json = "di6h";
+
+    //chat内容集合
+    public final static String para_list_msg_json = "lm39x";
+
+    //等待发送：   发送给app，发送给其他ser
+    public final static int stat_ab = 412;
+
+    //发送成功：
+    public final static int stat_abc = 4123;
+
+    //发送失败，重试吧。
+    public final static int stat_err = 455;
+
     public final static int typ_des_txt = 725;//文本
     public final static int typ_des_img = 185;//图片
     public final static int typ_des_file = 326;//附件

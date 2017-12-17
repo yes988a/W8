@@ -192,7 +192,7 @@ public class MyApp extends Application {
             JsonObject jo = new JsonParser().parse(msgJobj).getAsJsonObject();
             Integer r = jo.get(WxUtil.para_r).getAsInt();
             if (RetNumUtil.n_0 == r) {
-                String listStr = jo.get(WxUtil.para_json).getAsString();  // list内容
+                String listStr = jo.get(ChatUtil.para_list_msg_json).getAsString();  // list内容
                 List<ChatEntity> chatList = new Gson()
                         .fromJson(listStr,
                                 new TypeToken<List<ChatEntity>>() {
@@ -299,7 +299,7 @@ public class MyApp extends Application {
             JsonObject into = new JsonObject();
             into.addProperty(WxUtil.para_url, ChatUtil.url_app_delChatsingleByTims);
             into.addProperty(MineUtil.para_uid, AppUtil.getUid());
-            into.addProperty(WxUtil.para_tim, new Gson().toJson(tims));
+            into.addProperty(ChatUtil.para_del_tims_json, new Gson().toJson(tims));
 
             StringRequest wj = new StringRequest(getString(R.string.httpHomeAddress) + into.toString(), new Response.Listener<String>() {
                 @Override

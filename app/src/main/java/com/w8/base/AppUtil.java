@@ -186,7 +186,7 @@ public class AppUtil {
      */
     public static void toChat(String uuid, int isFri) {
         Intent intent = new Intent(MyApp.mC, ChatallActivity.class);
-        intent.putExtra(WxUtil.para_uuid, uuid);
+        intent.putExtra(ChatallActivity.para_uuid, uuid);
         intent.putExtra(AppUtil.para_boolean, isFri);
         MyApp.mC.startActivity(intent);
     }
@@ -565,7 +565,7 @@ public class AppUtil {
             editor.remove(LoginUtil.para_login_ctim);
         } else {
 
-            editor.putString(WxUtil.para_ranid, randomid);
+            editor.putString(LoginUtil.para_ranid, randomid);
             editor.putString(AccountUtil.para_acc, acc);
             editor.putString(MineUtil.para_nickname, nickname);
             editor.putInt(MineUtil.para_sound, sound);

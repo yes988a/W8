@@ -20,6 +20,7 @@ import com.w8.base.OnlineActivity;
 import com.w8.base.WxUtil;
 import com.w8.base.data.Group;
 import com.w8.base.data.GroupDao;
+import com.w8.base.pcurl.GroupUtil;
 
 import org.greenrobot.greendao.query.QueryBuilder;
 
@@ -112,7 +113,7 @@ public class GroupActivity extends OnlineActivity {
                 public void onClick(View view) {
 
                     Intent intent = new Intent(GroupActivity.this, ChatallActivity.class);
-                    intent.putExtra(WxUtil.para_uuid, gid);
+                    intent.putExtra(ChatallActivity.para_uuid, gid);
                     intent.putExtra(AppUtil.para_boolean, false);
                     startActivity(intent);
                     GroupActivity.this.finish();

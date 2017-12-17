@@ -86,30 +86,6 @@ public class WxUtil {
      */
     public final static int val_nagative = 21;
 
-    //等待发送：   发送给app，发送给其他ser
-    public final static int stat_ab = 412;
-
-    //发送成功：
-    public final static int stat_abc = 4123;
-
-    //发送失败，重试吧。
-    public final static int stat_err = 455;
-
-    /**
-     * 登录后随机ID
-     */
-    public final static String para_ranid = "r4D";
-
-    /**
-     * json
-     */
-    public final static String para_json = "JoN";
-
-    /**
-     * 32位随机主键
-     */
-    public final static String para_uuid = "uU0";
-
     /**
      * computer id。
      */
@@ -124,11 +100,6 @@ public class WxUtil {
      * 否定
      */
     public final static String para_no = "n";
-
-    /**
-     * 时间
-     */
-    public final static String para_tim = "tIm";
 
     public final static boolean testPass(String pass) {
         if (pass == null || pass.length() > 32 || pass.length() < 5) {

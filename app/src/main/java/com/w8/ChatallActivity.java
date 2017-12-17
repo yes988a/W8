@@ -74,6 +74,8 @@ import static org.greenrobot.eventbus.ThreadMode.*;
  */
 public class ChatallActivity extends OnlineActivity implements View.OnClickListener {
 
+    public final static String para_uuid = "fd1ad";
+
     private final String INSTANCE_CAMERA_FILE_PATH = "INSTANCE_CAMERA_FILE_PATH";//调用相机使用。图片返回的路径，暂存标示
     private final int ACTIVITY_REQUEST_CAMERA = 2420;//调用相机ativity之间传递的参数
     private final int PERMISSION_REQUEST_CAMERA = 2621;//照相权限标示
@@ -177,7 +179,7 @@ public class ChatallActivity extends OnlineActivity implements View.OnClickListe
             this.finish();
             return;
         } else {
-            uuid = bundle.getString(WxUtil.para_uuid);
+            uuid = bundle.getString(para_uuid);
             isFri = bundle.getInt(AppUtil.para_boolean);
             if (uuid == null || "".equals(uuid) || "".equals(myid)) {
                 //错误分析。

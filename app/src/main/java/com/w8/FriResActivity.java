@@ -109,7 +109,7 @@ public class FriResActivity extends OnlineActivity {
                     String reqacc = frireq.getReqaccount();//账号
                     String reqnickname = frireq.getReqnickname();//昵称
                     String reqdes = frireq.getReqdes();//请求描述
-                    tim = frireq.getTim();//请求描述
+                    tim = frireq.getTim();//请求时间
 
                     if (reqacc == null || reqnickname == null || reqdes == null || reqid == null
                             || yn == null || (!yn.equals(WxUtil.para_yes) && !yn.equals(WxUtil.para_no))) {

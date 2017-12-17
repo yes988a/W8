@@ -11,4 +11,6 @@ public class SearchUtil {
     //具体人员的ip地址。
     public final static String para_ipp = "P(i";
 
+    //搜索使用，手机号或者acc
+    public final static String para_acc_or_phone = "c72p";
 }
