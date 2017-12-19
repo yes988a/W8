@@ -21,32 +21,32 @@ public class DaoMaster extends AbstractDaoMaster {
 
     /** Creates underlying database table using DAOs. */
     public static void createAllTables(Database db, boolean ifNotExists) {
-        SmileDao.createTable(db, ifNotExists);
-        GroupDao.createTable(db, ifNotExists);
-        FrireqDao.createTable(db, ifNotExists);
-        EditeMsgDao.createTable(db, ifNotExists);
-        GroupFriendDao.createTable(db, ifNotExists);
-        FriendDao.createTable(db, ifNotExists);
-        ComputerDao.createTable(db, ifNotExists);
-        ChatTimsDao.createTable(db, ifNotExists);
-        ActiveDao.createTable(db, ifNotExists);
         AccIpDao.createTable(db, ifNotExists);
+        ActiveDao.createTable(db, ifNotExists);
         ChatDao.createTable(db, ifNotExists);
+        ChatTimsDao.createTable(db, ifNotExists);
+        ComputerDao.createTable(db, ifNotExists);
+        EditeMsgDao.createTable(db, ifNotExists);
+        FriendDao.createTable(db, ifNotExists);
+        FrireqDao.createTable(db, ifNotExists);
+        GroupDao.createTable(db, ifNotExists);
+        GroupFriendDao.createTable(db, ifNotExists);
+        SmileDao.createTable(db, ifNotExists);
     }
 
     /** Drops underlying database table using DAOs. */
     public static void dropAllTables(Database db, boolean ifExists) {
-        SmileDao.dropTable(db, ifExists);
-        GroupDao.dropTable(db, ifExists);
-        FrireqDao.dropTable(db, ifExists);
-        EditeMsgDao.dropTable(db, ifExists);
-        GroupFriendDao.dropTable(db, ifExists);
-        FriendDao.dropTable(db, ifExists);
-        ComputerDao.dropTable(db, ifExists);
-        ChatTimsDao.dropTable(db, ifExists);
-        ActiveDao.dropTable(db, ifExists);
         AccIpDao.dropTable(db, ifExists);
+        ActiveDao.dropTable(db, ifExists);
         ChatDao.dropTable(db, ifExists);
+        ChatTimsDao.dropTable(db, ifExists);
+        ComputerDao.dropTable(db, ifExists);
+        EditeMsgDao.dropTable(db, ifExists);
+        FriendDao.dropTable(db, ifExists);
+        FrireqDao.dropTable(db, ifExists);
+        GroupDao.dropTable(db, ifExists);
+        GroupFriendDao.dropTable(db, ifExists);
+        SmileDao.dropTable(db, ifExists);
     }
 
     /**
@@ -65,17 +65,17 @@ public class DaoMaster extends AbstractDaoMaster {
 
     public DaoMaster(Database db) {
         super(db, SCHEMA_VERSION);
-        registerDaoClass(SmileDao.class);
-        registerDaoClass(GroupDao.class);
-        registerDaoClass(FrireqDao.class);
-        registerDaoClass(EditeMsgDao.class);
-        registerDaoClass(GroupFriendDao.class);
-        registerDaoClass(FriendDao.class);
-        registerDaoClass(ComputerDao.class);
-        registerDaoClass(ChatTimsDao.class);
-        registerDaoClass(ActiveDao.class);
         registerDaoClass(AccIpDao.class);
+        registerDaoClass(ActiveDao.class);
         registerDaoClass(ChatDao.class);
+        registerDaoClass(ChatTimsDao.class);
+        registerDaoClass(ComputerDao.class);
+        registerDaoClass(EditeMsgDao.class);
+        registerDaoClass(FriendDao.class);
+        registerDaoClass(FrireqDao.class);
+        registerDaoClass(GroupDao.class);
+        registerDaoClass(GroupFriendDao.class);
+        registerDaoClass(SmileDao.class);
     }
 
     public DaoSession newSession() {

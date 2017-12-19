@@ -72,6 +72,9 @@ public class FriendUtil {
     //请求方，申请描述
     public final static String para_reqdes = "Q5L";
 
+    //同意添加好友，时间
+    public final static String para_tim_respone = "m10L";
+
     //添加好友请求。
     public final static int typ_add_fri = 571;
 

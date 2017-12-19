@@ -150,9 +150,8 @@ public class FriResActivity extends OnlineActivity {
             public void onClick(View v) {  // 同意。
 
                 JsonObject into = new JsonObject();
-
                 into.addProperty(WxUtil.para_url, FriendUtil.url_app_agreeFri);
-
+                into.addProperty(FriendUtil.para_tim_respone, AppUtil.getTimeReal());
                 into.addProperty(FriendUtil.para_resid, AppUtil.getUid());
                 into.addProperty(FriendUtil.para_reqid, reqid);
                 into.addProperty(FriendUtil.para_reqnickname, fri_res_nickname.getText().toString());
