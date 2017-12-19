@@ -5,5 +5,5 @@
     android:background="@color/white"
     android:gravity="center_vertical"
     android:orientation="vertical">
-
+<!-- null ， 什么也不显示，数据错误啦 -->
 </LinearLayout>
