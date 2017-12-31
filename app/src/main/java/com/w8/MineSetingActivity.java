@@ -22,9 +22,8 @@ import com.google.gson.JsonParser;
 import com.w8.base.AppUtil;
 import com.w8.base.MyApp;
 import com.w8.base.OnlineActivity;
-import com.w8.base.RetNumUtil;
-import com.w8.base.WxUtil;
-import com.w8.base.pcurl.MineUtil;
+import com.w8.base.pcurl.RetNumUtilA;
+import com.w8.base.pcurl.MineUtilA;
 
 /**
  * 个人详情
@@ -100,8 +99,8 @@ public class MineSetingActivity extends OnlineActivity implements View.OnClickLi
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 String newdes = edi.getText().toString();
-                                if (MineUtil.testUserNickname(newdes)) {
-                                    upd(MineUtil.url_app_updateMyNickname, newdes);
+                                if (MineUtilA.testUserNickname(newdes)) {
+                                    upd(MineUtilA.url_app_updateMyNickname, newdes);
                                     dialog.dismiss();
                                 } else {
                                     dialog.dismiss();
@@ -121,7 +120,7 @@ public class MineSetingActivity extends OnlineActivity implements View.OnClickLi
         sound_two.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                upd(MineUtil.url_app_updateMysound, tt(isChecked) + "");
+                upd(MineUtilA.url_app_updateMysound, tt(isChecked) + "");
             }
         });
         details_head.setOnClickListener(this);
@@ -149,7 +148,7 @@ public class MineSetingActivity extends OnlineActivity implements View.OnClickLi
                     .setPositiveButton(R.string.alert_choose_true, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            upd(MineUtil.url_app_updateMyautograph, edi.getText().toString());
+                            upd(MineUtilA.url_app_updateMyautograph, edi.getText().toString());
                             dialog.dismiss();
                         }
                     })
@@ -196,7 +195,7 @@ public class MineSetingActivity extends OnlineActivity implements View.OnClickLi
     }
 
     private void switchUtils(Switch switchs, int ii) {
-        if (ii == WxUtil.val_positive) {
+        if (ii == MineUtilA.val_positive) {
             switchs.setChecked(true);
         } else {
             switchs.setChecked(false);//不接受和99都会成为这个
@@ -205,38 +204,38 @@ public class MineSetingActivity extends OnlineActivity implements View.OnClickLi
 
     private int tt(boolean b) {
         if (b) {
-            return WxUtil.val_positive;
+            return MineUtilA.val_positive;
         } else {
-            return WxUtil.val_nagative;
+            return MineUtilA.val_nagative;
         }
     }
 
     //统一使用，更新我的设置，如：昵称，签名。
     private void upd(final int url, final String des) {
         JsonObject into = new JsonObject();
-        into.addProperty(WxUtil.para_url, url);
+        into.addProperty(MineUtilA.para_url, url);
         boolean bb = false;
         try {
-            into.addProperty(MineUtil.para_uid, AppUtil.getUid());
-            if (MineUtil.url_app_updateMyautograph == url) {
+            into.addProperty(MineUtilA.para_uid, AppUtil.getUid());
+            if (MineUtilA.url_app_updateMyautograph == url) {
                 if (AppUtil.getAutograph().equals(des)) {
                     bb = false;
                 } else {
-                    into.addProperty(MineUtil.para_autograph, des);
+                    into.addProperty(MineUtilA.para_autograph, des);
                     bb = true;
                 }
-            } else if (MineUtil.url_app_updateMyNickname == url) {
+            } else if (MineUtilA.url_app_updateMyNickname == url) {
                 if (AppUtil.getNickname().equals(des)) {
                     bb = false;
                 } else {
-                    into.addProperty(MineUtil.para_nickname, des);
+                    into.addProperty(MineUtilA.para_nickname, des);
                     bb = true;
                 }
-            } else if (MineUtil.url_app_updateMysound == url) {
+            } else if (MineUtilA.url_app_updateMysound == url) {
                 if (AppUtil.getSound() == Integer.valueOf(des)) {
                     bb = false;
                 } else {
-                    into.addProperty(MineUtil.para_sound, des);
+                    into.addProperty(MineUtilA.para_sound, des);
                     bb = true;
                 }
             }
@@ -251,15 +250,15 @@ public class MineSetingActivity extends OnlineActivity implements View.OnClickLi
                         public void onResponse(String msg) {
                             try {
                                 JsonObject jo = new JsonParser().parse(msg).getAsJsonObject();
-                                Integer r = jo.get(WxUtil.para_r).getAsInt();
-                                if (RetNumUtil.n_0 == r) {
-                                    if (MineUtil.url_app_updateMyautograph == url) {
+                                Integer r = jo.get(MineUtilA.para_url).getAsInt();
+                                if (RetNumUtilA.n_0 == r) {
+                                    if (MineUtilA.url_app_updateMyautograph == url) {
                                         seting_auto_txt.setText(des);
                                         AppUtil.setAutograph(des);
-                                    } else if (MineUtil.url_app_updateMyNickname == url) {
+                                    } else if (MineUtilA.url_app_updateMyNickname == url) {
                                         set_nickname.setText(des);
                                         AppUtil.setNickname(des);
-                                    } else if (MineUtil.url_app_updateMysound == url) {
+                                    } else if (MineUtilA.url_app_updateMysound == url) {
                                         int sound = Integer.valueOf(des);
                                         switchUtils(sound_two, sound);
                                         AppUtil.setSound(sound);

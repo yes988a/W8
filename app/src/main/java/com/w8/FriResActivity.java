@@ -20,16 +20,16 @@ import com.google.gson.JsonParser;
 import com.w8.base.AppUtil;
 import com.w8.base.MyApp;
 import com.w8.base.OnlineActivity;
-import com.w8.base.RetNumUtil;
-import com.w8.base.TimUtil;
-import com.w8.base.WxUtil;
+import com.w8.base.pcurl.MineUtilA;
+import com.w8.base.pcurl.RetNumUtilA;
+import com.w8.base.pcurl.TimUtilA;
 import com.w8.base.data.Active;
 import com.w8.base.data.ActiveDao;
 import com.w8.base.data.FriendDao;
 import com.w8.base.data.Frireq;
 import com.w8.base.data.FrireqDao;
-import com.w8.base.pcurl.ChatUtil;
-import com.w8.base.pcurl.FriendUtil;
+import com.w8.base.pcurl.ChatUtilA;
+import com.w8.base.pcurl.FriendUtilA;
 
 import java.util.List;
 
@@ -88,7 +88,7 @@ public class FriResActivity extends OnlineActivity {
         if (bundle == null) {
             finish();
         } else {
-            reqid = bundle.getString(FriendUtil.para_reqid);//请求者id。
+            reqid = bundle.getString(FriendUtilA.para_reqid);//请求者id。
             if (reqid == null) {
                 finish();
             } else {
@@ -112,11 +112,11 @@ public class FriResActivity extends OnlineActivity {
                     tim = frireq.getTim();//请求时间
 
                     if (reqacc == null || reqnickname == null || reqdes == null || reqid == null
-                            || yn == null || (!yn.equals(WxUtil.para_yes) && !yn.equals(WxUtil.para_no))) {
+                            || yn == null || (!yn.equals(MineUtilA.para_yes) && !yn.equals(MineUtilA.para_no))) {
                         finish();
                     } else {
                         try {
-                            if (yn.equals(WxUtil.para_yes)) {
+                            if (yn.equals(MineUtilA.para_yes)) {
                                 fri_res_radioGroup.check(R.id.fri_res_radioyes);
                                 fri_res_radioGroup.getChildAt(1).setEnabled(false);
                             } else {
@@ -125,7 +125,7 @@ public class FriResActivity extends OnlineActivity {
                             }
                             fri_res_acc.setText(reqacc);
                             fri_res_nickname.setText(reqnickname);
-                            fri_res_tim.setText(TimUtil.formatTimeToStr(tim));
+                            fri_res_tim.setText(TimUtilA.formatTimeToStr(tim));
 
                             //fri_res_des应该是不尅编辑但可以复制。
                             fri_res_des.setFocusable(false);
@@ -151,11 +151,11 @@ public class FriResActivity extends OnlineActivity {
 
                 JsonObject into = new JsonObject();
 
-                into.addProperty(WxUtil.para_url, FriendUtil.url_app_agreeFri);
+                into.addProperty(MineUtilA.para_url, FriendUtilA.url_app_agreeFri);
 
-                into.addProperty(FriendUtil.para_resid, AppUtil.getUid());
-                into.addProperty(FriendUtil.para_reqid, reqid);
-                into.addProperty(FriendUtil.para_reqnickname, fri_res_nickname.getText().toString());
+                into.addProperty(FriendUtilA.para_resid, AppUtil.getUid());
+                into.addProperty(FriendUtilA.para_reqid, reqid);
+                into.addProperty(FriendUtilA.para_reqnickname, fri_res_nickname.getText().toString());
                 StringRequest wj = new StringRequest(getString(R.string.httpHomeAddress) + into.toString(), new Response.Listener<String>() {
                     @Override
                     public void onResponse(String msg) {
@@ -163,8 +163,8 @@ public class FriResActivity extends OnlineActivity {
 
                         try {
                             JsonObject jo = new JsonParser().parse(msg).getAsJsonObject();
-                            Integer r = jo.get(WxUtil.para_r).getAsInt();
-                            if (RetNumUtil.n_0 == r) {
+                            Integer r = jo.get(MineUtilA.para_url).getAsInt();
+                            if (RetNumUtilA.n_0 == r) {
 
                                 TextView edi = new TextView(FriResActivity.this);//textAppearanceMedium
                                 edi.setGravity(Gravity.CENTER);
@@ -181,7 +181,7 @@ public class FriResActivity extends OnlineActivity {
                                         }).show();
 
                                 //更新好友，信息。
-                            } else if (RetNumUtil.n_10 == r) {
+                            } else if (RetNumUtilA.n_10 == r) {
                                 //不应该出现。
                                 //日志
                                 alertDialogText(getString(R.string.err_timeout));
@@ -218,7 +218,7 @@ public class FriResActivity extends OnlineActivity {
         if (reqid != null) {
             List<Active> al = MyApp.mC.getDS().getActiveDao().queryBuilder()
                     .where(ActiveDao.Properties.Uuid.eq(reqid)
-                            , ActiveDao.Properties.Btyp.eq(ChatUtil.url_app_findChatsingle)).list();
+                            , ActiveDao.Properties.Btyp.eq(ChatUtilA.url_app_findChatsingle)).list();
             MyApp.mC.getDS().getActiveDao().deleteInTx(al);
         }
     }
@@ -240,7 +240,7 @@ public class FriResActivity extends OnlineActivity {
                         public void onClick(DialogInterface dialog, int which) {
                             dialog.dismiss();
                             Intent intent = new Intent(FriResActivity.this, FriendDesActivity.class);
-                            intent.putExtra(FriendUtil.para_fid, reqid);
+                            intent.putExtra(FriendUtilA.para_fid, reqid);
                             startActivity(intent);
                             finish();
                         }

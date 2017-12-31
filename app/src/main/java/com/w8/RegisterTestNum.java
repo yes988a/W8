@@ -13,12 +13,12 @@ import com.android.volley.toolbox.StringRequest;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.w8.base.MyApp;
-import com.w8.base.RetNumUtil;
-import com.w8.base.WxUtil;
-import com.w8.base.pcurl.AccountUtil;
-import com.w8.base.pcurl.PhoneUtil;
-import com.w8.base.pcurl.RegisterUtil;
-import com.w8.base.pcurl.TestnumUtil;
+import com.w8.base.pcurl.MineUtilA;
+import com.w8.base.pcurl.RetNumUtilA;
+import com.w8.base.pcurl.AccountUtilA;
+import com.w8.base.pcurl.PhoneUtilA;
+import com.w8.base.pcurl.RegisterUtilA;
+import com.w8.base.pcurl.TestnumUtilA;
 
 /**
  * 注册，验证码公用。  正好有其他可以公用的。顺便公用吧。如：马上登陆。
@@ -53,10 +53,10 @@ public abstract class RegisterTestNum extends LoginTestAcc {
 
     //验证用户名，手机号的合法性
     protected boolean testAccPhone(String acc, String phone) {
-        if (!PhoneUtil.testPhone(phone)) {
+        if (!PhoneUtilA.testPhone(phone)) {
             errPhone(acc, phone);
             return true;
-        } else if (!AccountUtil.testAcc(acc)) {
+        } else if (!AccountUtilA.testAcc(acc)) {
             errAcc(acc, phone);
             return true;
         } else {
@@ -80,10 +80,10 @@ public abstract class RegisterTestNum extends LoginTestAcc {
             return;
         } else {
             JsonObject jo = new JsonObject();
-            jo.addProperty(PhoneUtil.para_know_del_phone, "" + delPhone);
-            jo.addProperty(AccountUtil.para_acc, "" + acc);
-            jo.addProperty(PhoneUtil.para_phone, "" + phone);
-            jo.addProperty(WxUtil.para_url, RegisterUtil.url_app_testnum);
+            jo.addProperty(PhoneUtilA.para_know_del_phone, "" + delPhone);
+            jo.addProperty(AccountUtilA.para_acc, "" + acc);
+            jo.addProperty(PhoneUtilA.para_phone, "" + phone);
+            jo.addProperty(MineUtilA.para_url, RegisterUtilA.url_app_testnum);
 //                String mi = WxUtil.aesEncrypt(AppUtil.getSafeAes_nolog(), jo.toString());
             progressBar.setVisibility(View.VISIBLE);
             webing = true;
@@ -94,43 +94,43 @@ public abstract class RegisterTestNum extends LoginTestAcc {
                     try {
                         retCompleteTestnum();
                         JsonObject into = new JsonParser().parse(s).getAsJsonObject();
-                        int rrr = into.get(WxUtil.para_r).getAsInt();
-                        if (rrr == RetNumUtil.n_0) {
-                            String uuidTestNum = into.get(TestnumUtil.para_testnum_random).getAsString();
+                        int rrr = into.get(MineUtilA.para_url).getAsInt();
+                        if (rrr == RetNumUtilA.n_0) {
+                            String uuidTestNum = into.get(TestnumUtilA.para_testnum_random).getAsString();
                             if (comp) {
                                 Intent iii = new Intent(RegisterTestNum.this, RegisterCompleteActivity.class);
-                                iii.putExtra(PhoneUtil.para_know_del_phone, delPhone);
-                                iii.putExtra(PhoneUtil.para_phone, phone);
-                                iii.putExtra(AccountUtil.para_acc, acc);
-                                iii.putExtra(TestnumUtil.para_testnum_random, uuidTestNum);
+                                iii.putExtra(PhoneUtilA.para_know_del_phone, delPhone);
+                                iii.putExtra(PhoneUtilA.para_phone, phone);
+                                iii.putExtra(AccountUtilA.para_acc, acc);
+                                iii.putExtra(TestnumUtilA.para_testnum_random, uuidTestNum);
                                 startActivity(iii);
                                 finish();
                             } else {
                                 complete_getagin_ing(uuidTestNum);
                             }
-                        } else if (rrr == RetNumUtil.n_7) {//手机号不正确
+                        } else if (rrr == RetNumUtilA.n_7) {//手机号不正确
                             errPhone(acc, phone);
-                        } else if (rrr == RetNumUtil.n_4) {//账号格式不正确
+                        } else if (rrr == RetNumUtilA.n_4) {//账号格式不正确
                             errAcc(acc, phone);
-                        } else if (rrr == RetNumUtil.n_5) {//账号已经被注册
+                        } else if (rrr == RetNumUtilA.n_5) {//账号已经被注册
                             if (comp) {
                                 alertDialogText(getString(R.string.reg_two_username));
                             } else {
                                 //一、尝试登陆，是否已经注册完成。
                                 //二、如果不是已经成功：返回RegsterAccPhone，并提示错误。
-                                ttErr = RetNumUtil.n_5;
+                                ttErr = RetNumUtilA.n_5;
                                 testAndLogin(acc, passtext);
                             }
-                        } else if (rrr == RetNumUtil.n_17) {//验证码操作太过频繁
+                        } else if (rrr == RetNumUtilA.n_17) {//验证码操作太过频繁
                             alertDialogText(getString(R.string.err_test_register));
-                        } else if (rrr == RetNumUtil.n_18) {//手机号已经注册，是否解除注册？
+                        } else if (rrr == RetNumUtilA.n_18) {//手机号已经注册，是否解除注册？
                             if (comp) {
                                 alertDialogText(getString(R.string.reg_del_phone));
-                                delPhone = WxUtil.para_yes + phone;
+                                delPhone = MineUtilA.para_yes + phone;
                             } else {
                                 //一、尝试登陆，是否已经注册完成。
                                 //二、如果不是已经成功：返回RegsterAccPhone，并提示错误。
-                                ttErr = RetNumUtil.n_18;
+                                ttErr = RetNumUtilA.n_18;
                                 testAndLogin(acc, passtext);
                             }
                         } else {//未知错误。
@@ -171,8 +171,8 @@ public abstract class RegisterTestNum extends LoginTestAcc {
     //带参数返回到RegisterAccPhone。
     protected void retAccPhone(String acc, String phone) {
         Intent iii = new Intent(RegisterTestNum.this, RegisterAccPhoneActivity.class);
-        iii.putExtra(PhoneUtil.para_phone, phone);
-        iii.putExtra(AccountUtil.para_acc, acc);
+        iii.putExtra(PhoneUtilA.para_phone, phone);
+        iii.putExtra(AccountUtilA.para_acc, acc);
         startActivity(iii);
         finish();
     }

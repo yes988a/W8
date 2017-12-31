@@ -22,7 +22,7 @@ import com.w8.base.BadgeView;
 import com.w8.base.MyApp;
 import com.w8.base.NologinActivity;
 import com.w8.base.data.DaoMaster;
-import com.w8.base.pcurl.FriendUtil;
+import com.w8.base.pcurl.FriendUtilA;
 import com.w8.services.TesttttttService;
 import com.yanzhenjie.album.Album;
 import com.yanzhenjie.album.AlbumFile;
@@ -140,7 +140,7 @@ public class WelcomeActivity extends NologinActivity {
 
     public void NewFriendActivity(View view) {
         Intent intent = new Intent(this, FriReqActivity.class);
-        intent.putExtra(FriendUtil.para_fids, "c913f1ee495e40a5bc9555c857a3366c");
+        intent.putExtra(FriendUtilA.para_fids, "c913f1ee495e40a5bc9555c857a3366c");
         this.startActivity(intent);
     }
 

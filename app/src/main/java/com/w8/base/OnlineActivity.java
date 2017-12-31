@@ -1,5 +1,7 @@
 package com.w8.base;
 
+import com.w8.base.pcurl.RetNumUtilA;
+
 public class OnlineActivity extends WxActivity {
     protected String TAG = OnlineActivity.class.getSimpleName();//其他继承者，会改变它
 
@@ -7,7 +9,7 @@ public class OnlineActivity extends WxActivity {
     protected void onStart() {
         super.onStart();
         String tt = AppUtil.getToken();
-        if (tt.length() != RetNumUtil.n_32) {
+        if (tt.length() != RetNumUtilA.n_32) {
             finish();
         } else {
             AppUtil.startAlarmGuard();

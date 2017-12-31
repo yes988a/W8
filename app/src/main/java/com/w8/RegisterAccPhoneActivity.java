@@ -5,8 +5,8 @@ import android.support.design.widget.TextInputEditText;
 import android.view.View;
 import android.widget.Button;
 
-import com.w8.base.pcurl.AccountUtil;
-import com.w8.base.pcurl.PhoneUtil;
+import com.w8.base.pcurl.AccountUtilA;
+import com.w8.base.pcurl.PhoneUtilA;
 
 /**
  * 手机号，账号，填写。。。
@@ -44,12 +44,12 @@ public class RegisterAccPhoneActivity extends RegisterTestNum implements View.On
         if (bundle == null) {
             return;
         } else {
-            String phone = bundle.getString(PhoneUtil.para_phone);
-            String acc = bundle.getString(AccountUtil.para_acc);
-            if (PhoneUtil.testPhone(phone)) {
+            String phone = bundle.getString(PhoneUtilA.para_phone);
+            String acc = bundle.getString(AccountUtilA.para_acc);
+            if (PhoneUtilA.testPhone(phone)) {
                 reg_one_phone.setText(phone);
             }
-            if (AccountUtil.testAcc(acc)) {
+            if (AccountUtilA.testAcc(acc)) {
                 reg_one_acc.setText(acc);
             }
         }

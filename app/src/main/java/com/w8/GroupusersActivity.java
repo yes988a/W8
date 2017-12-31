@@ -18,7 +18,7 @@ import com.w8.base.MyApp;
 import com.w8.base.OnlineActivity;
 import com.w8.base.data.GroupFriend;
 import com.w8.base.data.GroupFriendDao;
-import com.w8.base.pcurl.GroupUtil;
+import com.w8.base.pcurl.GroupUtilA;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -171,7 +171,7 @@ public class GroupusersActivity extends OnlineActivity {
     private void getWebGroupUser() {
 
         JsonObject jo = new JsonObject();
-        jo.addProperty(GroupUtil.para_gid, gid);
+        jo.addProperty(GroupUtilA.para_gid, gid);
         /*WXStringRequest wxr = new WXStringRequest(GroupusersActivity.this, gurl + WxUtil.u_getgroupusers, jo, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -186,7 +186,7 @@ public class GroupusersActivity extends OnlineActivity {
                 if (r == null) {
 // 日志
                 } else {
-                    if (RetNumUtil.n_0 == r) {
+                    if (RetNumUtilA.n_0 == r) {
                         List<Guser> gus = null;
                         try {
                             gus = JSON.parseArray(jjj.getString(WxUtil.groupusers), Guser.class);
@@ -224,7 +224,7 @@ public class GroupusersActivity extends OnlineActivity {
                                 }
                             }
                         }
-                    } else if (RetNumUtil.n_1 == r) {
+                    } else if (RetNumUtilA.n_1 == r) {
                         TokenUtil.updateTo(app);
                     } else {
                         Toast.makeText(GroupusersActivity.this, R.string.fail_web, Toast.LENGTH_SHORT);
@@ -265,12 +265,12 @@ public class GroupusersActivity extends OnlineActivity {
                 if (r == null) {
                     Toast.makeText(GroupusersActivity.this, R.string.fail_web, Toast.LENGTH_SHORT);
                 } else {
-                    if (RetNumUtil.n_0 == r) {
+                    if (RetNumUtilA.n_0 == r) {
                         //通知所有群员所有更新群信息
-                    } else if (RetNumUtil.n_1 == r) {
+                    } else if (RetNumUtilA.n_1 == r) {
                         TokenUtil.updateTo(app);
                         Toast.makeText(GroupusersActivity.this, R.string.fail_web, Toast.LENGTH_SHORT);
-                    } else if (RetNumUtil.n_15 == r) {
+                    } else if (RetNumUtilA.n_15 == r) {
                         // 优化，前面已经判断是否群主啦，出现此问题，防止攻击，和判断交换群主时是否正确。
                         Toast.makeText(GroupusersActivity.this, R.string.group_des_update_err_m, Toast.LENGTH_LONG).show();
                     } else {

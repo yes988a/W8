@@ -10,8 +10,8 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.w8.base.OnlineActivity;
-import com.w8.base.RetNumUtil;
-import com.w8.base.pcurl.FriendUtil;
+import com.w8.base.pcurl.RetNumUtilA;
+import com.w8.base.pcurl.FriendUtilA;
 
 import java.util.List;
 
@@ -49,18 +49,18 @@ public class GroupCompleteActivity extends OnlineActivity {
 
     private void initData() {
         Intent intent = getIntent();
-        if (intent == null || intent.getStringExtra(FriendUtil.para_fids) == null) {
+        if (intent == null || intent.getStringExtra(FriendUtilA.para_fids) == null) {
             // 日志
             GroupCompleteActivity.this.finish();
         } else {
             ids = null;
             try {
-                ids = new Gson().fromJson(intent.getStringExtra(FriendUtil.para_fids),new TypeToken<List<String>>() {
+                ids = new Gson().fromJson(intent.getStringExtra(FriendUtilA.para_fids),new TypeToken<List<String>>() {
                 }.getType());
             } catch (Exception e) {
                 mwErr(TAG, "initData,", e);
             }
-            if (ids == null || ids.size() == RetNumUtil.n_0) {
+            if (ids == null || ids.size() == RetNumUtilA.n_0) {
                 // 日志
                 GroupCompleteActivity.this.finish();
             }
@@ -102,7 +102,7 @@ public class GroupCompleteActivity extends OnlineActivity {
                         if (rr == null) {
                             // 错误，优化，日志
                         } else {
-                            if (rr == RetNumUtil.n_0) {
+                            if (rr == RetNumUtilA.n_0) {
                                 Ugroup sue = null;
                                 try {
                                     sue = JSON.parseObject(jjj.getString("ug"), Ugroup.class);
@@ -127,7 +127,7 @@ public class GroupCompleteActivity extends OnlineActivity {
                                     Toast.makeText(GroupCompleteActivity.this, R.string.success, Toast.LENGTH_SHORT);
                                     GroupCompleteActivity.this.finish();
                                 }
-                            } else if (rr == RetNumUtil.n_19) {
+                            } else if (rr == RetNumUtilA.n_19) {
 //每个人只能创建。xx个群。
                                 Intent inn = new Intent(GroupCompleteActivity.this, ErrcheckService.class);
                                 startService(inn);

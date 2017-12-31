@@ -9,8 +9,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.w8.base.NologinActivity;
-import com.w8.base.RetNumUtil;
-import com.w8.base.pcurl.PhoneUtil;
+import com.w8.base.pcurl.RetNumUtilA;
+import com.w8.base.pcurl.PhoneUtilA;
 
 //解除手机绑定。
 //可能发生在多个地方。登录前，登录后，网页上等。
@@ -40,11 +40,11 @@ public class RemovephoneActivity extends NologinActivity implements View.OnClick
         super.onStart();
         webing = false;
         Bundle bundle = this.getIntent().getExtras();
-        if (bundle == null || bundle.getString(PhoneUtil.para_phone) == null) {
+        if (bundle == null || bundle.getString(PhoneUtilA.para_phone) == null) {
             this.finish();
         } else {
-            phone = bundle.getString(PhoneUtil.para_phone);
-            if (PhoneUtil.testPhone(phone)) {
+            phone = bundle.getString(PhoneUtilA.para_phone);
+            if (PhoneUtilA.testPhone(phone)) {
                 removephonenum.setText(phone);
             } else {
                 this.finish();
@@ -84,7 +84,7 @@ public class RemovephoneActivity extends NologinActivity implements View.OnClick
             }
         } else if (idd == R.id.removephone_butt) {
             if (!webing) {
-                if (remove_test.getText().toString().length() > RetNumUtil.n_0) {
+                if (remove_test.getText().toString().length() > RetNumUtilA.n_0) {
                     removePhone();
                 } else {
                     setErrorMy(remove_test, RemovephoneActivity.this.getString(R.string.reg_testnum_err));
@@ -112,7 +112,7 @@ public class RemovephoneActivity extends NologinActivity implements View.OnClick
                 } catch (Exception e) {
                     mwErr(TAG, "RemovephoneActivity.getVerification.R.string.urlBase.onResponse", e);
                 }
-                if (jw == null || tim == null || rr == null || RetNumUtil.n_0 != rr) {
+                if (jw == null || tim == null || rr == null || RetNumUtilA.n_0 != rr) {
                     // 日志
                     setErrorMy(remove_test, RemovephoneActivity.this.getString(R.string.reg_gettesterr));
                 } else {
@@ -143,7 +143,7 @@ public class RemovephoneActivity extends NologinActivity implements View.OnClick
             }
         };
         RequestQueue ve = app.getVolleyQeue();
-        sr.setRetryPolicy(new DefaultRetryPolicy(RetNumUtil.n_26 * 1000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        sr.setRetryPolicy(new DefaultRetryPolicy(RetNumUtilA.n_26 * 1000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         ve.add(sr);*/
 
         webing = true;
@@ -172,15 +172,15 @@ public class RemovephoneActivity extends NologinActivity implements View.OnClick
 
                 } else {
 
-                    if (RetNumUtil.n_7 == rr) {
+                    if (RetNumUtilA.n_7 == rr) {
                         //日志
                         setErrorMy(remove_test, RemovephoneActivity.this.getString(R.string.err_phone));
                         RemovephoneActivity.this.finish();
-                    } else if (RetNumUtil.n_6 == rr) {
+                    } else if (RetNumUtilA.n_6 == rr) {
                         setErrorMy(remove_test, RemovephoneActivity.this.getString(R.string.reg_phonetestnumerr));
-                    } else if (RetNumUtil.n_20 == rr) {
+                    } else if (RetNumUtilA.n_20 == rr) {
                         setErrorMy(remove_test, RemovephoneActivity.this.getString(R.string.reg_phonetesttimeout));
-                    } else if (RetNumUtil.n_0 == rr) {
+                    } else if (RetNumUtilA.n_0 == rr) {
                         new AlertDialog.Builder(RemovephoneActivity.this)
                                 .setTitle(R.string.removephonebutton)
                                 .setMessage(R.string.success)
@@ -198,7 +198,7 @@ public class RemovephoneActivity extends NologinActivity implements View.OnClick
                 }
 
 
-                if (rr != null && RetNumUtil.n_0 == rr) {
+                if (rr != null && RetNumUtilA.n_0 == rr) {
                     Toast.makeText(RemovephoneActivity.this, R.string.success, Toast.LENGTH_LONG);
 
                     RemovephoneActivity.this.finish();
@@ -233,7 +233,7 @@ public class RemovephoneActivity extends NologinActivity implements View.OnClick
             }
         };
         RequestQueue ve = app.getVolleyQeue();
-        sr.setRetryPolicy(new DefaultRetryPolicy(RetNumUtil.n_28 * 1000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        sr.setRetryPolicy(new DefaultRetryPolicy(RetNumUtilA.n_28 * 1000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
 
         ve.add(sr);*/
 

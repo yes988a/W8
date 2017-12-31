@@ -8,7 +8,7 @@ import com.w8.base.AppUtil;
 import com.w8.base.MyApp;
 import com.w8.base.NologinActivity;
 import com.w8.base.OnlineActivity;
-import com.w8.base.RetNumUtil;
+import com.w8.base.pcurl.RetNumUtilA;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -47,7 +47,7 @@ public class GuardService extends Service {
                 Calendar date = new GregorianCalendar();
                 date.setTimeInMillis(tim);
                 int hh = date.get(Calendar.HOUR_OF_DAY);
-                if (RetNumUtil.n_1 < hh && hh < RetNumUtil.n_6) {//晚上,早1点到6点
+                if (RetNumUtilA.n_1 < hh && hh < RetNumUtilA.n_6) {//晚上,早1点到6点
                     AppUtil.startAlarmNight();
                 } else {//白天
                     AppUtil.startAlarmDay();

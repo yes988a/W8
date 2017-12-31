@@ -27,11 +27,10 @@ import com.google.gson.JsonObject;
 import com.w8.base.AppUtil;
 import com.w8.base.MyApp;
 import com.w8.base.OnlineActivity;
-import com.w8.base.WxUtil;
 import com.w8.base.data.Friend;
 import com.w8.base.data.FriendDao;
-import com.w8.base.pcurl.FriendUtil;
-import com.w8.base.pcurl.MineUtil;
+import com.w8.base.pcurl.FriendUtilA;
+import com.w8.base.pcurl.MineUtilA;
 
 import java.util.List;
 
@@ -77,7 +76,7 @@ public class FriendDesActivity extends OnlineActivity implements View.OnClickLis
             this.finish();
             return;
         } else {
-            userRid = bundle.getString(FriendUtil.para_fid);
+            userRid = bundle.getString(FriendUtilA.para_fid);
             if (userRid == null || "".equals(userRid)) {
                 this.finish();
                 return;
@@ -198,7 +197,7 @@ public class FriendDesActivity extends OnlineActivity implements View.OnClickLis
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             final String newdes = edi.getText().toString();
-                            if (MineUtil.testUserNickname(newdes)) {
+                            if (MineUtilA.testUserNickname(newdes)) {
                                 friend_des_bzname.setText(newdes);
                                 dialog.dismiss();
                             }
@@ -311,7 +310,7 @@ public class FriendDesActivity extends OnlineActivity implements View.OnClickLis
     private void webSwitch() {
         if (userRid != null && !"".equals(userRid)) {//正常情况
             JsonObject jo = new JsonObject();
-            jo.addProperty(FriendUtil.para_fid, userRid);//哪个好友？
+            jo.addProperty(FriendUtilA.para_fid, userRid);//哪个好友？
             /*WXStringRequest wxsr = new WXStringRequest(this, AppUtil.getBurl(this) + WxUtil.u_getfriseting, jo, new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
@@ -325,7 +324,7 @@ public class FriendDesActivity extends OnlineActivity implements View.OnClickLis
                         // 日志
                     } else {
                         Integer r = jreq.getInteger(WxUtil.r);
-                        if (RetNumUtil.n_0 == r) {
+                        if (RetNumUtilA.n_0 == r) {
                             UserrelationSettingPojo se = null;
                             try {
                                 se = JSON.parseObject(jreq.getString("fo"), UserrelationSettingPojo.class);
@@ -368,7 +367,7 @@ public class FriendDesActivity extends OnlineActivity implements View.OnClickLis
                             if (beq) {//app和pc不一样，更新sqlite
                                 MyApp.mC.getDS().getFriendDao().updateInTx(f);
                             }
-                        } else if (RetNumUtil.n_1 == r) {
+                        } else if (RetNumUtilA.n_1 == r) {
                             TokenUtil.updateTo(app);
                         } else {
                             normalStart = false;
@@ -400,7 +399,7 @@ public class FriendDesActivity extends OnlineActivity implements View.OnClickLis
     }
 
     private void switchUtils(Switch switchs, int ii) {
-        if (ii == WxUtil.val_nagative) {
+        if (ii == MineUtilA.val_nagative) {
             switchs.setChecked(true);
         } else {
             switchs.setChecked(false);//不接受和99都会成为这个
@@ -409,9 +408,9 @@ public class FriendDesActivity extends OnlineActivity implements View.OnClickLis
 
     private int tt(boolean b) {
         if (b) {
-            return WxUtil.val_nagative;
+            return MineUtilA.val_nagative;
         } else {
-            return WxUtil.val_positive;
+            return MineUtilA.val_positive;
         }
     }
 
@@ -421,16 +420,16 @@ public class FriendDesActivity extends OnlineActivity implements View.OnClickLis
         if (f != null) {
             boolean change = false;
             JsonObject jo = new JsonObject();
-            jo.addProperty(FriendUtil.para_fid, userRid);
+            jo.addProperty(FriendUtilA.para_fid, userRid);
             if (!friend_des_bzname.getText().toString().equals(f.getRemark())) {
                 change = true;
-                jo.addProperty(FriendUtil.para_remark, friend_des_bzname.getText().toString());
+                jo.addProperty(FriendUtilA.para_remark, friend_des_bzname.getText().toString());
                 f.setRemark(friend_des_bzname.getText().toString());
             }
 
             if (shield_old != shield_new) {
                 change = true;
-                jo.addProperty(FriendUtil.para_shie, shield_new);
+                jo.addProperty(FriendUtilA.para_shie, shield_new);
                 f.setShie(shield_new);
             }
             // 优化，如果失败怎么办？不能让用户返回操作
@@ -451,9 +450,9 @@ public class FriendDesActivity extends OnlineActivity implements View.OnClickLis
                             Integer r = jo.getInteger(WxUtil.r);
                             if (r == null) {
                                 Toast.makeText(FriendDesActivity.this, R.string.friend_save_err, Toast.LENGTH_SHORT).show();
-                            } else if (RetNumUtil.n_0 == r) {
+                            } else if (RetNumUtilA.n_0 == r) {
 
-                            } else if (RetNumUtil.n_1 == r) {
+                            } else if (RetNumUtilA.n_1 == r) {
                                 TokenUtil.updateTo(app);
                                 Toast.makeText(FriendDesActivity.this, R.string.friend_save_err, Toast.LENGTH_SHORT).show();
                             } else {

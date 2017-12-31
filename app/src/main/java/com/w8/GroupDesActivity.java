@@ -21,12 +21,11 @@ import com.google.gson.JsonObject;
 import com.w8.base.AppUtil;
 import com.w8.base.MyApp;
 import com.w8.base.OnlineActivity;
-import com.w8.base.RetNumUtil;
-import com.w8.base.WxUtil;
+import com.w8.base.pcurl.RetNumUtilA;
 import com.w8.base.data.Group;
 import com.w8.base.data.GroupDao;
-import com.w8.base.pcurl.GroupUtil;
-import com.w8.base.pcurl.MineUtil;
+import com.w8.base.pcurl.GroupUtilA;
+import com.w8.base.pcurl.MineUtilA;
 
 import java.util.List;
 
@@ -43,8 +42,8 @@ public class GroupDesActivity extends OnlineActivity implements View.OnClickList
 
     private Group g;//群详情
 
-    private int group_des_shield_old = RetNumUtil.n_b1;//屏蔽
-    private int group_des_shield_new = RetNumUtil.n_b1;
+    private int group_des_shield_old = RetNumUtilA.n_b1;//屏蔽
+    private int group_des_shield_new = RetNumUtilA.n_b1;
 
     private ImageView group_des_head;
     private TextView group_des_gname;
@@ -80,7 +79,7 @@ public class GroupDesActivity extends OnlineActivity implements View.OnClickList
         } else if (bundle == null) {
             this.finish();
         } else {
-            gid = bundle.getString(GroupUtil.para_gid);
+            gid = bundle.getString(GroupUtilA.para_gid);
             if (gid == null || "".equals(gid)) {
                 this.finish();
             } else {
@@ -92,11 +91,11 @@ public class GroupDesActivity extends OnlineActivity implements View.OnClickList
                     //提前获取bid对应的URL------start--
                     /*List<Balanc> lbbb = MyApp.mC.getDS().getBalancDao().queryBuilder().where(BalancDao.Properties.Bid.eq(g.getBid())).list();
                     //根据bid没有查找到url会出现获取不到群详情的错误。不影响我对群的设置.。所以不是特别重要的事情。
-                    if (lbbb.size() == RetNumUtil.n_0) {
+                    if (lbbb.size() == RetNumUtilA.n_0) {
                         updateBidWeb(g.getBid());
                         normalStart = false;
                         this.finish();
-                    } else if (lbbb.size() == RetNumUtil.n_1) {
+                    } else if (lbbb.size() == RetNumUtilA.n_1) {
                         gurl = lbbb.get(0).getBurl();
                         if (uid.equals(g.getMasterid())) {
                             knowMaster = true;
@@ -118,7 +117,7 @@ public class GroupDesActivity extends OnlineActivity implements View.OnClickList
     private void initData() {
 
         JsonObject jv = new JsonObject();
-        jv.addProperty(GroupUtil.para_gid, gid);
+        jv.addProperty(GroupUtilA.para_gid, gid);
         //查询user服务器
        /* WXStringRequest getset = new WXStringRequest(GroupDesActivity.this, AppUtil.getBurl(GroupDesActivity.this) + WxUtil.u_getgroupseting, jv, new Response.Listener<String>() {
             @Override
@@ -135,7 +134,7 @@ public class GroupDesActivity extends OnlineActivity implements View.OnClickList
                     // 日志
                     normalStart = false;
                     GroupDesActivity.this.finish();
-                } else if (RetNumUtil.n_0 == r) {
+                } else if (RetNumUtilA.n_0 == r) {
                     Ugroup sue = null;
                     try {
                         sue = JSON.parseObject(jreq.getString("fo"), Ugroup.class);
@@ -173,7 +172,7 @@ public class GroupDesActivity extends OnlineActivity implements View.OnClickList
                             MyApp.mC.getDS().update(g);
                         }
                     }
-                } else if (RetNumUtil.n_1 == r) {
+                } else if (RetNumUtilA.n_1 == r) {
                     TokenUtil.updateTo(app);
                 } else {
                     // 日志
@@ -254,7 +253,7 @@ public class GroupDesActivity extends OnlineActivity implements View.OnClickList
     }
 
     private void switchUtils(Switch switchs, int ii) {
-        if (ii == WxUtil.val_nagative) {
+        if (ii == MineUtilA.val_nagative) {
             switchs.setChecked(true);
         } else {
             switchs.setChecked(false);//不接受和99都会成为这个
@@ -263,9 +262,9 @@ public class GroupDesActivity extends OnlineActivity implements View.OnClickList
 
     private int tt(boolean b) {
         if (b) {
-            return WxUtil.val_nagative;
+            return MineUtilA.val_nagative;
         } else {
-            return WxUtil.val_positive;
+            return MineUtilA.val_positive;
         }
     }
 
@@ -285,7 +284,7 @@ public class GroupDesActivity extends OnlineActivity implements View.OnClickList
             }*/
         } else {
             JsonObject jv = new JsonObject();
-            jv.addProperty(GroupUtil.para_gid, gid);
+            jv.addProperty(GroupUtilA.para_gid, gid);
             //查询群服务器
             /*WXStringRequest srr = new WXStringRequest(GroupDesActivity.this, gurl + WxUtil.u_getonegroupsimple, jv, new Response.Listener<String>() {
                 @Override
@@ -302,7 +301,7 @@ public class GroupDesActivity extends OnlineActivity implements View.OnClickList
                         normalStart = false;
                         // 日志
                         GroupDesActivity.this.finish();
-                    } else if (RetNumUtil.n_0 == r) {
+                    } else if (RetNumUtilA.n_0 == r) {
                         Groups sue = null;
                         try {
                             sue = JSON.parseObject(jreq.getString(WxUtil.groupdes), Groups.class);
@@ -343,7 +342,7 @@ public class GroupDesActivity extends OnlineActivity implements View.OnClickList
                                 MyApp.mC.getDS().update(g);
                             }
                         }
-                    } else if (RetNumUtil.n_1 == r) {
+                    } else if (RetNumUtilA.n_1 == r) {
                         TokenUtil.updateTo(app);
                     } else {
                         normalStart = false;
@@ -447,7 +446,7 @@ public class GroupDesActivity extends OnlineActivity implements View.OnClickList
                         .setPositiveButton(R.string.alert_choose_true, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                if (GroupUtil.testGroupNickname(edi.getText().toString())) {
+                                if (GroupUtilA.testGroupNickname(edi.getText().toString())) {
                                     if (!edi.getText().toString().equals(g.getGname())) {
                                         updateGname(edi.getText().toString());
                                     }
@@ -524,7 +523,7 @@ public class GroupDesActivity extends OnlineActivity implements View.OnClickList
                     .setPositiveButton(R.string.alert_choose_true, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            if (GroupUtil.testGroupNickname(edi.getText().toString())) {
+                            if (GroupUtilA.testGroupNickname(edi.getText().toString())) {
                                 group_des_gremark_txt.setText(edi.getText().toString());
                             } else {
                                 Toast.makeText(GroupDesActivity.this, R.string.fail_format, Toast.LENGTH_SHORT).show();
@@ -549,7 +548,7 @@ public class GroupDesActivity extends OnlineActivity implements View.OnClickList
                     .setPositiveButton(R.string.alert_choose_true, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            if (MineUtil.testUserNickname(edi.getText().toString())) {
+                            if (MineUtilA.testUserNickname(edi.getText().toString())) {
                                 group_des_nickname_txt.setText(edi.getText().toString());
                             } else {
                                 Toast.makeText(GroupDesActivity.this, R.string.fail_format, Toast.LENGTH_SHORT).show();
@@ -609,13 +608,13 @@ public class GroupDesActivity extends OnlineActivity implements View.OnClickList
 
                     if (r == null) {
                         Toast.makeText(GroupDesActivity.this, R.string.group_save_err, Toast.LENGTH_LONG).show();
-                    } else if (RetNumUtil.n_0 == r) {
+                    } else if (RetNumUtilA.n_0 == r) {
                         try {
                             AppUtil.setTimeReal(GroupDesActivity.this, jo.getLong(WxUtil.tim));
                         } catch (Exception e) {
                             mwErr(TAG, "u_usergroupsetting,                                mwErr(TAG,\"u_usergroupsetting,onRespo AppUtil.setTimeReal(GroupDnse\",e);\n", e);
                         }
-                    } else if (RetNumUtil.n_1 == r) {
+                    } else if (RetNumUtilA.n_1 == r) {
                         TokenUtil.updateTo(app);
                         Toast.makeText(GroupDesActivity.this, R.string.group_save_err, Toast.LENGTH_LONG).show();
                     } else {
@@ -657,17 +656,17 @@ public class GroupDesActivity extends OnlineActivity implements View.OnClickList
 
                     if (r == null) {
                         Toast.makeText(GroupDesActivity.this, R.string.fail, Toast.LENGTH_SHORT).show();
-                    } else if (RetNumUtil.n_0 == r) {
+                    } else if (RetNumUtilA.n_0 == r) {
                         group_des_gname.setText(gname);
                         g.setGname(gname);
                         MyApp.mC.getDS().getGroupDao().update(g);
-                    } else if (RetNumUtil.n_1 == r) {
+                    } else if (RetNumUtilA.n_1 == r) {
                         TokenUtil.updateTo(app);
                         Toast.makeText(GroupDesActivity.this, R.string.fail, Toast.LENGTH_SHORT).show();
-                    } else if (RetNumUtil.n_2 == r) {
+                    } else if (RetNumUtilA.n_2 == r) {
                         Toast.makeText(GroupDesActivity.this, R.string.fail, Toast.LENGTH_SHORT).show();
                         finish();
-                    } else if (RetNumUtil.n_15 == r) {
+                    } else if (RetNumUtilA.n_15 == r) {
                         Toast.makeText(GroupDesActivity.this, R.string.group_des_update_err_m, Toast.LENGTH_LONG).show();
                     } else {
                         Toast.makeText(GroupDesActivity.this, R.string.fail, Toast.LENGTH_SHORT).show();
@@ -707,7 +706,7 @@ public class GroupDesActivity extends OnlineActivity implements View.OnClickList
 
                     if (r == null) {
                         Toast.makeText(GroupDesActivity.this, R.string.fail, Toast.LENGTH_SHORT).show();
-                    } else if (RetNumUtil.n_0 == r) {
+                    } else if (RetNumUtilA.n_0 == r) {
                         if (gnotice == null || "".equals(gnotice)) {
                             group_des_notice_txt.setText(R.string.group_notice_no);
                         } else {
@@ -715,10 +714,10 @@ public class GroupDesActivity extends OnlineActivity implements View.OnClickList
                         }
                         g.setGotice(gnotice);
                         MyApp.mC.getDS().getGroupDao().update(g);
-                    } else if (RetNumUtil.n_1 == r) {
+                    } else if (RetNumUtilA.n_1 == r) {
                         TokenUtil.updateTo(app);
                         Toast.makeText(GroupDesActivity.this, R.string.fail, Toast.LENGTH_SHORT).show();
-                    } else if (RetNumUtil.n_15 == r) {
+                    } else if (RetNumUtilA.n_15 == r) {
                         Toast.makeText(GroupDesActivity.this, R.string.group_des_update_err_m, Toast.LENGTH_LONG).show();
                     } else {
                         Toast.makeText(GroupDesActivity.this, R.string.fail, Toast.LENGTH_SHORT).show();
@@ -755,9 +754,9 @@ public class GroupDesActivity extends OnlineActivity implements View.OnClickList
 
                 if (r == null) {
                     Toast.makeText(GroupDesActivity.this, R.string.fail_web, Toast.LENGTH_SHORT).show();
-                } else if (RetNumUtil.n_0 == r) {
+                } else if (RetNumUtilA.n_0 == r) {
                     Toast.makeText(GroupDesActivity.this, R.string.success, Toast.LENGTH_SHORT).show();
-                } else if (RetNumUtil.n_1 == r) {
+                } else if (RetNumUtilA.n_1 == r) {
                     TokenUtil.updateTo(app);
                     Toast.makeText(GroupDesActivity.this, R.string.fail_web, Toast.LENGTH_SHORT).show();
                 } else {//参数不正确

@@ -25,10 +25,12 @@ import com.w8.base.data.FriendDao;
 import com.w8.base.data.Frireq;
 import com.w8.base.entity.ChatEntity;
 import com.w8.base.event.Refresh_active;
-import com.w8.base.pcurl.ChatUtil;
-import com.w8.base.pcurl.FriendUtil;
-import com.w8.base.pcurl.LoginUtil;
-import com.w8.base.pcurl.MineUtil;
+import com.w8.base.pcurl.ChatUtilA;
+import com.w8.base.pcurl.FriendUtilA;
+import com.w8.base.pcurl.LoginUtilA;
+import com.w8.base.pcurl.MineUtilA;
+import com.w8.base.pcurl.RetNumUtilA;
+import com.w8.base.pcurl.TimUtilA;
 import com.w8.services.WSListener;
 
 import org.greenrobot.eventbus.EventBus;
@@ -60,6 +62,26 @@ public class MyApp extends Application {
     public static WebSocket webSocket;         //正在使用的长连接。长连接。如果为null标识没有连接存在
 
     public static boolean canNewWs = true;//是否允许创建ws。（以下情况不允许：正在创建。已经退出。）。。。防止false不能变成true《一、登陆时转true，二、更新安全严重时校验并适当处理。》
+
+    /**
+     * 网络访问时间，8秒。 单位秒
+     */
+    public final static int tim_eight = 8;
+
+    /**
+     * 网络访问时间，11秒。 单位秒
+     */
+    public final static int tim_eleven = 11;
+
+    /**
+     * 网络访问时间，20秒，用于关键操作长时间。 单位秒
+     */
+    public final static int tim_twenty = 20;
+
+    /**
+     * 网络访问时间，30秒，用于异步访问时间。 单位秒
+     */
+    public final static int tim_thirty = 30;
 
     @Override
     public void onCreate() {
@@ -125,8 +147,8 @@ public class MyApp extends Application {
 //                    webSocket.close(5500, "重复创建。");
                 canNewWs = false;//创建中，不允许重复请求。
                 JsonObject into = new JsonObject();
-                into.addProperty(MineUtil.para_uid, AppUtil.getUid());
-                into.addProperty(LoginUtil.para_login_tid, AppUtil.getToken());
+                into.addProperty(MineUtilA.para_uid, AppUtil.getUid());
+                into.addProperty(LoginUtilA.para_login_tid, AppUtil.getToken());
                 Request request = new Request.Builder()
                         .url("ws://192.168.0.101:9980/?x=" + into.toString())//websocket连接地址::: ws://127.0.0.1:9981
                         .build();
@@ -149,8 +171,8 @@ public class MyApp extends Application {
      * 获取最新，消息通知。 《 Service 和 WSListener会调用此方法。    此方法不应该调用WSListener注意死循环》
      */
     public void getChat() {
-        if (!ChatUtil.url_app_findChatsingle_webing &&
-                ChatUtil.url_app_findChatsingle_tim_interval + ChatUtil.url_app_findChatsingle_tim_old < System.currentTimeMillis()) {
+        if (!ChatUtilA.url_app_findChatsingle_webing &&
+                ChatUtilA.url_app_findChatsingle_tim_interval + ChatUtilA.url_app_findChatsingle_tim_old < System.currentTimeMillis()) {
             // 每个请求，都应该有个时间限制，不允许频繁动作
             String uid = AppUtil.getUid();
             String tid = AppUtil.getToken();
@@ -158,29 +180,29 @@ public class MyApp extends Application {
 
             JsonObject into = new JsonObject();
 
-            into.addProperty(MineUtil.para_uid, uid);//测试使用--------------------
+            into.addProperty(MineUtilA.para_uid, uid);//测试使用--------------------
 
-            into.addProperty(WxUtil.para_url, ChatUtil.url_app_findChatsingle);
-            into.addProperty(LoginUtil.para_login_tid, tid);
-            into.addProperty(LoginUtil.para_login_aes_safedes, aes);
+            into.addProperty(MineUtilA.para_url, ChatUtilA.url_app_findChatsingle);
+            into.addProperty(LoginUtilA.para_login_tid, tid);
+            into.addProperty(LoginUtilA.para_login_aes_safedes, aes);
 
             StringRequest wj = new StringRequest(getString(R.string.httpHomeAddress) + into.toString(), new Response.Listener<String>() {
                 @Override
                 public void onResponse(String msgJobj) {
-                    ChatUtil.url_app_findChatsingle_webing = false;
-                    ChatUtil.url_app_findChatsingle_tim_old = System.currentTimeMillis();
+                    ChatUtilA.url_app_findChatsingle_webing = false;
+                    ChatUtilA.url_app_findChatsingle_tim_old = System.currentTimeMillis();
                     succGetChat(msgJobj);
                 }
             }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    ChatUtil.url_app_findChatsingle_webing = false;
-                    ChatUtil.url_app_findChatsingle_tim_old = System.currentTimeMillis();
+                    ChatUtilA.url_app_findChatsingle_webing = false;
+                    ChatUtilA.url_app_findChatsingle_tim_old = System.currentTimeMillis();
                 }
             });
-            wj.setRetryPolicy(new DefaultRetryPolicy(ChatUtil.url_app_findChatsingle_tim_out, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+            wj.setRetryPolicy(new DefaultRetryPolicy(ChatUtilA.url_app_findChatsingle_tim_out, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
             getVQ().add(wj);
-            ChatUtil.url_app_findChatsingle_webing = true;
+            ChatUtilA.url_app_findChatsingle_webing = true;
         } else {
             Log.e(TAG, "频繁发送chat信息请求。");
         }
@@ -190,9 +212,9 @@ public class MyApp extends Application {
     public void succGetChat(String msgJobj) {
         try {
             JsonObject jo = new JsonParser().parse(msgJobj).getAsJsonObject();
-            Integer r = jo.get(WxUtil.para_r).getAsInt();
-            if (RetNumUtil.n_0 == r) {
-                String listStr = jo.get(ChatUtil.para_list_msg_json).getAsString();  // list内容
+            Integer r = jo.get(MineUtilA.para_url).getAsInt();
+            if (RetNumUtilA.n_0 == r) {
+                String listStr = jo.get(ChatUtilA.para_list_msg_json).getAsString();  // list内容
                 List<ChatEntity> chatList = new Gson()
                         .fromJson(listStr,
                                 new TypeToken<List<ChatEntity>>() {
@@ -205,7 +227,7 @@ public class MyApp extends Application {
                     ChatEntity serChat = chatList.get(i);
                     tims.add(serChat.getTim());
                     int btyp = serChat.getBtyp();
-                    if (FriendUtil.typ_add_fri == btyp) {
+                    if (FriendUtilA.typ_add_fri == btyp) {
                         Log.e(TAG, "-------被好友---请求-------------------------------");
 
                         //判断是否我的好友。
@@ -220,10 +242,10 @@ public class MyApp extends Application {
                             JsonObject jpc = new JsonParser().parse(serChat.getDes()).getAsJsonObject();
 
                             //{"m0t":"n","Q5L":"","R6c":"yes988a1","Fn6i":"yes988a1111昵称"}
-                            String reqaccount = jpc.get(FriendUtil.para_reqacc).getAsString();
-                            String reqnickname = jpc.get(FriendUtil.para_reqnickname).getAsString();
-                            String reqdes = jpc.get(FriendUtil.para_reqdes).getAsString();
-                            String met = jpc.get(FriendUtil.para_met).getAsString();
+                            String reqaccount = jpc.get(FriendUtilA.para_reqacc).getAsString();
+                            String reqnickname = jpc.get(FriendUtilA.para_reqnickname).getAsString();
+                            String reqdes = jpc.get(FriendUtilA.para_reqdes).getAsString();
+                            String met = jpc.get(FriendUtilA.para_met).getAsString();
 
                             Frireq frireq = new Frireq();
                             frireq.setMet(met);
@@ -250,7 +272,7 @@ public class MyApp extends Application {
                                 active.setBtyp(btyp);
                                 active.setDes(reqnickname);
                                 active.setTim(serChat.getTim());
-                                active.setTimstr(TimUtil.formatTimeToStr(serChat.getTim()));
+                                active.setTimstr(TimUtilA.formatTimeToStr(serChat.getTim()));
                                 getDS().getActiveDao().save(active);
                             }
                             //广播到active
@@ -258,14 +280,14 @@ public class MyApp extends Application {
                                 EventBus.getDefault().post(new Refresh_active());
                             }
                         }
-                    } else if (FriendUtil.typ_del_fri == btyp) {
+                    } else if (FriendUtilA.typ_del_fri == btyp) {
                         Log.e(TAG, "-------被好友删除-------------------------------");
                         //被好友删除
                         String fid = serChat.getReqid();
                         List<Friend> fs = getDS().getFriendDao().queryBuilder().where(FriendDao.Properties.Fid.eq(fid)).list();
                         getDS().getFriendDao().deleteInTx(fs);
                         //缺少，应该定义一个，我已经被好友删除的记录？  从新设计如何展现是否删除。
-                    } else if (ChatUtil.url_app_addChatsingle == btyp) {   // ----  ------ ----  要精确到 ==typ 从新定义 chat中typ，现在聊天存0123这种放弃。
+                    } else if (ChatUtilA.url_app_addChatsingle == btyp) {   // ----  ------ ----  要精确到 ==typ 从新定义 chat中typ，现在聊天存0123这种放弃。
                         //聊天。判断TAG，如果是在聊天的人，更新列表，如果没在聊天更新返回键的新消息数量。
                     } else {
 //业务类型不正确。。。
@@ -297,9 +319,9 @@ public class MyApp extends Application {
             Log.e(TAG, "-------报错。。。。its:" + tims.size() + "Uid:" + AppUtil.getUid().equals(""));
         } else {
             JsonObject into = new JsonObject();
-            into.addProperty(WxUtil.para_url, ChatUtil.url_app_delChatsingleByTims);
-            into.addProperty(MineUtil.para_uid, AppUtil.getUid());
-            into.addProperty(ChatUtil.para_del_tims_json, new Gson().toJson(tims));
+            into.addProperty(MineUtilA.para_url, ChatUtilA.url_app_delChatsingleByTims);
+            into.addProperty(MineUtilA.para_uid, AppUtil.getUid());
+            into.addProperty(ChatUtilA.para_del_tims_json, new Gson().toJson(tims));
 
             StringRequest wj = new StringRequest(getString(R.string.httpHomeAddress) + into.toString(), new Response.Listener<String>() {
                 @Override

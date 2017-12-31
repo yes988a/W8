@@ -42,8 +42,7 @@ import com.squareup.picasso.Picasso;
 import com.w8.base.AppUtil;
 import com.w8.base.MyApp;
 import com.w8.base.OnlineActivity;
-import com.w8.base.TimUtil;
-import com.w8.base.WxUtil;
+import com.w8.base.pcurl.TimUtilA;
 import com.w8.base.data.Active;
 import com.w8.base.data.ActiveDao;
 import com.w8.base.data.Chat;
@@ -56,7 +55,7 @@ import com.w8.base.data.Group;
 import com.w8.base.data.GroupDao;
 import com.w8.base.data.Smile;
 import com.w8.base.event.Ret_chat;
-import com.w8.base.pcurl.ChatUtil;
+import com.w8.base.pcurl.ChatUtilA;
 
 import org.greenrobot.eventbus.Subscribe;
 
@@ -186,7 +185,7 @@ public class ChatallActivity extends OnlineActivity implements View.OnClickListe
                 finish();
                 return;
             } else {
-                if (ChatUtil.url_app_findChatsingle == isFri) { // 好友。
+                if (ChatUtilA.url_app_findChatsingle == isFri) { // 好友。
                     List<Friend> cc = MyApp.mC.getDS().getFriendDao().queryBuilder()
                             .where(FriendDao.Properties.Fid.eq(uuid)).list();
                     if (cc.size() == 1) {
@@ -255,7 +254,7 @@ public class ChatallActivity extends OnlineActivity implements View.OnClickListe
                 int id = item.getItemId();
                 switch (id) {
                     case R.id.action_chat_details: //详情。
-                        if (ChatUtil.url_app_findChatsingle == isFri) { // 好友
+                        if (ChatUtilA.url_app_findChatsingle == isFri) { // 好友
                             AppUtil.toFriDes(uuid);
                         } else {    //群
                             AppUtil.toGroDes(uuid);
@@ -803,7 +802,7 @@ public class ChatallActivity extends OnlineActivity implements View.OnClickListe
             public void onResponse(String response) {
                 com.alibaba.fastjson.JSONObject jo = JSON.parseObject(response);
                 Integer r = jo.getInteger(WxUtil.r);
-                if (r != null && RetNumUtil.n_0 == r) {
+                if (r != null && RetNumUtilA.n_0 == r) {
                     Long timm = jo.getLong(WxUtil.tim);
                     String uid = jo.getString(WxUtil.uuid);
                     Chat chat = app.daoSession.getChatDao().load(lid);
@@ -813,7 +812,7 @@ public class ChatallActivity extends OnlineActivity implements View.OnClickListe
                     app.daoSession.getChatDao().update(chat);
                     //刷新发送记录
                     initList();
-                } else if (r != null && RetNumUtil.n_1 == r) {
+                } else if (r != null && RetNumUtilA.n_1 == r) {
                     TokenUtil.updateTo(app);
                 }
             }
@@ -855,7 +854,7 @@ public class ChatallActivity extends OnlineActivity implements View.OnClickListe
             public void onResponse(String response) {
                 com.alibaba.fastjson.JSONObject jo = JSON.parseObject(response);
                 Integer r = jo.getInteger(WxUtil.r);
-                if (r != null && RetNumUtil.n_0 == r) {
+                if (r != null && RetNumUtilA.n_0 == r) {
                     Long timm = jo.getLong(WxUtil.tim);
                     String uid = jo.getString(WxUtil.uuid);
                     Chat chat = app.daoSession.getChatDao().load(lid);
@@ -865,7 +864,7 @@ public class ChatallActivity extends OnlineActivity implements View.OnClickListe
                     app.daoSession.getChatDao().update(chat);
                     //刷新发送记录
                     initList();
-                } else if (r != null && RetNumUtil.n_1 == r) {
+                } else if (r != null && RetNumUtilA.n_1 == r) {
                     TokenUtil.updateTo(app);
                 }
             }
@@ -1094,7 +1093,7 @@ public class ChatallActivity extends OnlineActivity implements View.OnClickListe
                 active.setBtyp(isFri);
                 active.setDes(cc.getTxt());
                 active.setTim(cc.getTim());
-                active.setTimstr(TimUtil.formatTimeToStr(cc.getTim()));
+                active.setTimstr(TimUtilA.formatTimeToStr(cc.getTim()));
                 activeDao.save(active);
             }
         }

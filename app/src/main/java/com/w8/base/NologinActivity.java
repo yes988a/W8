@@ -1,5 +1,7 @@
 package com.w8.base;
 
+import com.w8.base.pcurl.RetNumUtilA;
+
 public class NologinActivity extends WxActivity {
     protected String TAG = NologinActivity.class.getSimpleName();//其他继承者，会改变它
 
@@ -25,7 +27,7 @@ public class NologinActivity extends WxActivity {
      * 密码简单验证
      */
     protected boolean testPass(String pass) {
-        if (pass == null || pass.length() > RetNumUtil.n_32 || pass.length() < RetNumUtil.n_6) {
+        if (pass == null || pass.length() > RetNumUtilA.n_32 || pass.length() < RetNumUtilA.n_6) {
             return false;
         }
         return true;

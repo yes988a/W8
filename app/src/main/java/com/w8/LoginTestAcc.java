@@ -13,15 +13,14 @@ import com.google.gson.reflect.TypeToken;
 import com.w8.base.AppUtil;
 import com.w8.base.MyApp;
 import com.w8.base.NologinActivity;
-import com.w8.base.RetNumUtil;
-import com.w8.base.WxUtil;
+import com.w8.base.pcurl.RetNumUtilA;
 import com.w8.base.data.Computer;
 import com.w8.base.data.ComputerDao;
 import com.w8.base.data.DaoMaster;
 import com.w8.base.entity.UserrelationSimple;
-import com.w8.base.pcurl.AccountUtil;
-import com.w8.base.pcurl.LoginUtil;
-import com.w8.base.pcurl.MineUtil;
+import com.w8.base.pcurl.AccountUtilA;
+import com.w8.base.pcurl.LoginUtilA;
+import com.w8.base.pcurl.MineUtilA;
 
 import java.util.List;
 
@@ -49,7 +48,7 @@ public abstract class LoginTestAcc extends NologinActivity {
      * 验证用户名，密码的合法性
      */
     protected void testAndLogin(String acc, String pass) {
-        if (!AccountUtil.testAcc(acc)) {
+        if (!AccountUtilA.testAcc(acc)) {
             alertDialogText(getString(R.string.acc_error));
         } else {
             if (!testPass(pass)) {
@@ -79,18 +78,20 @@ public abstract class LoginTestAcc extends NologinActivity {
     private void loginGetSer(final String acc, final String pass) {
 
         JsonObject into = new JsonObject();
-        into.addProperty(WxUtil.para_url, LoginUtil.url_app_testAcc);
-        into.addProperty(AccountUtil.para_acc, acc);
+        into.addProperty(MineUtilA.para_url, LoginUtilA.url_app_testAcc);
+        into.addProperty(AccountUtilA.para_acc, acc);
 
-        StringRequest srlog = new StringRequest(getString(R.string.httpHomeAddress) + into.toString(),
+//        StringRequest srlog = new StringRequest(getString(R.string.httpHomeAddress) + into.toString(),
+
+        StringRequest srlog = new StringRequest("http://192.168.191.2:9980/?t=" + into.toString(),
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String msg) {
                         try {
                             JsonObject jo = new JsonParser().parse(msg).getAsJsonObject();
-                            Integer r = jo.get(WxUtil.para_r).getAsInt();
-                            if (RetNumUtil.n_0 == r) {
-                                String loginIp = jo.get(LoginUtil.para_login_ip).getAsString();
+                            Integer r = jo.get(MineUtilA.para_url).getAsInt();
+                            if (RetNumUtilA.n_0 == r) {
+                                String loginIp = jo.get(LoginUtilA.para_login_ip).getAsString();
                                 ComputerDao computerDao = MyApp.mC.getDS().getComputerDao();
                                 List<Computer> lc = computerDao.queryBuilder().where(ComputerDao.Properties.Acc.eq(acc)).list();
                                 if (lc.size() > 0) {
@@ -103,7 +104,7 @@ public abstract class LoginTestAcc extends NologinActivity {
                                 cc.setAcc(acc);
                                 computerDao.insert(cc);
                                 loginComplete(acc, pass, loginIp);
-                            } else if (RetNumUtil.n_23 == r) {
+                            } else if (RetNumUtilA.n_23 == r) {
                                 endWeb();
                                 accErr();
                             } else {
@@ -119,7 +120,7 @@ public abstract class LoginTestAcc extends NologinActivity {
                 timOut();
             }
         });
-        srlog.setRetryPolicy(new DefaultRetryPolicy(RetNumUtil.n_26 * 1000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        srlog.setRetryPolicy(new DefaultRetryPolicy(RetNumUtilA.n_26 * 1000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         startWeb();
         MyApp.mC.getVQ().add(srlog);
     }
@@ -128,9 +129,9 @@ public abstract class LoginTestAcc extends NologinActivity {
     private void loginComplete(final String acc, final String pass, final String ip) {
 
         JsonObject into = new JsonObject();
-        into.addProperty(WxUtil.para_url, LoginUtil.url_app_LoginCompelete);
-        into.addProperty(AccountUtil.para_acc, acc);
-        into.addProperty(MineUtil.para_pas, pass);
+        into.addProperty(MineUtilA.para_url, LoginUtilA.url_app_LoginCompelete);
+        into.addProperty(AccountUtilA.para_acc, acc);
+        into.addProperty(MineUtilA.para_pas, pass);
 
         //http://192.168.0.101:9980/?-t=
         StringRequest srlog = new StringRequest(getString(R.string.http) + ip + getString(R.string.ht_suffix) + into.toString(),
@@ -139,17 +140,17 @@ public abstract class LoginTestAcc extends NologinActivity {
                     public void onResponse(String msg) {
                         try {
                             JsonObject jo = new JsonParser().parse(msg).getAsJsonObject();
-                            Integer r = jo.get(WxUtil.para_r).getAsInt();
-                            if (RetNumUtil.n_0 == r) {
-                                List<UserrelationSimple> userList = new Gson().fromJson(jo.get(LoginUtil.para_fri_list).getAsString(),
+                            Integer r = jo.get(MineUtilA.para_url).getAsInt();
+                            if (RetNumUtilA.n_0 == r) {
+                                List<UserrelationSimple> userList = new Gson().fromJson(jo.get(LoginUtilA.para_fri_list).getAsString(),
                                         new TypeToken<List<UserrelationSimple>>() {
                                         }.getType());
-                                String aesUUID = jo.get(LoginUtil.para_login_aes).getAsString();
-                                String token = jo.get(LoginUtil.para_login_tid).getAsString();
-                                String uid = jo.get(MineUtil.para_uid).getAsString();
-                                String nickname = jo.get(MineUtil.para_nickname).getAsString();
-                                Integer sound = jo.get(MineUtil.para_sound).getAsInt();
-                                Long ctim = jo.get(LoginUtil.para_login_ctim).getAsLong();//应该配合ranid加密使用。
+                                String aesUUID = jo.get(LoginUtilA.para_login_aes).getAsString();
+                                String token = jo.get(LoginUtilA.para_login_tid).getAsString();
+                                String uid = jo.get(MineUtilA.para_uid).getAsString();
+                                String nickname = jo.get(MineUtilA.para_nickname).getAsString();
+                                Integer sound = jo.get(MineUtilA.para_sound).getAsInt();
+                                Long ctim = jo.get(LoginUtilA.para_login_ctim).getAsLong();//应该配合ranid加密使用。
 
                                 String randomid = md5Str(aesUUID + token);
 
@@ -174,7 +175,7 @@ public abstract class LoginTestAcc extends NologinActivity {
                                 AppUtil.setTag(ActiveActivity.class.getSimpleName());
                                 startActivity(new Intent(LoginTestAcc.this, ActiveActivity.class));
                                 finish();
-                            } else if (RetNumUtil.n_12 == r) {
+                            } else if (RetNumUtilA.n_12 == r) {
                                 endWeb();
                                 accPss();
                             } else {//服务器返回3，安全加密有问题
@@ -195,7 +196,7 @@ public abstract class LoginTestAcc extends NologinActivity {
 
             }
         });
-        srlog.setRetryPolicy(new DefaultRetryPolicy(RetNumUtil.n_26 * 1000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        srlog.setRetryPolicy(new DefaultRetryPolicy(RetNumUtilA.n_26 * 1000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         startWeb();
         MyApp.mC.getVQ().add(srlog);
     }

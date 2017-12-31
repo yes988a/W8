@@ -7,7 +7,6 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.SystemClock;
-import android.support.v7.app.AppCompatActivity;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ImageSpan;
@@ -31,13 +30,14 @@ import com.w8.base.data.ChatDao;
 import com.w8.base.data.EditeMsgDao;
 import com.w8.base.data.Friend;
 import com.w8.base.entity.UserrelationSimple;
-import com.w8.base.pcurl.AccountUtil;
-import com.w8.base.pcurl.ChatUtil;
-import com.w8.base.pcurl.FriendUtil;
-import com.w8.base.pcurl.GroupUtil;
-import com.w8.base.pcurl.LoginUtil;
-import com.w8.base.pcurl.PhoneUtil;
-import com.w8.base.pcurl.MineUtil;
+import com.w8.base.pcurl.AccountUtilA;
+import com.w8.base.pcurl.ChatUtilA;
+import com.w8.base.pcurl.FriendUtilA;
+import com.w8.base.pcurl.GroupUtilA;
+import com.w8.base.pcurl.LoginUtilA;
+import com.w8.base.pcurl.PhoneUtilA;
+import com.w8.base.pcurl.MineUtilA;
+import com.w8.base.pcurl.RetNumUtilA;
 import com.w8.services.DayService;
 import com.w8.services.GuardService;
 
@@ -169,7 +169,7 @@ public class AppUtil {
         delChat.addAll(qb3.list());
 
         for (int i = delChat.size() - 1; i >= 0; i--) {
-            if (ChatUtil.typ_des_img == delChat.get(i).getDtyp()) {
+            if (ChatUtilA.typ_des_img == delChat.get(i).getDtyp()) {
                 AppUtil.deleFile(delChat.get(i).getTxt());
             }
             //缺少删除附件。
@@ -194,14 +194,14 @@ public class AppUtil {
     //跳转到好友详情,不关闭上一个activity
     public static void toFriDes(String fid) {
         Intent intent = new Intent(MyApp.mC, FriendDesActivity.class);
-        intent.putExtra(FriendUtil.para_fid, fid);
+        intent.putExtra(FriendUtilA.para_fid, fid);
         MyApp.mC.startActivity(intent);
     }
 
     //跳转到群详,不关闭上一个activity
     public static void toGroDes(String gid) {
         Intent intent = new Intent(MyApp.mC, GroupDesActivity.class);
-        intent.putExtra(GroupUtil.para_gid, gid);
+        intent.putExtra(GroupUtilA.para_gid, gid);
         MyApp.mC.startActivity(intent);
     }
 
@@ -219,7 +219,7 @@ public class AppUtil {
             ff.setRemark(ue.getRemark());
             ff.setPhone("");//ue.getPhone());
             ff.setAccount("");
-            ff.setDegree(RetNumUtil.n_0);
+            ff.setDegree(RetNumUtilA.n_0);
             ff.setTyp(AppUtil.FRI_LIST_TYPE);
             ff.setNickname("");//ue.getNickname());
             ff.setAbc("");//ue.getAbc());
@@ -228,7 +228,7 @@ public class AppUtil {
 
             ff.setFirst_abc(first_abc);
             if (abcList.contains(first_abc)) {
-                ff.setShowabc(WxUtil.val_positive);
+                ff.setShowabc(MineUtilA.val_positive);
             } else {
                 abcList.add(first_abc);
                 ff.setShowabc(1);
@@ -372,7 +372,7 @@ public class AppUtil {
     public static byte[] getSafeAes() {
         SharedPreferences sp = MyApp.mC.getSharedPreferences(APP, MyApp.mC.MODE_PRIVATE);
 
-        return Base64.decode(sp.getString(LoginUtil.para_login_aes, ""), Base64.DEFAULT);
+        return Base64.decode(sp.getString(LoginUtilA.para_login_aes, ""), Base64.DEFAULT);
     }
 
     /**
@@ -381,7 +381,7 @@ public class AppUtil {
     public static void setSafeAes(String rawKeyB64) {
         SharedPreferences sp = MyApp.mC.getSharedPreferences(APP, MyApp.mC.MODE_PRIVATE);
         SharedPreferences.Editor editor = sp.edit();
-        editor.putString(LoginUtil.para_login_aes, rawKeyB64);
+        editor.putString(LoginUtilA.para_login_aes, rawKeyB64);
         editor.commit();
     }
 
@@ -410,96 +410,96 @@ public class AppUtil {
     public static void setToken(String token) {
         SharedPreferences sp = MyApp.mC.getSharedPreferences(APP, MyApp.mC.MODE_PRIVATE);
         SharedPreferences.Editor editor = sp.edit();
-        editor.putString(LoginUtil.para_login_tid, token);
+        editor.putString(LoginUtilA.para_login_tid, token);
         editor.commit();
     }
 
     public static String getToken() {
         SharedPreferences sp = MyApp.mC.getSharedPreferences(APP, MyApp.mC.MODE_PRIVATE);
-        return sp.getString(LoginUtil.para_login_tid, "");
+        return sp.getString(LoginUtilA.para_login_tid, "");
     }
 
     public static String getUid() {
         SharedPreferences sp = MyApp.mC.getSharedPreferences(APP_SAVE, MyApp.mC.MODE_PRIVATE);
-        return sp.getString(MineUtil.para_uid, "");
+        return sp.getString(MineUtilA.para_uid, "");
     }
 
     public static void setUrl(String url) {
         SharedPreferences sp = MyApp.mC.getSharedPreferences(APP, MyApp.mC.MODE_PRIVATE);
         SharedPreferences.Editor editor = sp.edit();
-        editor.putString(WxUtil.para_url, url);
+        editor.putString(MineUtilA.para_url, url);
         editor.commit();
     }
 
     //获取，登录者的服务器url::::ws://127.0.0.1:9981
     public static String getUrl() {
         SharedPreferences sp = MyApp.mC.getSharedPreferences(APP, MyApp.mC.MODE_PRIVATE);
-        return sp.getString(WxUtil.para_url, "");
+        return sp.getString(MineUtilA.para_url, "");
     }
 
     //我的账号
     public static String getAccount() {
         SharedPreferences sp = MyApp.mC.getSharedPreferences(APP, MyApp.mC.MODE_PRIVATE);
-        return sp.getString(AccountUtil.para_acc, "");
+        return sp.getString(AccountUtilA.para_acc, "");
     }
 
     //我的昵称
     public static String getNickname() {
         SharedPreferences sp = MyApp.mC.getSharedPreferences(APP, MyApp.mC.MODE_PRIVATE);
-        return sp.getString(MineUtil.para_nickname, "");
+        return sp.getString(MineUtilA.para_nickname, "");
     }
 
     //我的昵称
     public static void setNickname(String nick) {
         SharedPreferences sp = MyApp.mC.getSharedPreferences(APP, MyApp.mC.MODE_PRIVATE);
         SharedPreferences.Editor editor = sp.edit();
-        editor.putString(MineUtil.para_nickname, nick);
+        editor.putString(MineUtilA.para_nickname, nick);
         editor.commit();
     }
 
     //手机
     public static String getPhone() {
         SharedPreferences sp = MyApp.mC.getSharedPreferences(APP, MyApp.mC.MODE_PRIVATE);
-        return sp.getString(PhoneUtil.para_phone, "");
+        return sp.getString(PhoneUtilA.para_phone, "");
     }
 
     //手机
     public static void setPhone(String phone) {
         SharedPreferences sp = MyApp.mC.getSharedPreferences(APP, MyApp.mC.MODE_PRIVATE);
         SharedPreferences.Editor editor = sp.edit();
-        editor.putString(PhoneUtil.para_phone, phone);
+        editor.putString(PhoneUtilA.para_phone, phone);
         editor.commit();
     }
 
     //签名
     public static String getAutograph() {
         SharedPreferences sp = MyApp.mC.getSharedPreferences(APP, MyApp.mC.MODE_PRIVATE);
-        return sp.getString(MineUtil.para_autograph, "");
+        return sp.getString(MineUtilA.para_autograph, "");
     }
 
     //签名
     public static void setAutograph(String autograph) {
         SharedPreferences sp = MyApp.mC.getSharedPreferences(APP, MyApp.mC.MODE_PRIVATE);
         SharedPreferences.Editor editor = sp.edit();
-        editor.putString(MineUtil.para_autograph, autograph);
+        editor.putString(MineUtilA.para_autograph, autograph);
         editor.commit();
     }
 
     public static int getSound() {
         SharedPreferences sp = MyApp.mC.getSharedPreferences(APP, MyApp.mC.MODE_PRIVATE);
-        return sp.getInt(MineUtil.para_sound, RetNumUtil.n_b1);
+        return sp.getInt(MineUtilA.para_sound, RetNumUtilA.n_b1);
     }
 
     public static void setSound(int sound) {
         SharedPreferences sp = MyApp.mC.getSharedPreferences(APP, MyApp.mC.MODE_PRIVATE);
         SharedPreferences.Editor editor = sp.edit();
-        editor.putInt(MineUtil.para_sound, sound);
+        editor.putInt(MineUtilA.para_sound, sound);
         editor.commit();
     }
 
     public static String getQrcode() {
         SharedPreferences sp = MyApp.mC.getSharedPreferences(APP, MyApp.mC.MODE_PRIVATE);
-        return sp.getString(WxUtil.para_qrcode, "");
+        return sp.getString(MineUtilA.para_qrcode, "");
     }
 
     /**
@@ -521,7 +521,7 @@ public class AppUtil {
      */
     public static long getTimeReal() {
         SharedPreferences sp = MyApp.mC.getSharedPreferences(APP, MyApp.mC.MODE_PRIVATE);
-        return System.currentTimeMillis() + sp.getLong(time_di, RetNumUtil.n_0);
+        return System.currentTimeMillis() + sp.getLong(time_di, RetNumUtilA.n_0);
     }
 
     /**
@@ -543,7 +543,7 @@ public class AppUtil {
         if (uid != null) {
             SharedPreferences sp_save = MyApp.mC.getSharedPreferences(APP_SAVE, MyApp.mC.MODE_PRIVATE);
             SharedPreferences.Editor editor_save = sp_save.edit();
-            editor_save.putString(MineUtil.para_uid, uid);
+            editor_save.putString(MineUtilA.para_uid, uid);
             editor_save.commit();
         }
 
@@ -554,24 +554,24 @@ public class AppUtil {
         if (uid == null || randomid == null || token == null
                 || rawKeyB64 == null || acc == null || nickname == null || sound == null) {
             //用于安全退出，清除个人信息（安全）
-//            editor.remove(MineUtil.ranid);
-            editor.remove(AccountUtil.para_acc);
-            editor.remove(MineUtil.para_nickname);
-            editor.remove(PhoneUtil.para_phone);
-            editor.remove(MineUtil.para_autograph);
-            editor.remove(WxUtil.para_qrcode);
-            editor.remove(LoginUtil.para_login_tid);
-            editor.remove(LoginUtil.para_login_aes);
-            editor.remove(LoginUtil.para_login_ctim);
+//            editor.remove(MineUtilA.ranid);
+            editor.remove(AccountUtilA.para_acc);
+            editor.remove(MineUtilA.para_nickname);
+            editor.remove(PhoneUtilA.para_phone);
+            editor.remove(MineUtilA.para_autograph);
+            editor.remove(MineUtilA.para_qrcode);
+            editor.remove(LoginUtilA.para_login_tid);
+            editor.remove(LoginUtilA.para_login_aes);
+            editor.remove(LoginUtilA.para_login_ctim);
         } else {
 
-            editor.putString(LoginUtil.para_ranid, randomid);
-            editor.putString(AccountUtil.para_acc, acc);
-            editor.putString(MineUtil.para_nickname, nickname);
-            editor.putInt(MineUtil.para_sound, sound);
-            editor.putString(LoginUtil.para_login_aes, rawKeyB64);
-            editor.putString(LoginUtil.para_login_tid, token);
-            editor.putLong(LoginUtil.para_login_ctim, crateTime);
+            editor.putString(LoginUtilA.para_ranid, randomid);
+            editor.putString(AccountUtilA.para_acc, acc);
+            editor.putString(MineUtilA.para_nickname, nickname);
+            editor.putInt(MineUtilA.para_sound, sound);
+            editor.putString(LoginUtilA.para_login_aes, rawKeyB64);
+            editor.putString(LoginUtilA.para_login_tid, token);
+            editor.putLong(LoginUtilA.para_login_ctim, crateTime);
         }
         editor.commit();
     }

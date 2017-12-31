@@ -18,8 +18,7 @@ import com.squareup.picasso.Picasso;
 import com.w8.base.AppUtil;
 import com.w8.base.MyApp;
 import com.w8.base.OnlineActivity;
-import com.w8.base.RetNumUtil;
-import com.w8.base.WxUtil;
+import com.w8.base.pcurl.RetNumUtilA;
 import com.w8.base.data.Friend;
 import com.w8.base.data.FriendDao;
 import com.w8.base.holder.FriList_head_holder;
@@ -67,8 +66,8 @@ public class ChatSearchFriActivity extends OnlineActivity {
         if (intent == null) {
             finish();
         } else {
-            result = intent.getIntExtra(AppUtil.RESULT, RetNumUtil.n_0);
-            if (result == RetNumUtil.n_0) {
+            result = intent.getIntExtra(AppUtil.RESULT, RetNumUtilA.n_0);
+            if (result == RetNumUtilA.n_0) {
                 finish();
             }
         }
@@ -140,7 +139,7 @@ public class ChatSearchFriActivity extends OnlineActivity {
 
         @Override
         public void onBindViewHolder(RecyclerView.ViewHolder vh, int position) {
-            if (position == RetNumUtil.n_0) {//选择一个群
+            if (position == RetNumUtilA.n_0) {//选择一个群
                 ViewHolderSearcgdes bhs = (ViewHolderSearcgdes) vh;
                 bhs.sea_des_az_text.setText(getString(R.string.search_des_choosegroup));
                 bhs.sea_des_az_view.setVisibility(View.GONE);
@@ -153,7 +152,7 @@ public class ChatSearchFriActivity extends OnlineActivity {
                         startActivityForResult(intent, resultSFCSa);
                     }
                 });
-            } else if (position == RetNumUtil.n_1) {//选择一个好友
+            } else if (position == RetNumUtilA.n_1) {//选择一个好友
                 ViewHolderSearcgdes bhs = (ViewHolderSearcgdes) vh;
                 bhs.sea_des_az_text.setText(textChooce);
                 bhs.sea_des_az_biglinear.setOnClickListener(new View.OnClickListener() {
@@ -179,7 +178,7 @@ public class ChatSearchFriActivity extends OnlineActivity {
                     FriList_holder mvh = (FriList_holder) vh;
                     setCommonHolder(mvh, f.getFid(), f.getRemark());
                 } else {
-                    if (RetNumUtil.n_1 == f.getShowabc()) {
+                    if (RetNumUtilA.n_1 == f.getShowabc()) {
                         FriList_head_holder mvh = (FriList_head_holder) vh;
                         mvh.fr_head_abc.setText(f.getAbc());
                         setCommonHolder(mvh, f.getFid(), f.getRemark());
@@ -244,9 +243,9 @@ public class ChatSearchFriActivity extends OnlineActivity {
 
         @Override
         public int getItemViewType(int position) {
-            if (position == RetNumUtil.n_0 || position == RetNumUtil.n_1) {//选择一个群 或者 选择一个好友
+            if (position == RetNumUtilA.n_0 || position == RetNumUtilA.n_1) {//选择一个群 或者 选择一个好友
                 return search_des;
-            } else if (sort || RetNumUtil.n_1 != datas.get(position - switchnum).getShowabc()) {
+            } else if (sort || RetNumUtilA.n_1 != datas.get(position - switchnum).getShowabc()) {
                 return friend;
             } else {//显示的是好友列表
                 return friend_group;

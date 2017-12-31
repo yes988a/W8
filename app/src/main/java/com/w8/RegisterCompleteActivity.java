@@ -16,14 +16,13 @@ import com.google.gson.JsonParser;
 import com.w8.base.AppUtil;
 import com.w8.base.AuthCodeUtil;
 import com.w8.base.MyApp;
-import com.w8.base.RetNumUtil;
-import com.w8.base.WxUtil;
-import com.w8.base.pcurl.AccountUtil;
-import com.w8.base.pcurl.LoginUtil;
-import com.w8.base.pcurl.PhoneUtil;
-import com.w8.base.pcurl.RegisterUtil;
-import com.w8.base.pcurl.MineUtil;
-import com.w8.base.pcurl.TestnumUtil;
+import com.w8.base.pcurl.RetNumUtilA;
+import com.w8.base.pcurl.AccountUtilA;
+import com.w8.base.pcurl.LoginUtilA;
+import com.w8.base.pcurl.PhoneUtilA;
+import com.w8.base.pcurl.RegisterUtilA;
+import com.w8.base.pcurl.MineUtilA;
+import com.w8.base.pcurl.TestnumUtilA;
 
 public class RegisterCompleteActivity extends RegisterTestNum implements View.OnClickListener {
 
@@ -63,10 +62,10 @@ public class RegisterCompleteActivity extends RegisterTestNum implements View.On
             this.finish();
             return;
         } else {
-            phone = bundle.getString(PhoneUtil.para_phone);
-            acc = bundle.getString(AccountUtil.para_acc);
-            uuidTestNum = bundle.getString(TestnumUtil.para_testnum_random);
-            delPhone = bundle.getString(PhoneUtil.para_know_del_phone);
+            phone = bundle.getString(PhoneUtilA.para_phone);
+            acc = bundle.getString(AccountUtilA.para_acc);
+            uuidTestNum = bundle.getString(TestnumUtilA.para_testnum_random);
+            delPhone = bundle.getString(PhoneUtilA.para_know_del_phone);
             if (delPhone == null || phone == null || "".equals(phone) || acc == null || "".equals(acc)
                     || uuidTestNum == null || "".equals(uuidTestNum)) {
                 Intent intent = new Intent(RegisterCompleteActivity.this, RegisterAccPhoneActivity.class);
@@ -112,11 +111,11 @@ public class RegisterCompleteActivity extends RegisterTestNum implements View.On
             } else {
                 JsonObject jo = new JsonObject();
                 String testNnnnnn = md5Str(uuidTestNum + register_complete_testnum.getText().toString().trim());
-                jo.addProperty(TestnumUtil.para_testnum, "" + testNnnnnn);
-                jo.addProperty(PhoneUtil.para_phone, "" + phone);
-                jo.addProperty(AccountUtil.para_acc, "" + acc);
-                jo.addProperty(MineUtil.para_pas, "" + passssss);
-                jo.addProperty(WxUtil.para_url, RegisterUtil.url_app_complete);
+                jo.addProperty(TestnumUtilA.para_testnum, "" + testNnnnnn);
+                jo.addProperty(PhoneUtilA.para_phone, "" + phone);
+                jo.addProperty(AccountUtilA.para_acc, "" + acc);
+                jo.addProperty(MineUtilA.para_pas, "" + passssss);
+                jo.addProperty(MineUtilA.para_url, RegisterUtilA.url_app_complete);
 
                 startWeb();
 
@@ -126,37 +125,37 @@ public class RegisterCompleteActivity extends RegisterTestNum implements View.On
                     public void onResponse(String s) {
                         try {
                             JsonObject into = new JsonParser().parse(s).getAsJsonObject();
-                            int rrr = into.get(WxUtil.para_r).getAsInt();
-                            if (rrr == RetNumUtil.n_0) {
-                                String iipp = into.get(LoginUtil.para_login_ip).getAsString();
+                            int rrr = into.get(MineUtilA.para_url).getAsInt();
+                            if (rrr == RetNumUtilA.n_0) {
+                                String iipp = into.get(LoginUtilA.para_login_ip).getAsString();
                                 AppUtil.insertAccIp(acc, iipp);
                                 Intent iii = new Intent(RegisterCompleteActivity.this, LoginActivity.class);
                                 startActivity(iii);
                                 finish();
-                            } else if (rrr == RetNumUtil.n_7) {//手机号
+                            } else if (rrr == RetNumUtilA.n_7) {//手机号
                                 retAccPhone(acc, phone);
-                            } else if (rrr == RetNumUtil.n_4) {//账号
+                            } else if (rrr == RetNumUtilA.n_4) {//账号
                                 retAccPhone(acc, phone);
-                            } else if (rrr == RetNumUtil.n_26) {//密码
+                            } else if (rrr == RetNumUtilA.n_26) {//密码
                                 alertDialogText(getString(R.string.password_error));
                                 endWeb();
-                            } else if (rrr == RetNumUtil.n_5) {//账号已经被注册
+                            } else if (rrr == RetNumUtilA.n_5) {//账号已经被注册
                                 //一、尝试登陆，是否已经注册完成。
                                 //二、如果不是已经成功：返回RegsterAccPhone，并提示错误。
-                                ttErr = RetNumUtil.n_5;
+                                ttErr = RetNumUtilA.n_5;
                                 testAndLogin(acc, passssss);
-                            } else if (rrr == RetNumUtil.n_6) {//验证码手机号匹配已过期。
-                                ttErr = RetNumUtil.n_6;
+                            } else if (rrr == RetNumUtilA.n_6) {//验证码手机号匹配已过期。
+                                ttErr = RetNumUtilA.n_6;
                                 testAndLogin(acc, passssss);
-                            } else if (rrr == RetNumUtil.n_17) {//验证码操作太过频繁
+                            } else if (rrr == RetNumUtilA.n_17) {//验证码操作太过频繁
                                 alertDialogText(getString(R.string.err_test_register));
                                 endWeb();
-                            } else if (rrr == RetNumUtil.n_18) {//手机号已经注册，是否解除注册？
+                            } else if (rrr == RetNumUtilA.n_18) {//手机号已经注册，是否解除注册？
                                 //一、尝试登陆，是否已经注册完成。
                                 //二、如果不是已经成功：返回RegsterAccPhone，并提示错误。
-                                ttErr = RetNumUtil.n_18;
+                                ttErr = RetNumUtilA.n_18;
                                 testAndLogin(acc, passssss);
-                                delPhone = WxUtil.para_yes + phone;
+                                delPhone = MineUtilA.para_yes + phone;
                             } else {//未知错误。
                                 //日志
                                 alertDialogText(getString(R.string.server_err));
@@ -217,15 +216,15 @@ public class RegisterCompleteActivity extends RegisterTestNum implements View.On
     public void accPss() { //尝试登陆后返回，账号密码不匹配。
         webing = false;
         progressBar.setVisibility(View.GONE);
-        if (ttErr == RetNumUtil.n_5) {
+        if (ttErr == RetNumUtilA.n_5) {
             if (TAG.equals(RegisterCompleteActivity.class.getSimpleName())) {
                 retAccPhone(acc, phone);
             }
             alertDialogText(getString(R.string.reg_two_username));
-        } else if (ttErr == RetNumUtil.n_18) {
-            delPhone = WxUtil.para_yes + phone;
+        } else if (ttErr == RetNumUtilA.n_18) {
+            delPhone = MineUtilA.para_yes + phone;
             alertDialogText(getString(R.string.reg_del_phone));
-        } else if (ttErr == RetNumUtil.n_6) {
+        } else if (ttErr == RetNumUtilA.n_6) {
             alertDialogText(getString(R.string.reg_phonetestnumerr));
         }
     }

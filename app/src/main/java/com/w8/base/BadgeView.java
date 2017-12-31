@@ -35,6 +35,8 @@ import android.widget.FrameLayout;
 import android.widget.FrameLayout.LayoutParams;
 import android.widget.TabWidget;
 
+import com.w8.base.pcurl.RetNumUtilA;
+
 
 public class BadgeView extends android.support.v7.widget.AppCompatTextView {
 
@@ -113,7 +115,7 @@ public class BadgeView extends android.support.v7.widget.AppCompatTextView {
      */
     @Override
     public void setText(CharSequence text, BufferType type) {
-        if (isHideOnNull() && (text == null || text.toString().equalsIgnoreCase(RetNumUtil.n_0 + ""))) {
+        if (isHideOnNull() && (text == null || text.toString().equalsIgnoreCase(RetNumUtilA.n_0 + ""))) {
             setVisibility(View.GONE);
         } else {
             setVisibility(View.VISIBLE);

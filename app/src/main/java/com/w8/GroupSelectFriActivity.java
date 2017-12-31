@@ -24,12 +24,12 @@ import com.squareup.picasso.Picasso;
 import com.w8.base.AppUtil;
 import com.w8.base.MyApp;
 import com.w8.base.OnlineActivity;
-import com.w8.base.RetNumUtil;
+import com.w8.base.pcurl.RetNumUtilA;
 import com.w8.base.data.Friend;
 import com.w8.base.data.FriendDao;
 import com.w8.base.data.GroupDao;
-import com.w8.base.pcurl.FriendUtil;
-import com.w8.base.pcurl.GroupUtil;
+import com.w8.base.pcurl.FriendUtilA;
+import com.w8.base.pcurl.GroupUtilA;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -65,13 +65,13 @@ public class GroupSelectFriActivity extends OnlineActivity {
         } else {
             tagfrom = intent.getStringExtra(AppUtil.tag_position);
             if (GroupusersActivity.class.getSimpleName().equals(tagfrom)) {//邀请好友入群
-                gid = intent.getStringExtra(GroupUtil.para_gid);
+                gid = intent.getStringExtra(GroupUtilA.para_gid);
                 if (gid == null) {
                     // 日志
                 }
             } else { //新建群。
                 long gnum = MyApp.mC.getDS().getGroupDao().queryBuilder().where(GroupDao.Properties.Masterid.eq(AppUtil.getUid())).count();
-                if (gnum > RetNumUtil.n_7) {
+                if (gnum > RetNumUtilA.n_7) {
                     new AlertDialog.Builder(GroupSelectFriActivity.this)
                             .setTitle(R.string.group_num_err_tittle)
                             .setMessage(R.string.group_num_err_des)
@@ -132,7 +132,7 @@ public class GroupSelectFriActivity extends OnlineActivity {
                         } else {
                             if (tagfrom.equals(GroupActivity.class.getSimpleName())) {
                                 Intent intent = new Intent(GroupSelectFriActivity.this, GroupCompleteActivity.class);
-                                intent.putExtra(FriendUtil.para_fids, new Gson().toJson(ids));
+                                intent.putExtra(FriendUtilA.para_fids, new Gson().toJson(ids));
                                 startActivity(intent);
                                 GroupSelectFriActivity.this.finish();
                             } else if (tagfrom.equals(GroupusersActivity.class.getSimpleName())) { //群添加人员，邀请人员
@@ -277,10 +277,10 @@ public class GroupSelectFriActivity extends OnlineActivity {
                 } else {
                     Integer rrr = jjj.getInteger(WxUtil.r);
 
-                    if (RetNumUtil.n_0 == rrr) {//0成功
+                    if (RetNumUtilA.n_0 == rrr) {//0成功
                         Toast.makeText(GroupSelectFriActivity.this, R.string.success, Toast.LENGTH_SHORT);
                         GroupSelectFriActivity.this.finish();
-                    } else if (RetNumUtil.n_1 == rrr) {//11token过期
+                    } else if (RetNumUtilA.n_1 == rrr) {//11token过期
                         TokenUtil.updateTo(app);
                         Toast.makeText(GroupSelectFriActivity.this, R.string.fail_web, Toast.LENGTH_SHORT);
                     } else {//2参数错误或者服务器

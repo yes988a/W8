@@ -20,11 +20,10 @@ import com.google.gson.JsonParser;
 import com.w8.base.AppUtil;
 import com.w8.base.MyApp;
 import com.w8.base.OnlineActivity;
-import com.w8.base.RetNumUtil;
-import com.w8.base.WxUtil;
+import com.w8.base.pcurl.RetNumUtilA;
 import com.w8.base.data.FriendDao;
-import com.w8.base.pcurl.FriendUtil;
-import com.w8.base.pcurl.MineUtil;
+import com.w8.base.pcurl.FriendUtilA;
+import com.w8.base.pcurl.MineUtilA;
 
 /**
  * 添加好友请求页面，扫一扫后跳转到这里
@@ -77,9 +76,9 @@ public class FriReqActivity extends OnlineActivity {
             finish();
         } else {
             fri_req_radioGroup.check(R.id.fri_req_radiono);
-            resid = bundle.getString(FriendUtil.para_fid);//用户ID
-            String nickname = bundle.getString(MineUtil.para_nickname);//昵称
-            String autograph = bundle.getString(MineUtil.para_autograph);//签名
+            resid = bundle.getString(FriendUtilA.para_fid);//用户ID
+            String nickname = bundle.getString(MineUtilA.para_nickname);//昵称
+            String autograph = bundle.getString(MineUtilA.para_autograph);//签名
 
             if (nickname == null || autograph == null || resid == null) {
                 finish();
@@ -105,18 +104,18 @@ public class FriReqActivity extends OnlineActivity {
 //发送添加请求
                     JsonObject into = new JsonObject();
 
-                    into.addProperty(WxUtil.para_url, FriendUtil.url_app_requestFri);
+                    into.addProperty(MineUtilA.para_url, FriendUtilA.url_app_requestFri);
 
-                    into.addProperty(FriendUtil.para_resid, resid);
-                    into.addProperty(FriendUtil.para_reqid, AppUtil.getUid());
+                    into.addProperty(FriendUtilA.para_resid, resid);
+                    into.addProperty(FriendUtilA.para_reqid, AppUtil.getUid());
 
                     if (R.id.fri_req_radioyes == fri_req_radioGroup.getCheckedRadioButtonId()) {
-                        into.addProperty(FriendUtil.para_met, WxUtil.para_yes);
+                        into.addProperty(FriendUtilA.para_met, MineUtilA.para_yes);
                     } else {
-                        into.addProperty(FriendUtil.para_met, WxUtil.para_no);
+                        into.addProperty(FriendUtilA.para_met, MineUtilA.para_no);
                     }
 
-                    into.addProperty(FriendUtil.para_reqdes, fri_req_des.getText().toString());
+                    into.addProperty(FriendUtilA.para_reqdes, fri_req_des.getText().toString());
 
                     StringRequest wj = new StringRequest(getString(R.string.httpHomeAddress) + into.toString(), new Response.Listener<String>() {
                         @Override
@@ -124,8 +123,8 @@ public class FriReqActivity extends OnlineActivity {
                             fri_req_add.setEnabled(true);
                             try {
                                 JsonObject jo = new JsonParser().parse(msg).getAsJsonObject();
-                                Integer r = jo.get(WxUtil.para_r).getAsInt();
-                                if (RetNumUtil.n_0 == r) {
+                                Integer r = jo.get(MineUtilA.para_url).getAsInt();
+                                if (RetNumUtilA.n_0 == r) {
                                     TextView edi = new TextView(FriReqActivity.this);//textAppearanceMedium
                                     edi.setGravity(Gravity.CENTER);
                                     edi.setText(getString(R.string.success));
@@ -139,11 +138,11 @@ public class FriReqActivity extends OnlineActivity {
                                                     finish();
                                                 }
                                             }).show();
-                                } else if (RetNumUtil.n_8 == r) {
+                                } else if (RetNumUtilA.n_8 == r) {
                                     //不应该出现。
                                     //日志
                                     alertDialogText(getString(R.string.search_des_no));
-                                } else if (RetNumUtil.n_9 == r) {
+                                } else if (RetNumUtilA.n_9 == r) {
                                     isFri();
                                 } else {
                                     alertDialogText(getString(R.string.fail));
@@ -184,7 +183,7 @@ public class FriReqActivity extends OnlineActivity {
                             dialog.dismiss();
 
                             Intent intent = new Intent(FriReqActivity.this, FriendDesActivity.class);
-                            intent.putExtra(FriendUtil.para_fid, resid);
+                            intent.putExtra(FriendUtilA.para_fid, resid);
                             startActivity(intent);
                             finish();
                         }

@@ -1,18 +1,14 @@
 package com.w8;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -22,11 +18,10 @@ import com.google.gson.JsonParser;
 import com.w8.base.AppUtil;
 import com.w8.base.MyApp;
 import com.w8.base.OnlineActivity;
-import com.w8.base.RetNumUtil;
-import com.w8.base.WxUtil;
-import com.w8.base.pcurl.FriendUtil;
-import com.w8.base.pcurl.SearchUtil;
-import com.w8.base.pcurl.MineUtil;
+import com.w8.base.pcurl.RetNumUtilA;
+import com.w8.base.pcurl.FriendUtilA;
+import com.w8.base.pcurl.SearchUtilA;
+import com.w8.base.pcurl.MineUtilA;
 
 /**
  * 按手机号、小微号，搜索页面，添加好友搜索页面
@@ -105,8 +100,8 @@ public class FriSearchActivity extends OnlineActivity implements View.OnClickLis
                 return;
             } else {
                 JsonObject into = new JsonObject();
-                into.addProperty(SearchUtil.para_acc_or_phone, sear_add_fri_uuid.getEditableText().toString());
-                into.addProperty(WxUtil.para_url, SearchUtil.url_app_findUserByuu);
+                into.addProperty(SearchUtilA.para_acc_or_phone, sear_add_fri_uuid.getEditableText().toString());
+                into.addProperty(MineUtilA.para_url, SearchUtilA.url_app_findUserByuu);
                 StringRequest wj = new StringRequest(getString(R.string.httpHomeAddress) + into.toString(), new Response.Listener<String>() {
                     @Override
                     public void onResponse(String msg) {
@@ -115,20 +110,20 @@ public class FriSearchActivity extends OnlineActivity implements View.OnClickLis
                         try {
 
                             JsonObject jo = new JsonParser().parse(msg).getAsJsonObject();
-                            Integer r = jo.get(WxUtil.para_r).getAsInt();
-                            if (RetNumUtil.n_0 == r) {
+                            Integer r = jo.get(MineUtilA.para_url).getAsInt();
+                            if (RetNumUtilA.n_0 == r) {
 
-                                if (jo.get(MineUtil.para_uid) == null) {
+                                if (jo.get(MineUtilA.para_uid) == null) {
                                     //不在当前服务器。
-                                    if (jo.get(SearchUtil.para_ipp) == null) {
+                                    if (jo.get(SearchUtilA.para_ipp) == null) {
                                         alertDialogText(getString(R.string.search_des_no));
                                     } else {
                                         //到另一个服务器，请求数据。
                                     }
                                 } else {
-                                    String uid = jo.get(MineUtil.para_uid).getAsString();
-                                    String nickname = jo.get(MineUtil.para_nickname).getAsString();
-                                    String autograph = jo.get(MineUtil.para_autograph).getAsString();
+                                    String uid = jo.get(MineUtilA.para_uid).getAsString();
+                                    String nickname = jo.get(MineUtilA.para_nickname).getAsString();
+                                    String autograph = jo.get(MineUtilA.para_autograph).getAsString();
                                     if (uid.equals(AppUtil.getUid())) {
                                         Intent intent = new Intent(FriSearchActivity.this, MineSetingActivity.class);
                                         startActivity(intent);
@@ -136,14 +131,14 @@ public class FriSearchActivity extends OnlineActivity implements View.OnClickLis
                                     } else {
                                         //跳转到，请求好友列表。
                                         Intent intent = new Intent(FriSearchActivity.this, FriReqActivity.class);
-                                        intent.putExtra(FriendUtil.para_fid, uid);
-                                        intent.putExtra(MineUtil.para_nickname, nickname);
-                                        intent.putExtra(MineUtil.para_autograph, autograph);
+                                        intent.putExtra(FriendUtilA.para_fid, uid);
+                                        intent.putExtra(MineUtilA.para_nickname, nickname);
+                                        intent.putExtra(MineUtilA.para_autograph, autograph);
                                         startActivity(intent);
                                         finish();
                                     }
                                 }
-                            } else if (RetNumUtil.n_8 == r) {//没有此用户
+                            } else if (RetNumUtilA.n_8 == r) {//没有此用户
                                 alertDialogText(getString(R.string.search_des_no));
                             } else {
                                 alertDialogText(getString(R.string.fail));

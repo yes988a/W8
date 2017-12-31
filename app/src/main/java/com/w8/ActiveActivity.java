@@ -21,8 +21,8 @@ import com.w8.base.OnlineActivity;
 import com.w8.base.data.Active;
 import com.w8.base.data.ActiveDao;
 import com.w8.base.event.Refresh_active;
-import com.w8.base.pcurl.ChatUtil;
-import com.w8.base.pcurl.FriendUtil;
+import com.w8.base.pcurl.ChatUtilA;
+import com.w8.base.pcurl.FriendUtilA;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
@@ -115,9 +115,9 @@ public class ActiveActivity extends OnlineActivity {
 
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            if (viewType == ChatUtil.url_app_findChatsingle) {
+            if (viewType == ChatUtilA.url_app_findChatsingle) {
                 return new MyViewHolder(LayoutInflater.from(ActiveActivity.this).inflate(R.layout.recycler_active, parent, false));
-            } else if (viewType == FriendUtil.typ_add_fri) {//好友请求显示，当同意后，不在active显示啦就，直接是好友啦，忽略后也不现实啦
+            } else if (viewType == FriendUtilA.typ_add_fri) {//好友请求显示，当同意后，不在active显示啦就，直接是好友啦，忽略后也不现实啦
                 return new MyViewHolder_friReqrequest(LayoutInflater.from(ActiveActivity.this).inflate(R.layout.recycler_frireq_request, parent, false));
             } else {
                 //错误数据显示用户手册
@@ -128,7 +128,7 @@ public class ActiveActivity extends OnlineActivity {
         @Override
         public void onBindViewHolder(RecyclerView.ViewHolder h, int position) {
             int viewType = h.getItemViewType();
-            if (viewType == ChatUtil.url_app_findChatsingle) {
+            if (viewType == ChatUtilA.url_app_findChatsingle) {
                 MyViewHolder ho = (MyViewHolder) h;
                 Active f = datas_ac.get(position);
                 final String rid = f.getUuid();
@@ -136,11 +136,11 @@ public class ActiveActivity extends OnlineActivity {
                 ho.ac_uname.setText(f.getTitle());
                 ho.ac_endtime.setText(f.getTimstr());
                 ho.ac_enddes.setText(f.getDes());
-                if (viewType == ChatUtil.url_app_findChatsingle) {
+                if (viewType == ChatUtilA.url_app_findChatsingle) {
                     ho.ac_lineBig.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            AppUtil.toChat(rid, ChatUtil.url_app_findChatsingle);
+                            AppUtil.toChat(rid, ChatUtilA.url_app_findChatsingle);
                         }
                     });
                 }/* else if (viewType == AppUtil.active_chatgroup) {
@@ -153,7 +153,7 @@ public class ActiveActivity extends OnlineActivity {
                 } */else {
                     //错误信息待纠正
                 }
-            } else if (viewType == FriendUtil.typ_add_fri) {
+            } else if (viewType == FriendUtilA.typ_add_fri) {
                 MyViewHolder_friReqrequest ho = (MyViewHolder_friReqrequest) h;
                 Active f = datas_ac.get(position);
                 final String rid = f.getUuid();
@@ -166,7 +166,7 @@ public class ActiveActivity extends OnlineActivity {
                     public void onClick(View v) {
 
                         Intent intent = new Intent(ActiveActivity.this, FriResActivity.class);
-                        intent.putExtra(FriendUtil.para_reqid, rid);
+                        intent.putExtra(FriendUtilA.para_reqid, rid);
                         ActiveActivity.this.startActivity(intent);
 
                     }
@@ -190,7 +190,7 @@ public class ActiveActivity extends OnlineActivity {
         @Override
         public int getItemViewType(int position) {
             int typ = datas_ac.get(position).getBtyp();
-            if (typ == FriendUtil.typ_add_fri || typ == ChatUtil.url_app_findChatsingle) {
+            if (typ == FriendUtilA.typ_add_fri || typ == ChatUtilA.url_app_findChatsingle) {
                 return typ;
             } else {
                 return 0;

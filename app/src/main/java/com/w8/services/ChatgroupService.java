@@ -32,7 +32,7 @@ public class ChatgroupService extends WXBaseService {
                     }
                     if (jo != null) {
                         Integer r = jo.getInteger(WxUtil.r);
-                        if (r != null && RetNumUtil.n_1 == r) {
+                        if (r != null && RetNumUtilA.n_1 == r) {
                             String groupliststring = jo.getString("gl");
                             List<Chatgroup> list = null;
                             try {

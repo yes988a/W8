@@ -17,10 +17,8 @@ import android.widget.TextView;
 import com.w8.base.AppUtil;
 import com.w8.base.MyApp;
 import com.w8.base.OnlineActivity;
-import com.w8.base.WxUtil;
 import com.w8.base.data.Group;
 import com.w8.base.data.GroupDao;
-import com.w8.base.pcurl.GroupUtil;
 
 import org.greenrobot.greendao.query.QueryBuilder;
 
