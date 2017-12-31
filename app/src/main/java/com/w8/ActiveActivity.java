@@ -120,8 +120,8 @@ public class ActiveActivity extends OnlineActivity {
             } else if (viewType == FriendUtilA.typ_add_fri) {//好友请求显示，当同意后，不在active显示啦就，直接是好友啦，忽略后也不现实啦
                 return new MyViewHolder_friReqrequest(LayoutInflater.from(ActiveActivity.this).inflate(R.layout.recycler_frireq_request, parent, false));
             } else {
-                //错误数据显示用户手册
-                return new ViewHolderInstructions(LayoutInflater.from(ActiveActivity.this).inflate(R.layout.recycler_instructions, parent, false));
+                //错误数据
+                return new ViewHolderCommonnull(LayoutInflater.from(ActiveActivity.this).inflate(R.layout.common_null, parent, false));
             }
         }
 
@@ -172,13 +172,7 @@ public class ActiveActivity extends OnlineActivity {
                     }
                 });
             } else {
-                ViewHolderInstructions vh = (ViewHolderInstructions) h;
-                vh.instructions_lineBig.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Log.e(TAG, "欢迎使用");
-                    }
-                });
+                // 数据错误，common_null.xml内容。
             }
         }
 
@@ -241,12 +235,9 @@ public class ActiveActivity extends OnlineActivity {
             }
         }
 
-        class ViewHolderInstructions extends RecyclerView.ViewHolder {
-            LinearLayout instructions_lineBig;
-
-            public ViewHolderInstructions(View view) {
+        class ViewHolderCommonnull extends RecyclerView.ViewHolder {
+            public ViewHolderCommonnull(View view) {
                 super(view);
-                instructions_lineBig = (LinearLayout) view.findViewById(R.id.instructions_lineBig);
             }
         }
     }

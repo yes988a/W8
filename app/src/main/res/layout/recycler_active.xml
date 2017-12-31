@@ -34,37 +34,47 @@
             android:gravity="center_vertical"
             android:orientation="vertical">
 
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/ac_uname"
-                    android:layout_width="wrap_content"
+                    android:layout_weight="100"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
                     android:minLines="1"
-                    android:textSize="@dimen/text_overt"
-                    android:textStyle="bold"
-                    android:typeface="monospace" />
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:ellipsize="end"
+                    android:text="账号格式：字母、数字、英文句号和下划线，长度3-1"/>
 
                 <TextView
                     android:id="@+id/ac_endtime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_toRightOf="@id/ac_uname"
                     android:minLines="1"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:ellipsize="end"
                     android:paddingLeft="@dimen/nor_margin"
                     android:paddingRight="@dimen/activity_margin"
-                    android:textSize="@dimen/text_small" />
-            </RelativeLayout>
+                    android:textSize="@dimen/text_small"
+                    android:text="星期二"/>
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/ac_enddes"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/text_small" />
+                android:minLines="1"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:textSize="@dimen/text_small"
+                android:text="你好，吃饭没有呢？你在哪里呢！有些年头啦吧，，，，，呵呵he"/>
+
         </LinearLayout>
     </LinearLayout>
 
