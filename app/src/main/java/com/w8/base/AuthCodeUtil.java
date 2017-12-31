@@ -41,4 +41,5 @@ public class AuthCodeUtil extends CountDownTimer {
         btn.setText("获取验证码");
         btn.setClickable(true);//重新获得点击
     }
+
 }
