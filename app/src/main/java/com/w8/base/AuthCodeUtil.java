@@ -10,6 +10,7 @@ import android.widget.Button;
 
 /**
  * 获取验证码按钮实现
+ *
  */
 public class AuthCodeUtil extends CountDownTimer {
     private static int millisInFuture = 60000;
